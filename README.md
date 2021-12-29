@@ -8,7 +8,7 @@ Note: <i>This library is a port of the [curo-calculator](https://github.com/andr
 
 This financial calculator library is for solving unknown cash flow values and unknown interest rates implicit in fixed-term instalment credit products, for example leasing, loans and hire purchase contracts [^1], and incorporates features that are likely to be found only in commercially developed software. It has been designed for use in applications with requirements that extend beyond what can be achieved using standard financial algebra.
 
-For an introduction to many of the features be sure to check out the GitHub repository [examples](https://github.com/andrewmurphy353/curo) and the accompanying cash flow diagrams which pictorially represent the cash inflows and outflows [^2] of each example.
+For an introduction to many of the features be sure to check out the GitHub repository [examples](https://github.com/andrewmurphy353/curo/tree/main/example) and the accompanying cash flow diagrams which pictorially represent the cash inflows and outflows [^2] of each example.
 
 Using the calculator is straightforward as the following examples demonstrate. 
 
