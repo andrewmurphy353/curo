@@ -1,5 +1,9 @@
 # Curo
 
+![Build Status](https://github.com/andrewmurphy353/curo/actions/workflows/dart_ci.yml/badge.svg)
+[![codecov](https://codecov.io/gh/andrewmurphy353/curo/branch/main/graph/badge.svg?token=YOLLETTV0K)](https://codecov.io/gh/andrewmurphy353/curo)
+![GitHub](https://img.shields.io/github/license/andrewmurphy353/curo.svg)
+
 A feature-rich library for performing simple to advanced instalment credit financial calculations.
 
 Note: <i>This library is a port of the [curo-calculator](https://github.com/andrewmurphy353/curo-calculator) TypeScript repository and includes a small number of refactorings and some code reorganisation.</i>
