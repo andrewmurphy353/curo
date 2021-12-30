@@ -84,6 +84,7 @@ class SeriesAdvance extends Series {
         weighting: weighting ?? this.weighting,
       );
 
+  // coverage:ignore-start
   @override
   String toString() {
     final sb = StringBuffer();
@@ -99,4 +100,5 @@ class SeriesAdvance extends Series {
     sb.write(']');
     return sb.toString();
   }
+  // coverage:ignore-end
 }

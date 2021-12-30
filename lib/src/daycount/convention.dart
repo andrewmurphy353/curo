@@ -54,6 +54,7 @@ abstract class Convention {
   /// [d2] the later of two dates
   DayCountFactor computeFactor(DateTime d1, DateTime d2);
 
+  // coverage:ignore-start
   @override
   String toString() {
     final sb = StringBuffer();
@@ -65,4 +66,5 @@ abstract class Convention {
     sb.write(']');
     return sb.toString();
   }
+  // coverage:ignore-end
 }

@@ -83,6 +83,7 @@ class SeriesPayment extends Series {
             isInterestCapitalised ?? this.isInterestCapitalised,
       );
 
+  // coverage:ignore-start
   @override
   String toString() {
     final sb = StringBuffer();
@@ -98,4 +99,5 @@ class SeriesPayment extends Series {
     sb.write(']');
     return sb.toString();
   }
+  // coverage:ignore-end
 }

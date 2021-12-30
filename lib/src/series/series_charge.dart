@@ -66,6 +66,7 @@ class SeriesCharge extends Series {
         mode: mode ?? this.mode,
       );
 
+  // coverage:ignore-start
   @override
   String toString() {
     final sb = StringBuffer();
@@ -79,4 +80,5 @@ class SeriesCharge extends Series {
     sb.write(']');
     return sb.toString();
   }
+  // coverage:ignore-end
 }

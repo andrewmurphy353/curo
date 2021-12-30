@@ -65,6 +65,7 @@ class Profile {
         dayCount: dayCount ?? this.dayCount,
       );
 
+  // coverage:ignore-start
   @override
   String toString() {
     final sb = StringBuffer();
@@ -77,4 +78,5 @@ class Profile {
     sb.write(']');
     return sb.toString();
   }
+  // coverage:ignore-end
 }

@@ -41,6 +41,7 @@ class CashFlowCharge extends CashFlow {
         periodFactor: periodFactor ?? this.periodFactor,
       );
 
+  // coverage:ignore-start
   @override
   String toString() {
     final sb = StringBuffer();
@@ -52,4 +53,5 @@ class CashFlowCharge extends CashFlow {
     sb.write(']');
     return sb.toString();
   }
+  // coverage:ignore-end
 }
