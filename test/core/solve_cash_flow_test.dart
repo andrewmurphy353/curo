@@ -14,14 +14,10 @@ void main() {
         'periods returns NFV of ~0.00 for expected 340.02 payment', () {
       var profile = Profile(
         cashFlows: [
-          CashFlowAdvance(
-            postDate: DateTime.utc(2022, 1, 1),
-            value: -1000.0,
-            isKnown: true,
-          ),
-          CashFlowPayment(postDate: DateTime.utc(2022, 2, 1)),
-          CashFlowPayment(postDate: DateTime.utc(2022, 3, 1)),
-          CashFlowPayment(postDate: DateTime.utc(2022, 4, 1)),
+          CashFlowAdvance(postDate: DateTime.utc(2022, 1, 1), value: -1000.0),
+          CashFlowPayment(postDate: DateTime.utc(2022, 2, 1), isKnown: false),
+          CashFlowPayment(postDate: DateTime.utc(2022, 3, 1), isKnown: false),
+          CashFlowPayment(postDate: DateTime.utc(2022, 4, 1), isKnown: false),
           CashFlowCharge(postDate: DateTime.utc(2022, 1, 1), value: 10.0),
         ],
         dayCount: const US30360(),

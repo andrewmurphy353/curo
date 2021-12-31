@@ -93,8 +93,8 @@ void main() {
         'throws an exception as an unknown CashFlowPayment and '
         'unknown CashFlowAdvance were found', () {
       final cashFlows = <CashFlow>[
-        CashFlowAdvance(postDate: DateTime.utc(2021)),
-        CashFlowPayment(postDate: DateTime.utc(2021)),
+        CashFlowAdvance(postDate: DateTime.utc(2021), isKnown: false),
+        CashFlowPayment(postDate: DateTime.utc(2021), isKnown: false),
       ];
       expect(
         () => validateUnknowns(cashFlows),
@@ -105,12 +105,8 @@ void main() {
         'returns true for an unknown CashFlowPayment and '
         'known CashFlowAdvance value', () {
       final cashFlows = <CashFlow>[
-        CashFlowAdvance(
-          postDate: DateTime.utc(2021),
-          value: 100.0,
-          isKnown: true,
-        ),
-        CashFlowPayment(postDate: DateTime.utc(2021)),
+        CashFlowAdvance(postDate: DateTime.utc(2021), value: 100.0),
+        CashFlowPayment(postDate: DateTime.utc(2021), isKnown: false),
       ];
       expect(
         validateUnknowns(cashFlows),
@@ -121,12 +117,8 @@ void main() {
         'returns true for an known CashFlowPayment and '
         'unknown CashFlowAdvance value', () {
       final cashFlows = <CashFlow>[
-        CashFlowAdvance(postDate: DateTime.utc(2021)),
-        CashFlowPayment(
-          postDate: DateTime.utc(2021),
-          value: 100.0,
-          isKnown: true,
-        ),
+        CashFlowAdvance(postDate: DateTime.utc(2021), isKnown: false),
+        CashFlowPayment(postDate: DateTime.utc(2021), value: 100.0),
       ];
       expect(
         validateUnknowns(cashFlows),
@@ -137,16 +129,8 @@ void main() {
         'returns true for an known CashFlowPayment and '
         'known CashFlowAdvance value', () {
       final cashFlows = <CashFlow>[
-        CashFlowAdvance(
-          postDate: DateTime.utc(2021),
-          value: 100.0,
-          isKnown: true,
-        ),
-        CashFlowPayment(
-          postDate: DateTime.utc(2021),
-          value: 100.0,
-          isKnown: true,
-        ),
+        CashFlowAdvance(postDate: DateTime.utc(2021), value: 100.0),
+        CashFlowPayment(postDate: DateTime.utc(2021), value: 100.0),
       ];
       expect(
         validateUnknowns(cashFlows),
@@ -159,16 +143,12 @@ void main() {
         'throws an exception as the last '
         'CashFlowPayment.isInterestCapitalised() is false', () {
       final cashFlows = <CashFlow>[
-        CashFlowPayment(
-          postDate: DateTime.utc(2022, 2, 1),
-        ),
+        CashFlowPayment(postDate: DateTime.utc(2022, 2, 1)),
         CashFlowPayment(
           postDate: DateTime.utc(2022, 3, 1),
           isInterestCapitalised: false,
         ), // <-- oldest
-        CashFlowPayment(
-          postDate: DateTime.utc(2022, 1, 1),
-        ),
+        CashFlowPayment(postDate: DateTime.utc(2022, 1, 1)),
       ];
       expect(
         () => validateIsInterestCapitalised(cashFlows),

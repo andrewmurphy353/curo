@@ -14,26 +14,10 @@ void main() {
         'periods returns ~0.00 at 12.00%', () {
       var profile = Profile(
         cashFlows: [
-          CashFlowAdvance(
-            postDate: DateTime.utc(2022, 1, 1),
-            value: -1000.0,
-            isKnown: true,
-          ),
-          CashFlowPayment(
-            postDate: DateTime.utc(2022, 2, 1),
-            value: 340.02,
-            isKnown: true,
-          ),
-          CashFlowPayment(
-            postDate: DateTime.utc(2022, 3, 1),
-            value: 340.02,
-            isKnown: true,
-          ),
-          CashFlowPayment(
-            postDate: DateTime.utc(2022, 4, 1),
-            value: 340.02,
-            isKnown: true,
-          ),
+          CashFlowAdvance(postDate: DateTime.utc(2022, 1, 1), value: -1000.0),
+          CashFlowPayment(postDate: DateTime.utc(2022, 2, 1), value: 340.02),
+          CashFlowPayment(postDate: DateTime.utc(2022, 3, 1), value: 340.02),
+          CashFlowPayment(postDate: DateTime.utc(2022, 4, 1), value: 340.02),
           CashFlowCharge(postDate: DateTime.utc(2022, 1, 1), value: 10.0),
         ],
         dayCount: const US30360(),
@@ -47,26 +31,20 @@ void main() {
         'periods returns ~0.00 at 12.16%', () {
       var profile = Profile(
         cashFlows: [
-          CashFlowAdvance(
-            postDate: DateTime.utc(2022, 1, 1),
-            value: -1000.0,
-            isKnown: true,
-          ),
+          CashFlowAdvance(postDate: DateTime.utc(2022, 1, 1), value: -1000.0),
           CashFlowPayment(
             postDate: DateTime.utc(2022, 2, 1),
             value: 340.02,
-            isKnown: true,
             isInterestCapitalised: false,
           ),
           CashFlowPayment(
-              postDate: DateTime.utc(2022, 3, 1),
-              value: 340.02,
-              isKnown: true,
-              isInterestCapitalised: false),
+            postDate: DateTime.utc(2022, 3, 1),
+            value: 340.02,
+            isInterestCapitalised: false,
+          ),
           CashFlowPayment(
             postDate: DateTime.utc(2022, 4, 1),
             value: 340.02,
-            isKnown: true,
           ),
           CashFlowCharge(postDate: DateTime.utc(2022, 1, 1), value: 10.0),
         ],
@@ -81,26 +59,10 @@ void main() {
         'periods returns ~0.00 at 19.71% (XIRR)', () {
       var profile = Profile(
         cashFlows: [
-          CashFlowAdvance(
-            postDate: DateTime.utc(2022, 1, 1),
-            value: -1000.0,
-            isKnown: true,
-          ),
-          CashFlowPayment(
-            postDate: DateTime.utc(2022, 2, 1),
-            value: 340.02,
-            isKnown: true,
-          ),
-          CashFlowPayment(
-            postDate: DateTime.utc(2022, 3, 1),
-            value: 340.02,
-            isKnown: true,
-          ),
-          CashFlowPayment(
-            postDate: DateTime.utc(2022, 4, 1),
-            value: 340.02,
-            isKnown: true,
-          ),
+          CashFlowAdvance(postDate: DateTime.utc(2022, 1, 1), value: -1000.0),
+          CashFlowPayment(postDate: DateTime.utc(2022, 2, 1), value: 340.02),
+          CashFlowPayment(postDate: DateTime.utc(2022, 3, 1), value: 340.02),
+          CashFlowPayment(postDate: DateTime.utc(2022, 4, 1), value: 340.02),
           CashFlowCharge(postDate: DateTime.utc(2022, 1, 1), value: 10.0),
         ],
         dayCount: const US30360(
@@ -117,28 +79,18 @@ void main() {
         'periods returns ~0.00 at 12.68% (XIRR)', () {
       var profile = Profile(
         cashFlows: [
-          CashFlowAdvance(
-            postDate: DateTime.utc(2022, 1, 1),
-            value: -1000.0,
-            isKnown: true,
-          ),
+          CashFlowAdvance(postDate: DateTime.utc(2022, 1, 1), value: -1000.0),
           CashFlowPayment(
             postDate: DateTime.utc(2022, 2, 1),
             value: 340.02,
-            isKnown: true,
             isInterestCapitalised: false,
           ),
           CashFlowPayment(
             postDate: DateTime.utc(2022, 3, 1),
             value: 340.02,
-            isKnown: true,
             isInterestCapitalised: false,
           ),
-          CashFlowPayment(
-            postDate: DateTime.utc(2022, 4, 1),
-            value: 340.02,
-            isKnown: true,
-          ),
+          CashFlowPayment(postDate: DateTime.utc(2022, 4, 1), value: 340.02),
           CashFlowCharge(postDate: DateTime.utc(2022, 1, 1), value: 10.0),
         ],
         dayCount: const US30360(

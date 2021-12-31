@@ -31,15 +31,11 @@ void main() {
         'with bespoke profile and precision of 4 should '
         'should override calculator provided precision', () {
       final cashFlows = <CashFlow>[];
-      cashFlows.add(CashFlowAdvance(
-        postDate: DateTime.utc(2022),
-      ));
       cashFlows.add(
-        CashFlowPayment(
-          postDate: DateTime.utc(2022),
-          value: 100.0,
-          isKnown: true,
-        ),
+        CashFlowAdvance(postDate: DateTime.utc(2022), isKnown: false),
+      );
+      cashFlows.add(
+        CashFlowPayment(postDate: DateTime.utc(2022), value: 100.0),
       );
       final calc = Calculator(
         precision: 3, // will be overridden by profile
@@ -67,12 +63,8 @@ void main() {
       final calc = Calculator(
         profile: Profile(
           cashFlows: [
-            CashFlowAdvance(postDate: DateTime.utc(2022)),
-            CashFlowPayment(
-              postDate: DateTime.utc(2022),
-              value: 100.0,
-              isKnown: true,
-            ),
+            CashFlowAdvance(postDate: DateTime.utc(2022), isKnown: false),
+            CashFlowPayment(postDate: DateTime.utc(2022), value: 100.0),
           ],
         ),
       );

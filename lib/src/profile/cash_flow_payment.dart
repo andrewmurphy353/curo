@@ -18,7 +18,7 @@ class CashFlowPayment extends CashFlow {
   CashFlowPayment({
     required DateTime postDate,
     double value = 0.0,
-    bool isKnown = false,
+    bool isKnown = true,
     double weighting = 1.0,
     String label = '',
     this.interest = 0.0,

@@ -10,7 +10,7 @@ class CashFlowAdvance extends CashFlow {
     required DateTime postDate,
     DateTime? valueDate,
     double value = 0.0,
-    bool isKnown = false,
+    bool isKnown = true,
     double weighting = 1.0,
     String label = '',
     DayCountFactor? periodFactor,
