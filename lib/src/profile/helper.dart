@@ -276,12 +276,13 @@ List<CashFlow> computeFactors(
 ) {
   final newCashFlows = <CashFlow>[];
   DateTime cashFlowDate;
-  DateTime? neighbourDate;
+  // Neighbouring cashflow time period calculations start from the
+  // drawdown date, so initialise with this date.
+  DateTime neighbourDate = drawDownDate;
 
   for (var cashFlow in cashFlows) {
     cashFlowDate =
         dayCount.usePostDates ? cashFlow.postDate : cashFlow.valueDate;
-    neighbourDate ??= cashFlowDate;
 
     if (cashFlow is CashFlowCharge && !dayCount.includeNonFinancingFlows) {
       newCashFlows.add(
