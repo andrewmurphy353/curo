@@ -129,4 +129,4 @@ The diagram begins with a horizontal line, called a time line. The line represen
 
 To illustrate using the example above, that is a 10,000.00 loan repayable by 6 monthly instalments in arrears (due at the end of each compounding period), the cash flow diagram would resemble something like this:
 
-![image](assets/images/cash_flow_diagram_01.png)
+![image](https://github.com/andrewmurphy353/curo/raw/main/assets/images/cash_flow_diagram_01.png)
