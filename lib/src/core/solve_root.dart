@@ -1,4 +1,5 @@
 import 'solve_callback.dart';
+import 'unsolvable_exception.dart';
 
 /// Implementation of the function for finding unknown roots.
 ///
@@ -48,7 +49,7 @@ class SolveRoot {
     } while (++countIter < maxIterations && g2.abs() > tolerance);
 
     if (countIter >= maxIterations || guess.isNaN) {
-      throw Exception('Unable to solve ${callback.runtimeType} '
+      throw UnsolvableException('Unable to solve ${callback.runtimeType} '
           'within a maximum $maxIterations attempts.');
     }
 

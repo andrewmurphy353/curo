@@ -1,5 +1,6 @@
 import 'package:curo/src/core/solve_callback.dart';
 import 'package:curo/src/core/solve_root.dart';
+import 'package:curo/src/core/unsolvable_exception.dart';
 import 'package:test/test.dart';
 
 class MockUnsolvable implements SolveCallback {
@@ -17,7 +18,7 @@ void main() {
   test('Throws error when unable to solve root in max iterations', () {
     expect(
       () => SolveRoot.solve(callback: MockUnsolvable()),
-      throwsA(isA<Exception>()),
+      throwsA(isA<UnsolvableException>()),
     );
   });
   test(
