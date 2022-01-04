@@ -126,6 +126,27 @@ void main() {
         339.68,
       );
     });
+    test(
+        'solve for loan of 10000.0, 8.25% IRR, 6 monthly repayments '
+        'in arrears mode using US30360 (README example)', () async {
+      final calculator = Calculator()
+        ..add(SeriesAdvance(
+          value: 10000.0,
+          postDateFrom: DateTime.utc(2022),
+        ))
+        ..add(SeriesPayment(
+          numberOf: 6,
+          mode: Mode.arrear,
+          postDateFrom: DateTime.utc(2022),
+        ));
+      expect(
+        await calculator.solveValue(
+          dayCount: const US30360(),
+          interestRate: 0.0825,
+        ),
+        1707.00,
+      );
+    });
   });
   group('Calculator solveRate', () {
     test(
@@ -207,6 +228,29 @@ void main() {
           dayCount: const Act365(useXirrMethod: true),
         ),
         0.12830319920462152,
+      );
+    });
+    test(
+        'solve US30360 IRR & EU200848EC for loan of 10000.0, 6 monthly '
+        'repayments of 1707.00 in arrears mode (README example)', () async {
+      final calculator = Calculator()
+        ..add(SeriesAdvance(
+          value: 10000.0,
+          postDateFrom: DateTime.utc(2022),
+        ))
+        ..add(SeriesPayment(
+          numberOf: 6,
+          value: 1707.0,
+          mode: Mode.arrear,
+          postDateFrom: DateTime.utc(2022),
+        ));
+      expect(
+        await calculator.solveRate(dayCount: const US30360()),
+        0.08250039875832707,
+      );
+      expect(
+        await calculator.solveRate(dayCount: const EU200848EC()),
+        0.08569256859255392,
       );
     });
   });
