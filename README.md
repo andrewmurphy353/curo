@@ -38,15 +38,15 @@ calculator.add(
   ),
 );
 
-// 3. Calculate the unknown cash flow value (result = 1706.93)
-final valueResult = calculator.solveValue(
+// 3. Calculate the unknown cash flow value (result = 1706.93 to 2 decimal places)
+final valueResult = await calculator.solveValue(
   dayCount: const US30360(),
   interestRate: 0.0825,
 );
 ```
-In step 2 we set the payment series value to `null`. This is how the unknown cash flow values that are to be computed are identified and is the protocol to be followed when defining the unknown cash flow values you wish to calculate.
+In the 2nd step we set the payment series value to `null`. We could also simply omit the value attribute. This is how the unknown cash flow values that are to be computed are identified, and is the protocol to be followed when defining the unknown cash flow values you wish to calculate.
 
-In the final step we invoke the `solveValue(...)` method, passing in a day count convention instance and the annual interest rate to use in the calculation, expressed as a decimal. 
+In the 3rd and final step we invoke the `solveValue(...)` method, passing in a day count convention instance and the annual interest rate to use in the calculation, expressed as a decimal. 
 
 The various day count conventions available in this library are described in more detail below.
 
@@ -73,11 +73,11 @@ calculator.add(
 );
 
 // 3. Calculate the IRR or Internal Rate of Return (result = 8.249121%)
-final irrRate = calculator.solveRate(
+final irrRate = await calculator.solveRate(
     dayCount: const US30360(),
 );
   // ...or the APR for regulated EU Consumer Credit agreements (result = 8.583131%)
-final aprRate = calculator.solveRate(
+final aprRate = await calculator.solveRate(
     dayCount: const EU200848EC(),
 );
 ```
