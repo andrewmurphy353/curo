@@ -17,7 +17,7 @@ import 'schedule.dart';
 /// Comments: Cash flow series dates in this example are defined with
 /// reference to the current system date.
 ///
-void main() {
+Future<void> main() async {
   // Step 1: Instantiate calculator
   final calculator = Calculator();
 
@@ -57,13 +57,13 @@ void main() {
   );
 
   // 3. Calculate the unknown cash flow value
-  final valueResult = calculator.solveValue(
+  final valueResult = await calculator.solveValue(
     dayCount: const US30360(),
     interestRate: 0.07,
   );
 
   // 4. Calculate the borrower's APR.
-  final rateImplicit = calculator.solveRate(
+  final rateImplicit = await calculator.solveRate(
     dayCount: const EU200848EC(),
   );
 

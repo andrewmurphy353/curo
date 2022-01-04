@@ -15,7 +15,7 @@ import 'schedule.dart';
 /// Comments: Dates in this example are not defined so are derived from the
 /// current system date.
 ///
-void main() {
+Future<void> main() async {
   // Step 1: Instantiate calculator
   final calculator = Calculator();
 
@@ -36,7 +36,7 @@ void main() {
   );
 
   // 3. Calculate the unknown cash flow value
-  final valueResult = calculator.solveValue(
+  final valueResult = await calculator.solveValue(
     dayCount: const ActISDA(),
     interestRate: 0.06,
   );
@@ -44,7 +44,7 @@ void main() {
   // 4. Calculate the interest rate implicit in the cash flow profile
   //    (lessor's IRR) now that the profile contains the computed cash flow
   //    values rounded to the required profile precision.
-  final rateImplicit = calculator.solveRate(
+  final rateImplicit = await calculator.solveRate(
     dayCount: const ActISDA(),
   );
 

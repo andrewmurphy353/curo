@@ -28,7 +28,7 @@ import 'schedule.dart';
 /// day count convention options, and set useXirrMethod:true. This will
 /// produce a result that is similar, if not exactly the same.
 ///
-void main() {
+Future<void> main() async {
   // Step 1: Instantiate calculator
   final calculator = Calculator();
 
@@ -56,13 +56,13 @@ void main() {
   );
 
   // 3. Calculate the unknown cash flow value
-  final valueResult = calculator.solveValue(
+  final valueResult = await calculator.solveValue(
     dayCount: const US30360(),
     interestRate: 0.0825,
   );
 
   // 4. Calculate the APR.
-  final rateImplicit = calculator.solveRate(
+  final rateImplicit = await calculator.solveRate(
     dayCount: const EU200848EC(),
   );
 

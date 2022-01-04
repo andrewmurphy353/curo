@@ -21,7 +21,7 @@ import 'schedule.dart';
 /// contribution/discount) equals the cash price of the car i.e. borrower
 /// pays no interest.
 ///
-void main() {
+Future<void> main() async {
   // Step 1: Instantiate calculator
   final calculator = Calculator();
   final today = utcDate(DateTime.now());
@@ -61,7 +61,7 @@ void main() {
   );
 
   // 3. Calculate the unknown cash flow value
-  final valueResult = calculator.solveValue(
+  final valueResult = await calculator.solveValue(
     dayCount: const US30360(),
     interestRate: 0.05,
   );
@@ -69,7 +69,7 @@ void main() {
   // 4. Calculate the interest rate implicit in the cash flow profile
   //    (lender's IRR) now that the profile contains the computed cash flow
   //    values rounded to the required profile precision.
-  final rateImplicit = calculator.solveRate(
+  final rateImplicit = await calculator.solveRate(
     dayCount: const US30360(),
   );
 

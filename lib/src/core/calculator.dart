@@ -107,15 +107,17 @@ class Calculator {
 
   /// Solves for an unknown value or values.
   ///
+  /// An UnsolvableException is thrown when the unknown cannot be determined.
+  ///
   /// [dayCount] convention for determining time intervals between cash flows
   ///
   /// [interestRate] the annual effective interest rate expressed as a decimal
   /// e.g. 5.25% is 0.0525 as a decimal
   ///
-  double solveValue({
+  Future<double> solveValue({
     required Convention dayCount,
     required double interestRate,
-  }) {
+  }) async {
     if (_profile == null && !_isBespokeProfile) {
       _buildProfile();
     }
@@ -151,11 +153,13 @@ class Calculator {
   /// Solves for an unknown interest rate, returning the result expressed as
   /// a decimal.
   ///
+  /// An UnsolvableException is thrown when the unknown cannot be determined.
+  ///
   /// [dayCount] convention for determining time intervals between cash flows
   ///
-  double solveRate({
+  Future<double> solveRate({
     required Convention dayCount,
-  }) {
+  }) async {
     if (_profile == null && !_isBespokeProfile) {
       _buildProfile();
     }

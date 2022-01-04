@@ -25,7 +25,7 @@ import 'schedule.dart';
 /// deferred settlement calculations performed from the lender's perspective
 /// should be undertaken using cash flow *value dates*.
 ///
-void main() {
+Future<void> main() async {
   // Step 1: Instantiate calculator
   final calculator = Calculator();
   final today = utcDate(DateTime.now());
@@ -69,7 +69,7 @@ void main() {
   //    Note: the calculation is performed with reference to the cash flow
   //    *value* dates as that is when interest starts accruing from the
   //    lender perspective.
-  final valueResult = calculator.solveValue(
+  final valueResult = await calculator.solveValue(
     dayCount: const US30360(usePostDates: false),
     interestRate: 0.05,
   );
@@ -80,7 +80,7 @@ void main() {
   //    Note: the IRR calculation is performed with reference to the cash flow
   //    *value* dates as that is when interest starts accruing from the
   //    lender perspective.
-  final rateImplicit = calculator.solveRate(
+  final rateImplicit = await calculator.solveRate(
     dayCount: const US30360(usePostDates: false),
   );
 

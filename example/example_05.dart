@@ -30,7 +30,7 @@ import 'schedule.dart';
 /// when both series are interwoven, and this is exactly what you will see
 /// when you review the amortisation schedule produced with the results.
 ///
-void main() {
+Future<void> main() async {
   // Step 1: Instantiate calculator
   final calculator = Calculator();
   final today = utcDate(DateTime.now());
@@ -69,13 +69,13 @@ void main() {
   );
 
   // 3. Calculate the unknown cash flow value
-  final valueResult = calculator.solveValue(
+  final valueResult = await calculator.solveValue(
     dayCount: const US30360(),
     interestRate: 0.0825,
   );
 
   // 4. Calculate the lender's IRR.
-  final rateImplicit = calculator.solveRate(
+  final rateImplicit = await calculator.solveRate(
     dayCount: const US30360(),
   );
 
