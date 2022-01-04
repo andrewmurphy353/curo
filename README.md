@@ -38,7 +38,7 @@ calculator.add(
   ),
 );
 
-// 3. Calculate the unknown cash flow value (result = 1706.93 to 2 decimal places)
+// 3. Calculate the unknown cash flow value (result = 1707.00 to 2 decimal places)
 final valueResult = await calculator.solveValue(
   dayCount: const US30360(),
   interestRate: 0.0825,
@@ -67,16 +67,16 @@ calculator.add(
   SeriesPayment(
     numberOf: 6,
     label: 'Instalment',
-    value: 1706.93,
+    value: 1707.00,
     mode: Mode.arrear,
   ),
 );
 
-// 3. Calculate the IRR or Internal Rate of Return (result = 8.249121%)
+// 3. Calculate the IRR or Internal Rate of Return (result = 8.250040%)
 final irrRate = await calculator.solveRate(
     dayCount: const US30360(),
 );
-  // ...or the APR for regulated EU Consumer Credit agreements (result = 8.583131%)
+  // ...or the APR for regulated EU Consumer Credit agreements (result = 8.569257%)
 final aprRate = await calculator.solveRate(
     dayCount: const EU200848EC(),
 );
