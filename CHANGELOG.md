@@ -1,3 +1,7 @@
+## 1.1.1
+- Added UnsolvableException export to library barrel file
+- Corrected README examples and results
+
 ## 1.1.0
 
 - Converted calculator computational methods to asynchronous functions
