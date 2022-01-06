@@ -1,4 +1,5 @@
 export 'src/core/calculator.dart';
+export 'src/core/unsolvable_exception.dart';
 export 'src/daycount/act_365.dart';
 export 'src/daycount/act_isda.dart';
 export 'src/daycount/day_count_origin.dart';
