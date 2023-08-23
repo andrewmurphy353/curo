@@ -36,6 +36,7 @@ void main() {
         CashFlowAdvance(postDate: DateTime.utc(2022, 1, 1)),
       ];
       expect(
+        // ignore: unnecessary_type_check
         validateAdvances(cashFlows) is CashFlowAdvance,
         true,
       );
@@ -58,6 +59,7 @@ void main() {
       ];
       final cashFlowAdvance = validateAdvances(cashFlows);
       expect(
+        // ignore: unnecessary_type_check
         cashFlowAdvance is CashFlowAdvance,
         true,
       );
