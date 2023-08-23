@@ -23,10 +23,10 @@ jobs:
     - name: Convert coverage to ICOV
       run: dart run coverage:format_coverage --lcov --check-ignore --in=coverage --out=coverage.lcov --report-on=lib
     
-    - name: Upload coverage to Codecov  
+    - name: Upload lcov file to Codecov  
       uses: codecov/codecov-action@v3
       with:
         token: ${{secrets.CODECOV_TOKEN}}
-        file: coverage.lcov
+        files: ./coverage.lcov
         fail_ci_if_error: true
         verbose: true
