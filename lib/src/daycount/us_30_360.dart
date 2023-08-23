@@ -7,7 +7,7 @@ import 'day_count_factor.dart';
 /// basis as follows:
 ///
 /// > Day Count Fraction =
-///   [[360 ∗ (𝑌𝑌2 − 𝑌𝑌1)] + [30 ∗ (𝑀𝑀2 − 𝑀𝑀1)] + (𝐷𝐷2 − 𝐷𝐷1)] / 360
+///   \[\[360 ∗ (YY2 − YY1)\] + \[30 ∗ (MM2 − MM1)\] + (DD2 − DD1)\] / 360
 ///
 /// where:
 ///
@@ -43,9 +43,9 @@ class US30360 extends Convention {
   /// on the basis of an eXtended Internal Rate of Return (XIRR), set the
   /// [useXirrMethod] to *true*. With this setup the day count is calculated
   /// with reference to the first cash flow date in the series, in much the
-  /// same way as the Microsoft Excel XIRR function does [1].
+  /// same way as the Microsoft Excel XIRR function does \[1\].
   ///
-  /// [1] The XIRR function in Excel computes time intervals between the
+  /// \[1\] The XIRR function in Excel computes time intervals between the
   /// first and subsequent cash flow dates using *actual days*, whereas
   /// this implementation offers the flexibility to determine those time
   /// intervals on a 30/360 day basis.
