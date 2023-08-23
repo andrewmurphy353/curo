@@ -12,10 +12,6 @@ import '../series/series_charge.dart';
 import '../series/series_payment.dart';
 import '../utilities/dates.dart';
 import '../utilities/math.dart';
-import 'cash_flow.dart';
-import 'cash_flow_advance.dart';
-import 'cash_flow_charge.dart';
-import 'cash_flow_payment.dart';
 import 'profile.dart';
 
 /// Utility method for building out a cash flow series into separate

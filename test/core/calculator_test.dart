@@ -1,15 +1,5 @@
 import 'package:curo/curo.dart';
-import 'package:curo/src/core/calculator.dart';
-import 'package:curo/src/daycount/act_365.dart';
-import 'package:curo/src/daycount/eu_2008_48_ec.dart';
 import 'package:curo/src/profile/cash_flow.dart';
-import 'package:curo/src/profile/cash_flow_advance.dart';
-import 'package:curo/src/profile/cash_flow_payment.dart';
-import 'package:curo/src/profile/profile.dart';
-import 'package:curo/src/series/mode.dart';
-import 'package:curo/src/series/series_advance.dart';
-import 'package:curo/src/series/series_charge.dart';
-import 'package:curo/src/series/series_payment.dart';
 import 'package:test/test.dart';
 
 void main() {

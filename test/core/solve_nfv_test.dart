@@ -1,10 +1,6 @@
 import 'package:curo/curo.dart';
 import 'package:curo/src/core/solve_nfv.dart';
-import 'package:curo/src/profile/cash_flow_advance.dart';
-import 'package:curo/src/profile/cash_flow_charge.dart';
-import 'package:curo/src/profile/cash_flow_payment.dart';
 import 'package:curo/src/profile/helper.dart';
-import 'package:curo/src/profile/profile.dart';
 import 'package:test/test.dart';
 
 void main() {
