@@ -1,5 +1,4 @@
 import 'package:curo/curo.dart';
-import 'package:curo/src/utilities/dates.dart';
 
 import 'schedule.dart';
 
