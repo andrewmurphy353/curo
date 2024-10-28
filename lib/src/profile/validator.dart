@@ -6,16 +6,11 @@ import 'cash_flow_payment.dart';
 /// [CashFlow] values in the notional calculation currency. Valid options
 /// are 0, 2, 3 and 4.
 bool validatePrecision(int precision) {
-  switch (precision) {
-    case 0:
-    case 2:
-    case 3:
-    case 4:
-      return true;
-    default:
-      throw Exception('The precision of $precision is not supported. '
-          'Valid options are 0, 2, 3 or 4');
+  if (0 <= precision || precision <= 4) {
+    return true;
   }
+  throw Exception('The precision of $precision is not supported. '
+      'Valid options are between 0 and 4 inclusive');
 }
 
 /// Checks for the presence of one or more [CashFlowAdvance] instances

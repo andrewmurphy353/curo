@@ -24,7 +24,7 @@ class Calculator {
   ///
   /// [precision] (optional) the number of fractional digits
   /// to apply in the rounding of cash flow values in the notional currency.
-  /// Default is 2, with valid options being 0, 2, 3 and 4
+  /// Default is 2, with valid options being 0 through to 4 inclusive.
   ///
   /// [profile] (optional) containing a bespoke collection of cash flows
   /// created manually. Use with caution, and only then if the default
@@ -36,16 +36,12 @@ class Calculator {
     int precision = 2,
     Profile? profile,
   }) {
-    switch (profile == null ? precision : profile.precision) {
-      case 0:
-      case 2:
-      case 3:
-      case 4:
-        _precision = (profile == null) ? precision : profile.precision;
-        break;
-      default:
-        throw Exception('The precision of $precision is unsupported. '
-            'Valid options are 0, 2, 3 or 4');
+    final prec = (profile == null ? precision : profile.precision);
+    if (0 <= prec || prec <= 4) {
+      _precision = (profile == null) ? precision : profile.precision;
+    } else {
+      throw Exception('The precision of $precision is unsupported. '
+          'Valid options are between 0 and 4 inclusive');
     }
     if (profile == null) {
       _isBespokeProfile = false;
@@ -114,12 +110,17 @@ class Calculator {
   /// [interestRate] the annual effective interest rate expressed as a decimal
   /// e.g. 5.25% is 0.0525 as a decimal
   ///
+  /// [startDate] to use in constructing the cash flow profile when cash
+  /// flow series dates are *not* provided. The current system date is used
+  /// if left undefined.
+  ///
   Future<double> solveValue({
     required Convention dayCount,
     required double interestRate,
+    DateTime? startDate,
   }) async {
     if (_profile == null && !_isBespokeProfile) {
-      _buildProfile();
+      _buildProfile(startDate: startDate);
     }
     _profile = _profile!.copyWith(dayCount: dayCount);
     _profile = assignFactors(_profile!);
@@ -140,13 +141,17 @@ class Calculator {
       ),
     );
 
-    _profile = _profile!.copyWith(
-      cashFlows: amortiseInterest(
-        _profile!.cashFlows,
-        interestRate,
-        _precision,
-      ),
-    );
+    if (!dayCount.useXirrMethod) {
+      // Only amortise when non-xirr convention
+      _profile = _profile!.copyWith(
+        cashFlows: amortiseInterest(
+          _profile!.cashFlows,
+          interestRate,
+          _precision,
+        ),
+      );
+    }
+
     return value;
   }
 
@@ -157,11 +162,16 @@ class Calculator {
   ///
   /// [dayCount] convention for determining time intervals between cash flows
   ///
+  /// [startDate] to use in constructing the cash flow profile when cash
+  /// flow series dates are *not* provided. The current system date is used
+  /// if left undefined.
+  ///
   Future<double> solveRate({
     required Convention dayCount,
+    DateTime? startDate,
   }) async {
     if (_profile == null && !_isBespokeProfile) {
-      _buildProfile();
+      _buildProfile(startDate: startDate);
     }
     _profile = _profile!.copyWith(dayCount: dayCount);
     _profile = assignFactors(_profile!);
@@ -170,13 +180,16 @@ class Calculator {
       callback: SolveNfv(profile: _profile!),
     );
 
-    _profile = _profile!.copyWith(
-      cashFlows: amortiseInterest(
-        _profile!.cashFlows,
-        interest,
-        _precision,
-      ),
-    );
+    if (!dayCount.useXirrMethod) {
+      // Only amortise when non-xirr convention
+      _profile = _profile!.copyWith(
+        cashFlows: amortiseInterest(
+          _profile!.cashFlows,
+          interest,
+          _precision,
+        ),
+      );
+    }
 
     return interest;
   }
@@ -184,11 +197,12 @@ class Calculator {
   /// Utility method that builds the profile from the cash flow
   /// series.
   ///
-  void _buildProfile() {
+  void _buildProfile({DateTime? startDate}) {
     _profile = Profile(
       cashFlows: build(
         series: _series,
-        today: utcDate(DateTime.now()),
+        startDate:
+            startDate == null ? utcDate(DateTime.now()) : utcDate(startDate),
       ),
       precision: _precision,
     );
