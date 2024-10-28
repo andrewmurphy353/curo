@@ -1,5 +1,4 @@
 import 'package:curo/curo.dart';
-import 'package:curo/src/profile/cash_flow.dart';
 import 'package:curo/src/profile/helper.dart';
 import 'package:curo/src/series/series.dart';
 import 'package:test/test.dart';
@@ -18,13 +17,16 @@ void main() {
   group('build', () {
     test('throws exception on receipt of empty list', () {
       expect(
-        () => build(series: [], today: DateTime.utc(2022)),
+        () => build(series: [], startDate: DateTime.utc(2022)),
         throwsA(isA<Exception>()),
       );
     });
     test('throws exception for unsupported series type', () {
       expect(
-        () => build(series: [UnsupportedSeries()], today: DateTime.utc(2022)),
+        () => build(
+          series: [UnsupportedSeries()],
+          startDate: DateTime.utc(2022),
+        ),
         throwsA(isA<Exception>()),
       );
     });
@@ -34,7 +36,7 @@ void main() {
         SeriesAdvance(numberOf: 2),
         SeriesAdvance(mode: Mode.arrear),
       ];
-      final cashFlows = build(series: series, today: startDate);
+      final cashFlows = build(series: series, startDate: startDate);
       expect(cashFlows.length, 3);
       expect(cashFlows[0].postDate, DateTime.utc(2022, 1, 1));
       expect(cashFlows[1].postDate, DateTime.utc(2022, 2, 1));
@@ -50,7 +52,7 @@ void main() {
           valueDateFrom: DateTime.utc(2022, 4, 15),
         ),
       ];
-      final cashFlows = build(series: series, today: startDate);
+      final cashFlows = build(series: series, startDate: startDate);
       expect(cashFlows.length, 3);
       expect(cashFlows[0].postDate, DateTime.utc(2022, 1, 1));
       expect(cashFlows[1].postDate, DateTime.utc(2022, 2, 1));
@@ -63,7 +65,7 @@ void main() {
         SeriesPayment(numberOf: 2),
         SeriesPayment(mode: Mode.arrear),
       ];
-      final cashFlows = build(series: series, today: startDate);
+      final cashFlows = build(series: series, startDate: startDate);
       expect(cashFlows.length, 3);
       expect(cashFlows[0].postDate, DateTime.utc(2022, 1, 1));
       expect(cashFlows[1].postDate, DateTime.utc(2022, 2, 1));
@@ -76,7 +78,7 @@ void main() {
         SeriesPayment(
             mode: Mode.arrear, postDateFrom: DateTime.utc(2022, 4, 1)),
       ];
-      final cashFlows = build(series: series, today: startDate);
+      final cashFlows = build(series: series, startDate: startDate);
       expect(cashFlows.length, 3);
       expect(cashFlows[0].postDate, DateTime.utc(2022, 1, 1));
       expect(cashFlows[1].postDate, DateTime.utc(2022, 2, 1));
@@ -88,7 +90,7 @@ void main() {
         SeriesCharge(numberOf: 2, value: 10.0),
         SeriesCharge(value: 10.0, mode: Mode.arrear),
       ];
-      final cashFlows = build(series: series, today: startDate);
+      final cashFlows = build(series: series, startDate: startDate);
       expect(cashFlows.length, 3);
       expect(cashFlows[0].postDate, DateTime.utc(2022, 1, 1));
       expect(cashFlows[1].postDate, DateTime.utc(2022, 2, 1));
@@ -103,7 +105,7 @@ void main() {
             mode: Mode.arrear,
             postDateFrom: DateTime.utc(2022, 4, 1)),
       ];
-      final cashFlows = build(series: series, today: startDate);
+      final cashFlows = build(series: series, startDate: startDate);
       expect(cashFlows.length, 3);
       expect(cashFlows[0].postDate, DateTime.utc(2022, 1, 1));
       expect(cashFlows[1].postDate, DateTime.utc(2022, 2, 1));
