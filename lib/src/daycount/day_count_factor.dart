@@ -36,4 +36,37 @@ class DayCountFactor {
     displayText.write(gaussRound(factor, 8).toStringAsFixed(8));
     return displayText.toString();
   }
+
+  /// Provides a compressed string representation of the factor equation,
+  /// with all equal adjacent log items grouped and prefixed with the total
+  /// number, followed by the factor result displayed to 8 decimal points
+  /// e.g. '(2/366) + 2(365/365) + (31/365) = 2.09039599'
+  String toFoldedString() {
+    final displayText = StringBuffer();
+    var count = 1;
+    for (int i = 0; i < operandLog.length; i++) {
+      final current = operandLog[i];
+      if (i + 1 < operandLog.length) {
+        final next = operandLog[i + 1];
+        if (current == next) {
+          count++;
+        } else {
+          if (count > 1) {
+            displayText.write(count);
+          }
+          displayText.write(current);
+          displayText.write(" + ");
+          count = 1;
+        }
+      } else {
+        if (count > 1) {
+          displayText.write(count);
+        }
+        displayText.write(current);
+      }
+    }
+    displayText.write(" = ");
+    displayText.write(gaussRound(factor, 8).toStringAsFixed(8));
+    return displayText.toString();
+  }
 }
