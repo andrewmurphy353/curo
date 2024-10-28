@@ -1,5 +1,4 @@
 import 'package:curo/curo.dart';
-import 'package:curo/src/profile/cash_flow.dart';
 import 'package:test/test.dart';
 
 void main() {

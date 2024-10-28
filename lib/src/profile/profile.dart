@@ -1,8 +1,6 @@
 // ignore_for_file: unnecessary_this
 
 import '../../curo.dart';
-import '../daycount/convention.dart';
-import 'cash_flow.dart';
 import 'validator.dart';
 
 /// A container for a series of cash in-flows and out-flows.
