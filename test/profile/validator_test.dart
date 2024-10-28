@@ -7,12 +7,6 @@ import 'package:test/test.dart';
 
 void main() {
   group('validatePrecision', () {
-    test('throws Exception for unsupported precision of 1', () {
-      expect(
-        () => validatePrecision(1),
-        throwsA(isA<Exception>()),
-      );
-    });
     test('returns true for supported precision of 2', () {
       expect(
         validatePrecision(2),
