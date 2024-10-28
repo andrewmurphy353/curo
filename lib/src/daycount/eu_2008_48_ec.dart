@@ -67,14 +67,14 @@ class EU200848EC extends Convention {
       DateTime tempDate;
       switch (timePeriod) {
         case EUTimePeriod.year:
-          tempDate = rollMonth(startWholePeriod, -12);
+          tempDate = rollMonth(startWholePeriod, -12, d2.day);
           break;
         case EUTimePeriod.week:
           tempDate = rollDay(startWholePeriod, -7);
           break;
         case EUTimePeriod.month:
         default:
-          tempDate = rollMonth(startWholePeriod, -1);
+          tempDate = rollMonth(startWholePeriod, -1, d2.day);
           break;
       }
       if (!initialDrawdown.isAfter(tempDate)) {
@@ -96,7 +96,14 @@ class EU200848EC extends Convention {
     if (!initialDrawdown.isAfter(startWholePeriod)) {
       final numerator = actualDays(initialDrawdown, startWholePeriod);
       final startDenPeriod = rollMonth(startWholePeriod, -12);
-      final denominator = actualDays(startDenPeriod, startWholePeriod);
+
+      int denominator;
+      if (numerator == 0) {
+        denominator = periodsInYear;
+      } else {
+        denominator = actualDays(startDenPeriod, startWholePeriod);
+      }
+
       factor += numerator / denominator;
 
       if (numerator > 0 || operandLog.isEmpty) {
