@@ -19,11 +19,12 @@ import 'profile.dart';
 /// or charges.
 ///
 /// All cash flow instances are dated with reference to the series start
-/// date if provided, or are computed with reference the current system
-/// date when undefined. The interval between cash flows is determined by
-/// the series frequency, and the series mode determines whether a
-/// cash flow value occurs at the beginning or end of the period defined
-/// by the frequency.
+/// date input, if provided, otherwise are computed with reference to the
+/// [startDate] parameter value.
+/// 
+/// The interval between cash flows is determined by the series frequency,
+/// and the series mode determines whether a cash flow value occurs at the
+/// beginning or end of the period defined by the frequency.
 ///
 /// Where the start dates of two or more series of the same type are
 /// *defined* it is possible the respective cash flow series may overlap.
@@ -40,11 +41,11 @@ import 'profile.dart';
 /// unless you know what you are doing of course. It is recommended you
 /// either stick to explicitly defining the start dates of *all* cash flow
 /// series, or alternativey leave dates undefined and allow the builder
-/// to resolve them with reference to today's date.
+/// to resolve them with reference to the provided [startDate].
 ///
 List<CashFlow> build({
   required List<Series> series,
-  required DateTime today,
+  required DateTime startDate,
 }) {
   if (series.isEmpty) {
     throw Exception("The cash flow series is empty. Build aborted.");
@@ -53,9 +54,9 @@ List<CashFlow> build({
   final List<CashFlow> cashFlows = [];
 
   // Keep track of computed dates for undated series
-  DateTime nextAdvPeriod = today;
-  DateTime nextPmtPeriod = today;
-  DateTime nextChgPeriod = today;
+  DateTime nextAdvPeriod = startDate;
+  DateTime nextPmtPeriod = startDate;
+  DateTime nextChgPeriod = startDate;
 
   for (var seriesItem in series) {
     DateTime postDateToUse;
@@ -71,7 +72,7 @@ List<CashFlow> build({
       } else {
         throw Exception('SeriesType $seriesItem not supported.');
       }
-      postDateDay = today.day;
+      postDateDay = startDate.day;
     } else {
       // Provided date
       postDateToUse = seriesItem.postDateFrom!;
@@ -384,7 +385,7 @@ List<CashFlow> updateUnknowns({
 /// Updates the amortised interest value of payment cash flows
 /// once the unknown values have been determined.
 ///
-/// [interestRate] annual effective interest rate to use in
+/// [interestRate] annual rate of interest to use in
 /// calculating the interest monetary value
 ///
 List<CashFlow> amortiseInterest(
