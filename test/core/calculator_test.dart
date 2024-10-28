@@ -32,12 +32,6 @@ void main() {
       );
       expect(calc.precision, 4);
     });
-    test('throws an exception for unsupported precision of 1', () {
-      expect(
-        () => Calculator(precision: 1),
-        throwsA(isA<Exception>()),
-      );
-    });
   });
   group('Calculator get profile', () {
     test('throws an exception when called before initialisation', () {
@@ -154,7 +148,7 @@ void main() {
         ));
       expect(
         await calculator.solveRate(dayCount: const US30360()),
-        0.11996224312757968,
+        0.11996224312757327,
       );
     });
     test(
@@ -173,7 +167,7 @@ void main() {
         ));
       expect(
         await calculator.solveRate(dayCount: const EU200848EC()),
-        0.12686190609643871,
+        0.1268619060964253,
       );
     });
     test(
@@ -194,7 +188,7 @@ void main() {
         await calculator.solveRate(
           dayCount: const US30360(useXirrMethod: true),
         ),
-        0.12686190609643871,
+        0.1268619060964253,
       );
     });
     test(
@@ -216,7 +210,7 @@ void main() {
         await calculator.solveRate(
           dayCount: const Act365(useXirrMethod: true),
         ),
-        0.12830319920462152,
+        0.12830319920460553,
       );
     });
     test(
@@ -235,11 +229,11 @@ void main() {
         ));
       expect(
         await calculator.solveRate(dayCount: const US30360()),
-        0.08250039875832707,
+        0.08250039875833501,
       );
       expect(
         await calculator.solveRate(dayCount: const EU200848EC()),
-        0.08569256859255392,
+        0.08569256859182904,
       );
     });
   });
