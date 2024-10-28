@@ -97,7 +97,7 @@ void main() {
         DateTime.utc(2012, 2, 26),
       );
       expect(dcf.factor, 0.0);
-      expect(dcf.toString(), '(0/365) = 0.00000000');
+      expect(dcf.toString(), '(0/12) = 0.00000000');
     });
   });
   group('EU200848EC.computeFactor [timePeriod = year]', () {
@@ -143,7 +143,7 @@ void main() {
         DateTime.utc(2020, 1, 1),
       );
       expect(dcf.factor, 0.0);
-      expect(dcf.toString(), '(0/365) = 0.00000000');
+      expect(dcf.toString(), '(0/1) = 0.00000000');
     });
   });
   group('EU200848EC.computeFactor [timePeriod = week]', () {
@@ -189,7 +189,7 @@ void main() {
         DateTime.utc(2012, 1, 12),
       );
       expect(dcf.factor, 0.0);
-      expect(dcf.toString(), '(0/365) = 0.00000000');
+      expect(dcf.toString(), '(0/52) = 0.00000000');
     });
   });
   group('EU200848EC.computeFactor [timePeriod = undefined]', () {
