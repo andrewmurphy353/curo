@@ -4,6 +4,9 @@
 [![codecov](https://codecov.io/gh/andrewmurphy353/curo/branch/main/graph/badge.svg?token=YOLLETTV0K)](https://codecov.io/gh/andrewmurphy353/curo)
 ![GitHub](https://img.shields.io/github/license/andrewmurphy353/curo.svg)
 
+<u>October 2024</u>: I no longer have access to the g-mail account associated with the Curo [pub.dev](https://pub.dev/packages/curo) package repository, and cannot retrieve it from the faceless monolith Google has become, so please be aware there are to be no further updates to the Curo pub.dev package. Download, clone or pull the repo and reference it directly from within your project pubspec.yaml file to continue to benefit from interim updates. Thanks.
+<hr/>
+
 A feature-rich library for performing simple to advanced instalment credit financial calculations.
 
 Note: <i>This library is a port of the [curo-calculator](https://github.com/andrewmurphy353/curo-calculator) TypeScript repository and includes a small number of refactorings and some code reorganisation.</i>
@@ -91,10 +94,12 @@ There are dozens of convention's defined but the more important ones supported b
 Convention | Description
 -----------| -------------
 Actual ISDA | Convention accounts for actual days between cash flow dates based on the portion in a leap year and the portion in a non-leap year as [documented here](https://en.wikipedia.org/wiki/Day_count_convention#Actual/Actual_ISDA).
+Actual/360 | Convention accounts for actual days between cash flow dates and considers a year to have 360 days as [documented here](https://en.wikipedia.org/wiki/Day_count_convention#Actual/360)
 Actual/365 | Convention accounts for actual days between cash flow dates and considers a year to have 365 days as [documented here](https://en.wikipedia.org/wiki/Day_count_convention#Actual/365_Fixed).
 EU 30/360 | Convention accounts for days between cash flow dates based on a 30 day month, 360 day year as [documented here](https://en.wikipedia.org/wiki/Day_count_convention#30E/360). 
 EU 2008/48/EC | Convention based on the time periods between cash flow dates and the initial drawdown date, expressed in days and/or whole weeks, months or years. This convention is used specifically in APR (Annual Percentage Rate) consumer credit calculations within the European Union and is compliant with the EU2008/49/EC directive [available here](https://publications.europa.eu/en/publication-detail/-/publication/e4945793-f1f9-4527-8a2e-9060378fc302/language-en#).
 US 30/360 | Convention accounts for days between cash flow dates based on a 30 day month, 360 day year as  [documented here](https://en.wikipedia.org/wiki/Day_count_convention#30/360_US). This is the default convention used by the Hewlett Packard HP12C and similar financial calculators, so choose this convention when unsure as it is the defacto convention used in the majority of fixed-term credit calculations.
+US 30U/360| Convention accounts for days between cash flow dates as per US 30/360, except for the month of February where the 28th, and 29th in a leap-year, are treated as 30 days. Note, the use of U in the naming signifies Uniform, so can be read as 30 uniform days in a month.
 
 All conventions, except EU 2008/48/EC, will by default compute time intervals between cash flows with reference to the dates of adjacent cash flows.
 
