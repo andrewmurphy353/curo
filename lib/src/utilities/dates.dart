@@ -64,9 +64,7 @@ DateTime rollDate(DateTime dateToRoll, Frequency frequency, [int? dayPref]) {
       return rollMonth(dateToRoll, 6, dayPref);
     case Frequency.yearly:
       return rollMonth(dateToRoll, 12, dayPref);
-    default:
-      return dateToRoll;
-  }
+    }
 }
 
 /// Roll a date by the number of days specified.

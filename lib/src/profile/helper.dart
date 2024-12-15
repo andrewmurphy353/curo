@@ -309,8 +309,7 @@ List<CashFlow> computeFactors(
           );
           break;
         case DayCountOrigin.neighbour:
-        default:
-          periodFactor = dayCount.computeFactor(
+        periodFactor = dayCount.computeFactor(
             neighbourDate,
             cashFlowDate,
           );

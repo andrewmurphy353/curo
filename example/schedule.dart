@@ -33,8 +33,7 @@ class Schedule {
         _printAprProofSchedule();
         break;
       case DayCountOrigin.neighbour:
-      default:
-        _printAmortisationSchedule();
+      _printAmortisationSchedule();
     }
   }
 
