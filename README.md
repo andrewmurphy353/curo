@@ -4,7 +4,12 @@
 [![codecov](https://codecov.io/gh/andrewmurphy353/curo/branch/main/graph/badge.svg?token=YOLLETTV0K)](https://codecov.io/gh/andrewmurphy353/curo)
 ![GitHub](https://img.shields.io/github/license/andrewmurphy353/curo.svg)
 
-<u>October 2024</u>: I no longer have access to the g-mail account associated with the Curo [pub.dev](https://pub.dev/packages/curo) package repository, and cannot retrieve it from the faceless monolith Google has become, so please be aware there are to be no further updates to the Curo pub.dev package. Download, clone or pull the repo and reference it directly from within your project pubspec.yaml file to continue to benefit from interim updates. Thanks.
+
+
+**December 2024**: I've developed a Flutter application using this library, which is now **[available as a web application](https://pwa.curocalc.app)**. My goal is to launch it as an Android app once all issues are resolved. To do this, I need **20 testers** to sign up on Google Play for beta testing. If you're interested in helping out, please **contact me**!
+
+**October 2024**: I've lost access to the Gmail account linked to the **Curo package on [pub.dev](https://pub.dev/packages/curo)**, and Google's recovery process has been unhelpful. As a result, there will be **no further updates** to the Curo package on pub.dev. To continue receiving updates, please **download, clone, or pull the repository** and reference it directly in your `pubspec.yaml` file. Thank you for understanding.
+
 <hr/>
 
 A feature-rich library for performing simple to advanced instalment credit financial calculations.
