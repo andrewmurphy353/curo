@@ -66,7 +66,6 @@ void main() {
   });
 }
 
-
 // describe("ActISDA(undefine, undefined, true|false) - IRR | XIRR", () => {
 //   const dummyCFs: CashFlow[] = [];
 //   dummyCFs.push(

@@ -6,7 +6,7 @@ class SolveRoot {
   /// Solves for the unknown root using the Newton-Raphson method.
   ///
   /// [callback] to a root function implementation
-  /// 
+  ///
   /// [guess] initial guess (optional)
   ///
   static double solve({

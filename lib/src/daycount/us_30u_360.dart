@@ -2,21 +2,21 @@ import '../../curo.dart';
 
 /// The 30U/360 day count convention is similar to the [US30360] day count
 /// convention and differs only in how days in February are treated.
-/// 
-/// Instead of considering February to have 28 days, or 29 days in a leap 
+///
+/// Instead of considering February to have 28 days, or 29 days in a leap
 /// year, as with [US30360], this convention considers February to have
 /// 30 days when either the start and/or end day falls on 28th (non-leap year)
 /// or 29th (leap year).
-/// 
+///
 /// The only exception to this is in non-leap years when a start or end date
 /// falls on the 29th. In that case February is considered to have 29 days.
-/// 
+///
 /// The handling of February's days in this manner might differ slightly
-/// from traditional methods. However, once adjustments are applied, this 
-/// approach yields results identical to those from financial calculators 
-/// like the HP12C, even though it uses actual calendar days in its 
+/// from traditional methods. However, once adjustments are applied, this
+/// approach yields results identical to those from financial calculators
+/// like the HP12C, even though it uses actual calendar days in its
 /// calculations.
-/// 
+///
 class US30U360 extends Convention {
   ///
   /// Provides an instance of the 30U/360 day count convention object.
@@ -77,7 +77,7 @@ class US30U360 extends Convention {
       return d2.day + (d1.day - d2.day) - d1.day;
     }
     if (isD1LastDay && d1.month == 2 && d1.day != d2.day) {
-      if (!isLeapYear(d1.year) && d2.day == 29){
+      if (!isLeapYear(d1.year) && d2.day == 29) {
         // Special case: treat non-leap Feb as 29 days when
         // d2.day == 29
         return d2.day - (d1.day + (29 - d1.day));
@@ -85,7 +85,7 @@ class US30U360 extends Convention {
       return d2.day - (d1.day + (30 - d1.day));
     }
     if (isD2LastDay && d2.month == 2 && d2.day != d1.day) {
-      if (!isLeapYear(d2.year) && d1.day == 29){
+      if (!isLeapYear(d2.year) && d1.day == 29) {
         // Special case: treat non-leap Feb as 29 days when
         // d1.day == 29
         return (d2.day + (29 - d2.day)) - d1.day;

@@ -46,16 +46,16 @@ void main() {
     });
     test('01/02/2020 to 15/03/2020', () {
       final dcf = dc.computeFactor(
-        DateTime.utc(2020, 2, 1),// 29 days
-        DateTime.utc(2020, 3, 15),//15 days
+        DateTime.utc(2020, 2, 1), // 29 days
+        DateTime.utc(2020, 3, 15), //15 days
       );
       expect(dcf.factor, 0.12222222222222222);
       expect(dcf.toString(), '(44/360) = 0.12222222');
     });
     test('28/02/2020 to 15/03/2020', () {
       final dcf = dc.computeFactor(
-        DateTime.utc(2020, 2, 28),// 2 days
-        DateTime.utc(2020, 3, 15),//15 days
+        DateTime.utc(2020, 2, 28), // 2 days
+        DateTime.utc(2020, 3, 15), //15 days
       );
       expect(dcf.factor, 0.04722222222222222);
       expect(dcf.toString(), '(17/360) = 0.04722222');
@@ -134,7 +134,7 @@ void main() {
     });
     test('28/02/2021 to 29/03/2021', () {
       final dcf = dc.computeFactor(
-        DateTime.utc(2021, 2, 28), // 1 day (special case - 29 day month) 
+        DateTime.utc(2021, 2, 28), // 1 day (special case - 29 day month)
         DateTime.utc(2021, 3, 29), //29 days
       );
       expect(dcf.factor, 0.08333333333333333);

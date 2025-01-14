@@ -21,7 +21,7 @@ import 'profile.dart';
 /// All cash flow instances are dated with reference to the series start
 /// date input, if provided, otherwise are computed with reference to the
 /// [startDate] parameter value.
-/// 
+///
 /// The interval between cash flows is determined by the series frequency,
 /// and the series mode determines whether a cash flow value occurs at the
 /// beginning or end of the period defined by the frequency.
@@ -309,7 +309,7 @@ List<CashFlow> computeFactors(
           );
           break;
         case DayCountOrigin.neighbour:
-        periodFactor = dayCount.computeFactor(
+          periodFactor = dayCount.computeFactor(
             neighbourDate,
             cashFlowDate,
           );

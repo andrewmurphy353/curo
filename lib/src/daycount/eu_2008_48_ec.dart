@@ -56,7 +56,7 @@ class EU200848EC extends Convention {
         periodsInYear = 52;
         break;
       case EUTimePeriod.month:
-      periodsInYear = 12;
+        periodsInYear = 12;
         break;
     }
     final initialDrawdown = utcDate(d1);
@@ -72,7 +72,7 @@ class EU200848EC extends Convention {
           tempDate = rollDay(startWholePeriod, -7);
           break;
         case EUTimePeriod.month:
-        tempDate = rollMonth(startWholePeriod, -1, d2.day);
+          tempDate = rollMonth(startWholePeriod, -1, d2.day);
           break;
       }
       if (!initialDrawdown.isAfter(tempDate)) {

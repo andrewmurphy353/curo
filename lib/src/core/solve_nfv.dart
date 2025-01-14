@@ -47,7 +47,7 @@ class SolveNfv implements SolveCallback {
         break;
 
       case DayCountOrigin.neighbour:
-      double periodInterest;
+        double periodInterest;
         double accruedInterest = 0.0;
         for (var cashFlow in profile.cashFlows) {
           if (cashFlow is CashFlowCharge &&

@@ -5,7 +5,7 @@ import 'day_count_factor.dart';
 /// The Actual/360 day count convention which specifies that the number of
 /// days in the Calculation Period or Compounding Period in respect of which
 /// payment is being made is divided by 360.
-/// 
+///
 class Act360 extends Convention {
   /// Provides an instance of the Act/360 day count convention object.
   ///
