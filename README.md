@@ -8,8 +8,6 @@
 
 **December 2024**: I've developed a Flutter application using this library, which is now **[available as a web application](https://pwa.curocalc.app)**. My goal is to launch it as an Android app once all issues are resolved. To do this, I need **20 testers** to sign up on Google Play for beta testing. If you're interested in helping out, please **contact me**! [ curocalculator@gmail.com]
 
-**October 2024**: I've lost access to the Gmail account linked to the **Curo package on [pub.dev](https://pub.dev/packages/curo)**, and Google's recovery process has been unhelpful. As a result, there will be **no further updates** to the Curo package on pub.dev. To continue receiving updates, please **download, clone, or pull the repository** and reference it directly in your `pubspec.yaml` file. Thank you for understanding.
-
 <hr/>
 
 A feature-rich library for performing simple to advanced instalment credit financial calculations.
