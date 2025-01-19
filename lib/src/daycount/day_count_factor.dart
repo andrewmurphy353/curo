@@ -8,7 +8,10 @@ class DayCountFactor {
   const DayCountFactor(this.factor, this.operandLog);
 
   /// Provides formatted text containing the operands used in deriving the
-  /// factor. This is useful in constructing calculation proofs, for example
+  /// factor. The operands are transformed into whole years and fractions of
+  /// years to support compact rendering.
+  ///
+  /// The operands are useful for constructing calculation proofs, for example
   /// to demonstrate how an Annual Percentage Rate (APR) or eXtended
   /// Internal Rate of Return (XIRR) was derived.
   ///
@@ -17,12 +20,28 @@ class DayCountFactor {
   ///
   /// [denominator] corresponding to the number of days, weeks or months
   /// in a year
-  static String operandsToString(int numerator, int denominator) =>
-      '($numerator/$denominator)';
+  static String operandsToString(int numerator, int denominator) {
+    final wholeYear = numerator ~/ denominator;
+    final remainder = numerator % denominator;
+    if (wholeYear == 0 && remainder != 0) {
+      return "($remainder/$denominator)";
+    } else if (remainder == 0) {
+      return wholeYear.toString();
+    } else {
+      return "$wholeYear + ($remainder/$denominator)";
+    }
+  }
 
   /// Provides a string representation of the factor equation,
   /// with the factor displayed to 8 decimal points
   /// e.g. '(31/360) = 0.08611111'
+  ///
+  /// Note: Factor string length can become problematic for display
+  /// purposes when using certain day count conventions, especially
+  /// those designed to use actual days. To overcome this, use the
+  /// [toFoldedString] method which folds identical equation operands
+  /// whilst ensuring the integrity of displayed formulae is maintained.
+  ///
   @override
   String toString() {
     final displayText = StringBuffer();
@@ -38,35 +57,36 @@ class DayCountFactor {
   }
 
   /// Provides a compressed string representation of the factor equation,
-  /// with all equal adjacent log items grouped and prefixed with the total
-  /// number, followed by the factor result displayed to 8 decimal points
-  /// e.g. '(2/366) + 2(365/365) + (31/365) = 2.09039599'
+  /// whilst maintaining formulae integrity. This is achieved by counting
+  /// the number of whole year operands and representing them as
+  /// a single number.
+  ///
+  /// For example "(100/360) + (365/365) + (365/365) + (31/360) = 2.36388889"
+  /// returned from a call to [toString] will be transformed
+  /// to "(100/360) + 2 + (31/360) = 2.36388889" by this method.
+  ///
   String toFoldedString() {
-    final displayText = StringBuffer();
-    var count = 1;
+    String operands = '';
     for (int i = 0; i < operandLog.length; i++) {
       final current = operandLog[i];
-      if (i + 1 < operandLog.length) {
-        final next = operandLog[i + 1];
-        if (current == next) {
+      int count = 1;
+
+      for (int j = i + 1; j < operandLog.length; j++) {
+        if (operandLog[j] == current) {
           count++;
+          i = j;
         } else {
-          if (count > 1) {
-            displayText.write(count);
-          }
-          displayText.write(current);
-          displayText.write(" + ");
-          count = 1;
+          break;
         }
+      }
+
+      if (operands.isEmpty) {
+        operands += count > 1 ? '$count' : current;
       } else {
-        if (count > 1) {
-          displayText.write(count);
-        }
-        displayText.write(current);
+        operands += count > 1 ? ' + $count' : ' + $current';
       }
     }
-    displayText.write(" = ");
-    displayText.write(gaussRound(factor, 8).toStringAsFixed(8));
-    return displayText.toString();
+    final factorString = gaussRound(factor, 8).toStringAsFixed(8);
+    return '$operands = $factorString';
   }
 }
