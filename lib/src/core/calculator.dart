@@ -120,11 +120,15 @@ class Calculator {
   /// [startDate] to use in constructing the cash flow profile when cash
   /// flow series dates are *not* provided. The current system date is used
   /// if left undefined.
+  /// 
+  /// [rootGuess] overrides the start guess for solving an unknown value
+  /// or interest rate
   ///
   Future<double> solveValue({
     required Convention dayCount,
     required double interestRate,
     DateTime? startDate,
+    double rootGuess = 0.1,
   }) async {
     if (_profile == null && !_isBespokeProfile) {
       _buildProfile(startDate: startDate);
@@ -137,6 +141,7 @@ class Calculator {
         profile: _profile!,
         effectiveRate: interestRate,
       ),
+      guess: rootGuess,
     );
     value = gaussRound(value, _precision);
 
@@ -173,9 +178,13 @@ class Calculator {
   /// flow series dates are *not* provided. The current system date is used
   /// if left undefined.
   ///
+  /// [rootGuess] overrides the start guess for solving an unknown value
+  /// or interest rate
+  /// 
   Future<double> solveRate({
     required Convention dayCount,
     DateTime? startDate,
+    double rootGuess = 0.1,
   }) async {
     if (_profile == null && !_isBespokeProfile) {
       _buildProfile(startDate: startDate);
@@ -185,6 +194,7 @@ class Calculator {
 
     final interest = SolveRoot.solve(
       callback: SolveNfv(profile: _profile!),
+      guess: rootGuess,
     );
 
     if (!dayCount.useXirrMethod) {
