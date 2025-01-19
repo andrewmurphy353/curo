@@ -102,13 +102,13 @@ class Calculator {
   }
 
   /// Solves for an unknown value or values.
-  /// 
+  ///
   /// IMPORTANT: If the calculation involves solving for unknown *weighted*
   /// payment values, the result returned will be the raw value *before* the
-  /// weightings are applied. In order to display the result in the UI you 
+  /// weightings are applied. In order to display the result in the UI you
   /// should multiple the returned value by the appropriate payment series
   /// weighting. This will ensure the adjusted result will correspond to the
-  /// payment reflected in the amortisation schedule / APR proof schedule.  
+  /// payment reflected in the amortisation schedule / APR proof schedule.
   ///
   /// An UnsolvableException is thrown when the unknown cannot be determined.
   ///
