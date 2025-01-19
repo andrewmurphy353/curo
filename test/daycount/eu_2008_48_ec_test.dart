@@ -17,7 +17,8 @@ void main() {
         DateTime.utc(2020, 1, 12),
       );
       expect(dcf.factor, 1.0);
-      expect(dcf.toString(), '(12/12) = 1.00000000');
+      expect(dcf.toString(), '1 = 1.00000000');
+      expect(dcf.toFoldedString(), '1 = 1.00000000');
     });
     test('12/01/2012 <-- 15/02/2012', () {
       final dcf = dc.computeFactor(
@@ -26,6 +27,7 @@ void main() {
       );
       expect(dcf.factor, 0.0915525114155251);
       expect(dcf.toString(), '(1/12) + (3/365) = 0.09155251');
+      expect(dcf.toFoldedString(), '(1/12) + (3/365) = 0.09155251');
     });
     test('12/01/2012 <-- 15/03/2012', () {
       final dcf = dc.computeFactor(
@@ -34,6 +36,7 @@ void main() {
       );
       expect(dcf.factor, 0.17488584474885843);
       expect(dcf.toString(), '(2/12) + (3/365) = 0.17488584');
+      expect(dcf.toFoldedString(), '(2/12) + (3/365) = 0.17488584');
     });
     test('12/01/2012 <-- 15/04/2012', () {
       final dcf = dc.computeFactor(
@@ -42,6 +45,7 @@ void main() {
       );
       expect(dcf.factor, 0.2582191780821918);
       expect(dcf.toString(), '(3/12) + (3/365) = 0.25821918');
+      expect(dcf.toFoldedString(), '(3/12) + (3/365) = 0.25821918');
     });
     test('12/01/2013 <-- 15/02/2013', () {
       final dcf = dc.computeFactor(
@@ -50,6 +54,7 @@ void main() {
       );
       expect(dcf.factor, 0.09153005464480873);
       expect(dcf.toString(), '(1/12) + (3/366) = 0.09153005');
+      expect(dcf.toFoldedString(), '(1/12) + (3/366) = 0.09153005');
     });
     test('12/01/2013 <-- 15/03/2013', () {
       final dcf = dc.computeFactor(
@@ -58,6 +63,7 @@ void main() {
       );
       expect(dcf.factor, 0.17486338797814208);
       expect(dcf.toString(), '(2/12) + (3/366) = 0.17486339');
+      expect(dcf.toFoldedString(), '(2/12) + (3/366) = 0.17486339');
     });
     test('12/01/2013 <-- 15/04/2013', () {
       final dcf = dc.computeFactor(
@@ -66,6 +72,7 @@ void main() {
       );
       expect(dcf.factor, 0.2581967213114754);
       expect(dcf.toString(), '(3/12) + (3/366) = 0.25819672');
+      expect(dcf.toFoldedString(), '(3/12) + (3/366) = 0.25819672');
     });
     test('25/02/2013 <-- 28/03/2013', () {
       final dcf = dc.computeFactor(
@@ -74,6 +81,7 @@ void main() {
       );
       expect(dcf.factor, 0.09153005464480873);
       expect(dcf.toString(), '(1/12) + (3/366) = 0.09153005');
+      expect(dcf.toFoldedString(), '(1/12) + (3/366) = 0.09153005');
     });
     test('26/02/2013 <-- 29/03/2013', () {
       final dcf = dc.computeFactor(
@@ -82,6 +90,7 @@ void main() {
       );
       expect(dcf.factor, 0.08879781420765027);
       expect(dcf.toString(), '(1/12) + (2/366) = 0.08879781');
+      expect(dcf.toFoldedString(), '(1/12) + (2/366) = 0.08879781');
     });
     test('26/02/2012 <-- 29/03/2012', () {
       final dcf = dc.computeFactor(
@@ -90,6 +99,7 @@ void main() {
       );
       expect(dcf.factor, 0.09153005464480873);
       expect(dcf.toString(), '(1/12) + (3/366) = 0.09153005');
+      expect(dcf.toFoldedString(), '(1/12) + (3/366) = 0.09153005');
     });
     test('26/02/2012 <-- 26/02/2012', () {
       final dcf = dc.computeFactor(
@@ -97,7 +107,8 @@ void main() {
         DateTime.utc(2012, 2, 26),
       );
       expect(dcf.factor, 0.0);
-      expect(dcf.toString(), '(0/12) = 0.00000000');
+      expect(dcf.toString(), '0 = 0.00000000');
+      expect(dcf.toFoldedString(), '0 = 0.00000000');
     });
   });
   group('EU200848EC.computeFactor [timePeriod = year]', () {
@@ -112,6 +123,7 @@ void main() {
       );
       expect(dcf.factor, 0.09315068493150686);
       expect(dcf.toString(), '(34/365) = 0.09315068');
+      expect(dcf.toFoldedString(), '(34/365) = 0.09315068');
     });
     test('12/01/2012 <-- 15/02/2013', () {
       final dcf = dc.computeFactor(
@@ -119,7 +131,8 @@ void main() {
         DateTime.utc(2013, 2, 15),
       );
       expect(dcf.factor, 1.093150684931507);
-      expect(dcf.toString(), '(1/1) + (34/365) = 1.09315068');
+      expect(dcf.toString(), '1 + (34/365) = 1.09315068');
+      expect(dcf.toFoldedString(), '1 + (34/365) = 1.09315068');
     });
     test('12/01/2012 <-- 15/02/2014', () {
       final dcf = dc.computeFactor(
@@ -127,7 +140,8 @@ void main() {
         DateTime.utc(2014, 2, 15),
       );
       expect(dcf.factor, 2.0931506849315067);
-      expect(dcf.toString(), '(2/1) + (34/365) = 2.09315068');
+      expect(dcf.toString(), '2 + (34/365) = 2.09315068');
+      expect(dcf.toFoldedString(), '2 + (34/365) = 2.09315068');
     });
     test('01/01/2020 <-- 15/03/2021', () {
       final dcf = dc.computeFactor(
@@ -135,7 +149,8 @@ void main() {
         DateTime.utc(2021, 3, 15),
       );
       expect(dcf.factor, 1.2021857923497268);
-      expect(dcf.toString(), '(1/1) + (74/366) = 1.20218579');
+      expect(dcf.toString(), '1 + (74/366) = 1.20218579');
+      expect(dcf.toFoldedString(), '1 + (74/366) = 1.20218579');
     });
     test('01/01/2020 <-- 01/01/2020', () {
       final dcf = dc.computeFactor(
@@ -143,7 +158,8 @@ void main() {
         DateTime.utc(2020, 1, 1),
       );
       expect(dcf.factor, 0.0);
-      expect(dcf.toString(), '(0/1) = 0.00000000');
+      expect(dcf.toString(), '0 = 0.00000000');
+      expect(dcf.toFoldedString(), '0 = 0.00000000');
     });
   });
   group('EU200848EC.computeFactor [timePeriod = week]', () {
@@ -158,6 +174,7 @@ void main() {
       );
       expect(dcf.factor, 0.038461538461538464);
       expect(dcf.toString(), '(2/52) = 0.03846154');
+      expect(dcf.toFoldedString(), '(2/52) = 0.03846154');
     });
     test('12/01/2012 <-- 10/01/2013', () {
       final dcf = dc.computeFactor(
@@ -165,7 +182,8 @@ void main() {
         DateTime.utc(2013, 1, 10),
       );
       expect(dcf.factor, 1.0);
-      expect(dcf.toString(), '(52/52) = 1.00000000');
+      expect(dcf.toString(), '1 = 1.00000000');
+      expect(dcf.toFoldedString(), '1 = 1.00000000');
     });
     test('12/01/2012 <-- 30/01/2012', () {
       final dcf = dc.computeFactor(
@@ -174,6 +192,7 @@ void main() {
       );
       expect(dcf.factor, 0.0494204425711275);
       expect(dcf.toString(), '(2/52) + (4/365) = 0.04942044');
+      expect(dcf.toFoldedString(), '(2/52) + (4/365) = 0.04942044');
     });
     test('12/01/2012 <-- 12/01/2013', () {
       final dcf = dc.computeFactor(
@@ -181,7 +200,8 @@ void main() {
         DateTime.utc(2013, 1, 12),
       );
       expect(dcf.factor, 1.0054794520547945);
-      expect(dcf.toString(), '(52/52) + (2/365) = 1.00547945');
+      expect(dcf.toString(), '1 + (2/365) = 1.00547945');
+      expect(dcf.toFoldedString(), '1 + (2/365) = 1.00547945');
     });
     test('12/01/2012 <-- 12/01/2012', () {
       final dcf = dc.computeFactor(
@@ -189,7 +209,8 @@ void main() {
         DateTime.utc(2012, 1, 12),
       );
       expect(dcf.factor, 0.0);
-      expect(dcf.toString(), '(0/52) = 0.00000000');
+      expect(dcf.toString(), '0 = 0.00000000');
+      expect(dcf.toFoldedString(), '0 = 0.00000000');
     });
   });
   group('EU200848EC.computeFactor [timePeriod = undefined]', () {

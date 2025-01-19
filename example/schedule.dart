@@ -97,7 +97,7 @@ class Schedule {
         ),
         cashFlow.label,
         cashFlow.value.toStringAsFixed(profile.precision),
-        cashFlow.periodFactor.toString(),
+        cashFlow.periodFactor!.toFoldedString(),
         lineTotal.toStringAsFixed(displayPrecision),
       ]);
     }

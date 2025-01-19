@@ -12,6 +12,7 @@ void main() {
       );
       expect(dcf.factor, 0.08493150684931507);
       expect(dcf.toString(), '(31/365) = 0.08493151');
+      expect(dcf.toFoldedString(), '(31/365) = 0.08493151');
     });
     test('28/01/2019 to 28/02/2019', () {
       final dcf = dc.computeFactor(
@@ -20,6 +21,7 @@ void main() {
       );
       expect(dcf.factor, 0.08493150684931507);
       expect(dcf.toString(), '(31/365) = 0.08493151');
+      expect(dcf.toFoldedString(), '(31/365) = 0.08493151');
     });
     test('31/12/2017 to 31/12/2019', () {
       final dcf = dc.computeFactor(
@@ -27,7 +29,8 @@ void main() {
         DateTime.utc(2019, 12, 31),
       );
       expect(dcf.factor, 2.0);
-      expect(dcf.toString(), '(730/365) = 2.00000000');
+      expect(dcf.toString(), '2 = 2.00000000');
+      expect(dcf.toFoldedString(), '2 = 2.00000000');
     });
     test('31/12/2018 to 31/12/2020', () {
       final dcf = dc.computeFactor(
@@ -35,7 +38,8 @@ void main() {
         DateTime.utc(2020, 12, 31),
       );
       expect(dcf.factor, 2.0027397260273974);
-      expect(dcf.toString(), '(731/365) = 2.00273973');
+      expect(dcf.toString(), '2 + (1/365) = 2.00273973');
+      expect(dcf.toFoldedString(), '2 + (1/365) = 2.00273973');
     });
     test('30/06/2019 to 30/06/2021', () {
       final dcf = dc.computeFactor(
@@ -43,7 +47,8 @@ void main() {
         DateTime.utc(2021, 6, 30),
       );
       expect(dcf.factor, 2.0027397260273974);
-      expect(dcf.toString(), '(731/365) = 2.00273973');
+      expect(dcf.toString(), '2 + (1/365) = 2.00273973');
+      expect(dcf.toFoldedString(), '2 + (1/365) = 2.00273973');
     });
   });
   group('Act365 default instance', () {

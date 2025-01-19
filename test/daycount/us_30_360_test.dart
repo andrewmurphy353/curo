@@ -12,6 +12,7 @@ void main() {
       );
       expect(dcf.factor, 0.08611111111111111);
       expect(dcf.toString(), '(31/360) = 0.08611111');
+      expect(dcf.toFoldedString(), '(31/360) = 0.08611111');
     });
     test('28/01/2019 to 28/02/2019', () {
       final dcf = dc.computeFactor(
@@ -20,6 +21,7 @@ void main() {
       );
       expect(dcf.factor, 0.08333333333333333);
       expect(dcf.toString(), '(30/360) = 0.08333333');
+      expect(dcf.toFoldedString(), '(30/360) = 0.08333333');
     });
     test('16/06/2019 to 31/07/2019', () {
       final dcf = dc.computeFactor(
@@ -28,6 +30,7 @@ void main() {
       );
       expect(dcf.factor, 0.125);
       expect(dcf.toString(), '(45/360) = 0.12500000');
+      expect(dcf.toFoldedString(), '(45/360) = 0.12500000');
     });
     test('31/12/2017 to 31/12/2019', () {
       final dcf = dc.computeFactor(
@@ -35,7 +38,8 @@ void main() {
         DateTime.utc(2019, 12, 31),
       );
       expect(dcf.factor, 2.0);
-      expect(dcf.toString(), '(720/360) = 2.00000000');
+      expect(dcf.toString(), '2 = 2.00000000');
+      expect(dcf.toFoldedString(), '2 = 2.00000000');
     });
     test('31/12/2018 to 31/12/2020', () {
       final dcf = dc.computeFactor(
@@ -43,7 +47,8 @@ void main() {
         DateTime.utc(2020, 12, 31),
       );
       expect(dcf.factor, 2.0);
-      expect(dcf.toString(), '(720/360) = 2.00000000');
+      expect(dcf.toString(), '2 = 2.00000000');
+      expect(dcf.toFoldedString(), '2 = 2.00000000');
     });
     test('30/06/2019 to 30/06/2021', () {
       final dcf = dc.computeFactor(
@@ -51,7 +56,8 @@ void main() {
         DateTime.utc(2021, 6, 30),
       );
       expect(dcf.factor, 2.0);
-      expect(dcf.toString(), '(720/360) = 2.00000000');
+      expect(dcf.toString(), '2 = 2.00000000');
+      expect(dcf.toFoldedString(), '2 = 2.00000000');
     });
   });
   group('US30360 default instance', () {
