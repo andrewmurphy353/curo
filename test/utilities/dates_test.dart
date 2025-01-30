@@ -102,6 +102,27 @@ void main() {
     });
   });
 
+  group('hasMonthEndDay', () {
+    // Extra tests added Jan 2025 to verify special case handling of
+    // day counts for monthly periods involving month end dates
+    // which relies on this function
+    test('31/01/2023 to return true for month of January', () {
+      expect(hasMonthEndDay(DateTime.utc(2023, 1, 31)), true);
+    });
+    test('28/02/2023 to return false for month of February', () {
+      expect(hasMonthEndDay(DateTime.utc(2023, 2, 28)), true);
+    });
+    test('28/02/2024 to return false for month of February', () {
+      expect(hasMonthEndDay(DateTime.utc(2024, 2, 28)), false);
+    });
+    test('29/02/2024 to return true for month of February', () {
+      expect(hasMonthEndDay(DateTime.utc(2024, 2, 29)), true);
+    });
+    test('30/11/2024 to return true for month of November', () {
+      expect(hasMonthEndDay(DateTime.utc(2024, 11, 30)), true);
+    });
+  });
+
   group('hasLeapYear', () {
     test('1999 to 2000 to return true for year 2000', () {
       expect(hasLeapYear(1999, 2000), true);

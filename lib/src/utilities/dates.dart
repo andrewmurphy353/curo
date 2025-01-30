@@ -11,6 +11,17 @@ DateTime utcDate(DateTime dateTime) => DateTime.utc(
 int actualDays(DateTime date1, DateTime date2) =>
     utcDate(date1).difference(utcDate(date2)).inDays.abs();
 
+
+/// Check if a date contains a month end day.
+/// 
+/// [date] containing the month to check.
+bool hasMonthEndDay(DateTime date) {
+  if (isLeapYear(date.year) && date.month == 2) {
+    return date.day == 29;
+  }
+  return daysInMonth[date.month - 1] == date.day;
+}
+
 /// Check if a particular range of years contains a leap-year.
 ///
 /// [yearFrom] the earlier of two years.
