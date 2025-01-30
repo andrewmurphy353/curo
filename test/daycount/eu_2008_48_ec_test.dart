@@ -110,7 +110,57 @@ void main() {
       expect(dcf.toString(), '0 = 0.00000000');
       expect(dcf.toFoldedString(), '0 = 0.00000000');
     });
+    // Extra tests added Jan 2025 to verify special case handling of
+    // day counts for monthly periods involving month end dates
+    test('31/12/2024 <-- 28/02/2025', () {
+      final dcf = dc.computeFactor(
+        DateTime.utc(2024, 12, 31),
+        DateTime.utc(2025, 2, 28),
+      );
+      expect(dcf.factor, 0.16666666666666666);
+      expect(dcf.toString(), '(2/12) = 0.16666667');
+      expect(dcf.toFoldedString(), '(2/12) = 0.16666667');
+    });
+    test('28/02/2024 <-- 31/03/2024', () {
+      final dcf = dc.computeFactor(
+        DateTime.utc(2024, 2, 28),
+        DateTime.utc(2024, 3, 31),
+      );
+      expect(dcf.factor, 0.0860655737704918);
+      expect(dcf.toString(), '(1/12) + (1/366) = 0.08606557');
+      expect(dcf.toFoldedString(), '(1/12) + (1/366) = 0.08606557');
+      // denominator = actual days between 29/2/2024 and 28/2/2023 = 366
+    });
+    test('29/02/2024 <-- 31/03/2024', () {
+      final dcf = dc.computeFactor(
+        DateTime.utc(2024, 2, 29),
+        DateTime.utc(2024, 3, 31),
+      );
+      expect(dcf.factor, 0.08333333333333333);
+      expect(dcf.toString(), '(1/12) = 0.08333333');
+      expect(dcf.toFoldedString(), '(1/12) = 0.08333333');
+    });
+    test('31/01/2024 <-- 29/02/2024', () {
+      final dcf = dc.computeFactor(
+        DateTime.utc(2024, 1, 31),
+        DateTime.utc(2024, 2, 29),
+      );
+      expect(dcf.factor, 0.08333333333333333);
+      expect(dcf.toString(), '(1/12) = 0.08333333');
+      expect(dcf.toFoldedString(), '(1/12) = 0.08333333');
+    });
+    test('31/01/2024 <-- 28/02/2025', () {
+      final dcf = dc.computeFactor(
+        DateTime.utc(2024, 1, 31),
+        DateTime.utc(2025, 2, 28),
+      );
+      expect(dcf.factor, 1.08333333333333333);
+      expect(dcf.toString(), '1 + (1/12) = 1.08333333');
+      expect(dcf.toFoldedString(), '1 + (1/12) = 1.08333333');
+    });
   });
+
+
   group('EU200848EC.computeFactor [timePeriod = year]', () {
     const dc = EU200848EC(timePeriod: EUTimePeriod.year);
     test('timePeriod() to return year', () {
@@ -161,7 +211,82 @@ void main() {
       expect(dcf.toString(), '0 = 0.00000000');
       expect(dcf.toFoldedString(), '0 = 0.00000000');
     });
+    // Extra tests added Jan 2025 to verify special case handling of
+    // day counts for annual periods involving month end dates
+    test('27/02/2024 <-- 28/02/2025', () {
+      final dcf = dc.computeFactor(
+        DateTime.utc(2024, 2, 27),
+        DateTime.utc(2025, 2, 28),
+      );
+      expect(dcf.factor, 1.0027397260273974);
+      expect(dcf.toString(), '1 + (1/365) = 1.00273973');
+      expect(dcf.toFoldedString(), '1 + (1/365) = 1.00273973');
+    });
+    test('29/02/2024 <-- 31/03/2025', () {
+      final dcf = dc.computeFactor(
+        DateTime.utc(2024, 2, 29),
+        DateTime.utc(2025, 3, 31),
+      );
+      expect(dcf.factor, 1.0846994535519126);
+      expect(dcf.toString(), '1 + (31/366) = 1.08469945');
+      expect(dcf.toFoldedString(), '1 + (31/366) = 1.08469945');
+    });
+    test('28/02/2024 <-- 27/02/2025', () {
+      final dcf = dc.computeFactor(
+        DateTime.utc(2024, 2, 28),
+        DateTime.utc(2025, 2, 27),
+      );
+      expect(dcf.factor, 0.9972677595628415);
+      expect(dcf.toString(), '(365/366) = 0.99726776');
+      expect(dcf.toFoldedString(), '(365/366) = 0.99726776');
+    });
+    test('28/02/2024 <-- 28/02/2025', () {
+      final dcf = dc.computeFactor(
+        DateTime.utc(2024, 2, 28),
+        DateTime.utc(2025, 2, 28),
+      );
+      expect(dcf.factor, 1.0000000000000000);
+      expect(dcf.toString(), '1 = 1.00000000');
+      expect(dcf.toFoldedString(), '1 = 1.00000000');
+    });
+    test('29/02/2024 <-- 28/02/2025', () {
+      final dcf = dc.computeFactor(
+        DateTime.utc(2024, 2, 29),
+        DateTime.utc(2025, 2, 28),
+      );
+      expect(dcf.factor, 1.0000000000000000);
+      expect(dcf.toString(), '1 = 1.00000000');
+      expect(dcf.toFoldedString(), '1 = 1.00000000');
+    });
+    test('28/02/2023 <-- 28/02/2024', () {
+      final dcf = dc.computeFactor(
+        DateTime.utc(2023, 2, 28),
+        DateTime.utc(2024, 2, 28),
+      );
+      expect(dcf.factor, 1.0000000000000000);
+      expect(dcf.toString(), '1 = 1.00000000');
+      expect(dcf.toFoldedString(), '1 = 1.00000000');
+    });
+    test('28/02/2023 <-- 29/02/2024', () {
+      final dcf = dc.computeFactor(
+        DateTime.utc(2023, 2, 28),
+        DateTime.utc(2024, 2, 29),
+      );
+      expect(dcf.factor, 1.0000000000000000);
+      expect(dcf.toString(), '1 = 1.00000000');
+      expect(dcf.toFoldedString(), '1 = 1.00000000');
+    });
+    test('28/02/2023 <-- 28/02/2024', () {
+      final dcf = dc.computeFactor(
+        DateTime.utc(2023, 2, 28),
+        DateTime.utc(2024, 2, 28),
+      );
+      expect(dcf.factor, 1.0000000000000000);
+      expect(dcf.toString(), '1 = 1.00000000');
+      expect(dcf.toFoldedString(), '1 = 1.00000000');
+    });
   });
+
   group('EU200848EC.computeFactor [timePeriod = week]', () {
     const dc = EU200848EC(timePeriod: EUTimePeriod.week);
     test('timePeriod() to return week', () {

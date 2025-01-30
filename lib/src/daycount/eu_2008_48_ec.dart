@@ -79,9 +79,39 @@ class EU200848EC extends Convention {
         startWholePeriod = tempDate;
         wholePeriods++;
       } else {
+        // Ensure that when both the initial drawdown and subsequent cash flow 
+        // dates fall on the last day of their respective months, the period is 
+        // calculated in whole months or years. This fix specifically addresses
+        // the handling of February 28th or 29th, where previously periods were
+        // incorrectly counted in days.
+        switch (timePeriod) {
+          case EUTimePeriod.year:
+            if (initialDrawdown.month == tempDate.month &&
+                initialDrawdown.day == tempDate.day) {
+              // Same anniversary date
+              break;
+            }
+            if (d1.month == d2.month &&
+                hasMonthEndDay(d1) &&
+                hasMonthEndDay(d2)) {
+              startWholePeriod = initialDrawdown;
+              wholePeriods++;
+            }
+            break;
+          case EUTimePeriod.month:
+            if (initialDrawdown.day >= tempDate.day &&
+                hasMonthEndDay(d1) &&
+                hasMonthEndDay(d2)) {
+              startWholePeriod = initialDrawdown;
+              wholePeriods++;
+            }
+            break;
+          case EUTimePeriod.week:
+        }
         break;
       }
     }
+
     var factor = 0.0;
     if (wholePeriods > 0) {
       factor = wholePeriods / periodsInYear;
