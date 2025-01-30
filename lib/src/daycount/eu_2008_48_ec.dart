@@ -99,6 +99,10 @@ class EU200848EC extends Convention {
             }
             break;
           case EUTimePeriod.month:
+            if (initialDrawdown.day == tempDate.day) {
+              // Same day
+              break;
+            }
             if (initialDrawdown.day >= tempDate.day &&
                 hasMonthEndDay(d1) &&
                 hasMonthEndDay(d2)) {

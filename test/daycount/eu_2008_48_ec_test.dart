@@ -112,6 +112,15 @@ void main() {
     });
     // Extra tests added Jan 2025 to verify special case handling of
     // day counts for monthly periods involving month end dates
+    test('30/01/2025 <-- 30/01/2025', () {
+      final dcf = dc.computeFactor(
+        DateTime.utc(2025, 1, 30),
+        DateTime.utc(2025, 1, 30),
+      );
+      expect(dcf.factor, 0.0);
+      expect(dcf.toString(), '0 = 0.00000000');
+      expect(dcf.toFoldedString(), '0 = 0.00000000');
+    });
     test('31/12/2024 <-- 28/02/2025', () {
       final dcf = dc.computeFactor(
         DateTime.utc(2024, 12, 31),
@@ -159,7 +168,6 @@ void main() {
       expect(dcf.toFoldedString(), '1 + (1/12) = 1.08333333');
     });
   });
-
 
   group('EU200848EC.computeFactor [timePeriod = year]', () {
     const dc = EU200848EC(timePeriod: EUTimePeriod.year);
@@ -213,6 +221,15 @@ void main() {
     });
     // Extra tests added Jan 2025 to verify special case handling of
     // day counts for annual periods involving month end dates
+    test('30/01/2025 <-- 30/01/2025', () {
+      final dcf = dc.computeFactor(
+        DateTime.utc(2025, 1, 30),
+        DateTime.utc(2025, 1, 30),
+      );
+      expect(dcf.factor, 0.0);
+      expect(dcf.toString(), '0 = 0.00000000');
+      expect(dcf.toFoldedString(), '0 = 0.00000000');
+    });
     test('27/02/2024 <-- 28/02/2025', () {
       final dcf = dc.computeFactor(
         DateTime.utc(2024, 2, 27),
