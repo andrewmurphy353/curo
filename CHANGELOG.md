@@ -1,3 +1,6 @@
+## 2.1.4
+- Documentation: Updated EU200848EC Day Count Convention dart doc and README to clarify that, despite the European Union Directive 2008/48/EC being repealed and replaced by Directive (EU) 2023/2225, the day count implementation remains unchanged.
+
 ## 2.1.3
 - Fix: Updated the EU200848EC computeFactor day count method to ensure that when both the initial drawdown and subsequent cash flow dates fall on the last day of their respective months, the period is calculated in whole months or years. Previously, this method correctly handled months with 30 or 31 days but failed for February 28th or 29th, where periods were incorrectly counted in days.
 
