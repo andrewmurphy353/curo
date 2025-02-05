@@ -14,21 +14,21 @@ import 'day_count_factor.dart';
 /// be found at
 /// https://ec.europa.eu/info/sites/info/files/guidelines_final.pdf
 /// (see ANNEX 1, section 4.1.1)
-/// 
+///
 /// **UPDATE**:
-/// 
-/// The European Union Directive 2008/48/EC was repealed and replaced by 
-/// Directive (EU) 2023/2225. The key change relevant to our implementation 
-/// is found in EU Directive 2023/2225, Annex III, I. (c), which specifies 
-/// how to handle intervals between dates that cannot be expressed as whole 
-/// weeks, months, or years. It mandates that such intervals should be 
-/// expressed as a whole number of one of these periods combined with 
-/// additional days. Although Directive 2008/48/EC did not address this 
-/// issue explicitly, this implementation has always followed this method 
-/// and thus remains valid. For backward compatibility, the class name 
-/// 'EU200848EC' will not be changed to prevent disruptions in existing 
+///
+/// The European Union Directive 2008/48/EC was repealed and replaced by
+/// Directive (EU) 2023/2225. The key change relevant to our implementation
+/// is found in EU Directive 2023/2225, Annex III, I. (c), which specifies
+/// how to handle intervals between dates that cannot be expressed as whole
+/// weeks, months, or years. It mandates that such intervals should be
+/// expressed as a whole number of one of these periods combined with
+/// additional days. Although Directive 2008/48/EC did not address this
+/// issue explicitly, this implementation has always followed this method
+/// and thus remains valid. For backward compatibility, the class name
+/// 'EU200848EC' will not be changed to prevent disruptions in existing
 /// codebases.
-/// 
+///
 class EU200848EC extends Convention {
   final EUTimePeriod timePeriod;
 
@@ -94,8 +94,8 @@ class EU200848EC extends Convention {
         startWholePeriod = tempDate;
         wholePeriods++;
       } else {
-        // Ensure that when both the initial drawdown and subsequent cash flow 
-        // dates fall on the last day of their respective months, the period is 
+        // Ensure that when both the initial drawdown and subsequent cash flow
+        // dates fall on the last day of their respective months, the period is
         // calculated in whole months or years. This fix specifically addresses
         // the handling of February 28th or 29th, where previously periods were
         // incorrectly counted in days.

@@ -120,7 +120,7 @@ class Calculator {
   /// [startDate] to use in constructing the cash flow profile when cash
   /// flow series dates are *not* provided. The current system date is used
   /// if left undefined.
-  /// 
+  ///
   /// [rootGuess] overrides the start guess for solving an unknown value
   /// or interest rate
   ///
@@ -180,7 +180,7 @@ class Calculator {
   ///
   /// [rootGuess] overrides the start guess for solving an unknown value
   /// or interest rate
-  /// 
+  ///
   Future<double> solveRate({
     required Convention dayCount,
     DateTime? startDate,
