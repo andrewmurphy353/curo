@@ -102,6 +102,65 @@ void main() {
     });
   });
 
+  group('monthsBetweenDates', () {
+    test('31/01/2025 to 28/02/2025 to return 1', () {
+      expect(
+          monthsBetweenDates(
+            DateTime.utc(2025, 1, 31),
+            DateTime.utc(2025, 2, 28),
+          ),
+          1);
+    });
+    test('31/01/2024 to 29/02/2024 to return 1', () {
+      expect(
+          monthsBetweenDates(
+            DateTime.utc(2024, 1, 31),
+            DateTime.utc(2024, 2, 29),
+          ),
+          1);
+    });
+    test('31/01/2024 to 28/02/2024 to return 0', () {
+      expect(
+          monthsBetweenDates(
+            DateTime.utc(2024, 1, 31),
+            DateTime.utc(2024, 2, 28),
+          ),
+          0);
+    });
+    test('28/02/2025 to 31/01/2025 (reversed) to return 1', () {
+      expect(
+          monthsBetweenDates(
+            DateTime.utc(2025, 2, 28),
+            DateTime.utc(2025, 1, 31),
+          ),
+          1);
+    });
+    test('28/02/2025 to 28/2/2025 to return 0', () {
+      expect(
+          monthsBetweenDates(
+            DateTime.utc(2025, 2, 28),
+            DateTime.utc(2025, 2, 28),
+          ),
+          0);
+    });
+    test('15/01/2025 to 10/2/2025 to return 0', () {
+      expect(
+          monthsBetweenDates(
+            DateTime.utc(2025, 1, 15),
+            DateTime.utc(2025, 2, 10),
+          ),
+          0);
+    });
+    test('15/01/2025 to 15/2/2025 to return 1', () {
+      expect(
+          monthsBetweenDates(
+            DateTime.utc(2025, 1, 15),
+            DateTime.utc(2025, 2, 15),
+          ),
+          1);
+    });
+  });
+
   group('hasMonthEndDay', () {
     // Extra tests added Jan 2025 to verify special case handling of
     // day counts for monthly periods involving month end dates

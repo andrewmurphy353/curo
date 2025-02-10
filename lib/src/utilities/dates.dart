@@ -11,6 +11,24 @@ DateTime utcDate(DateTime dateTime) => DateTime.utc(
 int actualDays(DateTime date1, DateTime date2) =>
     utcDate(date1).difference(utcDate(date2)).inDays.abs();
 
+/// Compute the number of months between two dates.
+///
+int monthsBetweenDates(DateTime date1, DateTime date2) {
+  if (date1.isAfter(date2)) {
+    final temp = date1;
+    date1 = date2;
+    date2 = temp;
+  }
+  final monthAdj = (date1.day > date2.day &&
+          !(hasMonthEndDay(date1) && hasMonthEndDay(date2)))
+      ? -1
+      : 0;
+
+  return (date2.year - date1.year) * 12 +
+      (date2.month - date1.month) +
+      monthAdj;
+}
+
 /// Check if a date contains a month end day.
 ///
 /// [date] containing the month to check.
