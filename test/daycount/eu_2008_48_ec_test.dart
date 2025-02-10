@@ -2,14 +2,15 @@
 // https://ec.europa.eu/info/sites/info/files/guidelines_final.pdf
 
 import 'package:curo/src/daycount/day_count_origin.dart';
+import 'package:curo/src/daycount/day_count_time_period.dart';
 import 'package:curo/src/daycount/eu_2008_48_ec.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('EU200848EC.computeFactor [timePeriod = month]', () {
-    const dc = EU200848EC(timePeriod: EUTimePeriod.month);
+    const dc = EU200848EC(timePeriod: DayCountTimePeriod.month);
     test('timePeriod() to return month', () {
-      expect(dc.timePeriod, EUTimePeriod.month);
+      expect(dc.timePeriod, DayCountTimePeriod.month);
     });
     test('12/01/2019 <-- 12/01/2020', () {
       final dcf = dc.computeFactor(
@@ -170,9 +171,9 @@ void main() {
   });
 
   group('EU200848EC.computeFactor [timePeriod = year]', () {
-    const dc = EU200848EC(timePeriod: EUTimePeriod.year);
+    const dc = EU200848EC(timePeriod: DayCountTimePeriod.year);
     test('timePeriod() to return year', () {
-      expect(dc.timePeriod, EUTimePeriod.year);
+      expect(dc.timePeriod, DayCountTimePeriod.year);
     });
     test('12/01/2012 <-- 15/02/2012', () {
       final dcf = dc.computeFactor(
@@ -305,9 +306,9 @@ void main() {
   });
 
   group('EU200848EC.computeFactor [timePeriod = week]', () {
-    const dc = EU200848EC(timePeriod: EUTimePeriod.week);
+    const dc = EU200848EC(timePeriod: DayCountTimePeriod.week);
     test('timePeriod() to return week', () {
-      expect(dc.timePeriod, EUTimePeriod.week);
+      expect(dc.timePeriod, DayCountTimePeriod.week);
     });
     test('12/01/2012 <-- 26/01/2012', () {
       final dcf = dc.computeFactor(
@@ -358,7 +359,7 @@ void main() {
   group('EU200848EC.computeFactor [timePeriod = undefined]', () {
     const dc = EU200848EC();
     test('timePeriod() to return MONTH by default', () {
-      expect(dc.timePeriod, EUTimePeriod.month);
+      expect(dc.timePeriod, DayCountTimePeriod.month);
     });
     test('dayCountOrigin() to return DRAWDOWN by default', () {
       expect(dc.dayCountOrigin(), DayCountOrigin.drawdown);
