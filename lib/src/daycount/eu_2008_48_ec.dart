@@ -1,6 +1,7 @@
 import '../utilities/dates.dart';
 import 'convention.dart';
 import 'day_count_factor.dart';
+import 'day_count_time_period.dart';
 
 /// The European Union Directive 2008/48/EC (Consumer Credit Directive)
 /// day count convention, used exclusively within EU member states in the
@@ -30,7 +31,7 @@ import 'day_count_factor.dart';
 /// codebases.
 ///
 class EU200848EC extends Convention {
-  final EUTimePeriod timePeriod;
+  final DayCountTimePeriod timePeriod;
 
   /// Provides an instance of the 2008/48/EC day count convention object
   /// for solving the Annual Percentage Rate (APR) of charge for consumer
@@ -42,7 +43,7 @@ class EU200848EC extends Convention {
   /// drawdowns and payments within the cash flow series. Refer to the
   /// directive for further guidance. Default is 'month' if undefined.
   const EU200848EC({
-    this.timePeriod = EUTimePeriod.month,
+    this.timePeriod = DayCountTimePeriod.month,
   }) : super(
             usePostDates: true,
             includeNonFinancingFlows: true,
@@ -62,31 +63,19 @@ class EU200848EC extends Convention {
   DayCountFactor computeFactor(DateTime d1, DateTime d2) {
     // Compute whole periods
     var wholePeriods = 0;
-    final int periodsInYear;
-    switch (timePeriod) {
-      case EUTimePeriod.year:
-        periodsInYear = 1;
-        break;
-      case EUTimePeriod.week:
-        periodsInYear = 52;
-        break;
-      case EUTimePeriod.month:
-        periodsInYear = 12;
-        break;
-    }
     final initialDrawdown = utcDate(d1);
     var startWholePeriod = utcDate(d2);
     final operandLog = <String>[];
     while (true) {
       DateTime tempDate;
       switch (timePeriod) {
-        case EUTimePeriod.year:
+        case DayCountTimePeriod.year:
           tempDate = rollMonth(startWholePeriod, -12, d2.day);
           break;
-        case EUTimePeriod.week:
+        case DayCountTimePeriod.week:
           tempDate = rollDay(startWholePeriod, -7);
           break;
-        case EUTimePeriod.month:
+        case DayCountTimePeriod.month:
           tempDate = rollMonth(startWholePeriod, -1, d2.day);
           break;
       }
@@ -100,7 +89,7 @@ class EU200848EC extends Convention {
         // the handling of February 28th or 29th, where previously periods were
         // incorrectly counted in days.
         switch (timePeriod) {
-          case EUTimePeriod.year:
+          case DayCountTimePeriod.year:
             if (initialDrawdown.month == tempDate.month &&
                 initialDrawdown.day == tempDate.day) {
               // Same anniversary date
@@ -113,7 +102,7 @@ class EU200848EC extends Convention {
               wholePeriods++;
             }
             break;
-          case EUTimePeriod.month:
+          case DayCountTimePeriod.month:
             if (initialDrawdown.day == tempDate.day) {
               // Same day
               break;
@@ -125,7 +114,7 @@ class EU200848EC extends Convention {
               wholePeriods++;
             }
             break;
-          case EUTimePeriod.week:
+          case DayCountTimePeriod.week:
         }
         break;
       }
@@ -133,9 +122,9 @@ class EU200848EC extends Convention {
 
     var factor = 0.0;
     if (wholePeriods > 0) {
-      factor = wholePeriods / periodsInYear;
+      factor = wholePeriods / timePeriod.periodsInYear;
       operandLog.add(
-        DayCountFactor.operandsToString(wholePeriods, periodsInYear),
+        DayCountFactor.operandsToString(wholePeriods, timePeriod.periodsInYear),
       );
     }
 
@@ -146,7 +135,7 @@ class EU200848EC extends Convention {
 
       int denominator;
       if (numerator == 0) {
-        denominator = periodsInYear;
+        denominator = timePeriod.periodsInYear;
       } else {
         denominator = actualDays(startDenPeriod, startWholePeriod);
       }
@@ -162,10 +151,4 @@ class EU200848EC extends Convention {
 
     return DayCountFactor(factor, operandLog);
   }
-}
-
-enum EUTimePeriod {
-  year,
-  month,
-  week,
 }
