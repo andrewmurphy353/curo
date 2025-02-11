@@ -228,7 +228,6 @@ void main() {
         DateTime.utc(2023, 11, 30),
         DateTime.utc(2025, 2, 28),
       );
-      print('dcf: $dcf');
       expect(dcf.factor, 1.25000000000000000);
       expect(dcf.toString(), '1 + (3/12) = 1.25000000');
       expect(dcf.toFoldedString(), '1 + (3/12) = 1.25000000');
@@ -238,7 +237,6 @@ void main() {
         DateTime.utc(2023, 1, 15),
         DateTime.utc(2025, 3, 1),
       );
-      print('dcf: $dcf');
       expect(dcf.factor, 2.1232876712328768);
       expect(dcf.toString(), '(350/365) + 1 + (60/365) = 2.12328767');
       expect(dcf.toFoldedString(), '(350/365) + 1 + (60/365) = 2.12328767');

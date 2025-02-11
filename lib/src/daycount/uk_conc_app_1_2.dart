@@ -119,7 +119,6 @@ class UKConcApp12 extends Convention {
     // year (365 or 366 for leap years).
     if (d1.year == d2.year) {
       final numberOfDays = actualDays(d1, d2);
-      print('Same year: days: $numberOfDays');
       factor = numberOfDays / (isLeapYear(d1.year) ? 366 : 365);
       operandLog.add(
         DayCountFactor.operandsToString(
@@ -131,8 +130,6 @@ class UKConcApp12 extends Convention {
       // From d1 to the end of d1.year
       final endOfYear1 = DateTime(d1.year, 12, 31);
       final daysFirstYear = actualDays(d1, endOfYear1);
-      print('Year 1: days: $daysFirstYear');
-
       factor += daysFirstYear / (isLeapYear(d1.year) ? 366 : 365);
       operandLog.add(
         DayCountFactor.operandsToString(
