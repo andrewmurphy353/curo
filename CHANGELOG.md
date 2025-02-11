@@ -1,3 +1,8 @@
+## 2.2.0
+- **Feature:** 
+  - Implemented the **UK CONC App 1.1** day count convention for computing the Annual Percentage Rate of Charge (APRC) for consumer credit agreements **secured on land**.
+  - Implemented the **UK CONC App 1.2** day count convention for computing the APRC for consumer credit agreements **not secured on land**.
+
 ## 2.1.4
 - Documentation: Updated EU200848EC Day Count Convention dart doc and README to clarify that, despite the European Union Directive 2008/48/EC being repealed and replaced by Directive (EU) 2023/2225, the day count implementation remains unchanged.
 
