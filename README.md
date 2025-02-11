@@ -100,7 +100,7 @@ UK CONC App 1.2 (Non-Mortgage Lending) | Convention applies to calculating the A
 US 30/360 | Convention accounts for days between cash flow dates based on a 30 day month, 360 day year as  [documented here](https://en.wikipedia.org/wiki/Day_count_convention#30/360_US). This is the default convention used by the Hewlett Packard HP12C and similar financial calculators, so choose this convention when unsure as it is the defacto convention used in the majority of fixed-term credit calculations.
 US 30U/360| Convention accounts for days between cash flow dates as per US 30/360, except for the month of February where the 28th, and 29th in a leap-year, are treated as 30 days. Note, the use of U in the naming signifies Uniform, so can be read as 30 uniform days in a month.
 
-All conventions, except EU 2023/2225, will by default compute time intervals between cash flows with reference to the dates of adjacent cash flows.
+All conventions, except EU 2023/2225, UK CONC App 1.1 and 1.2, will by default compute time intervals between cash flows with reference to the dates of adjacent cash flows.
 
 To override this so that time intervals are computed with reference to the first drawdown date, as in XIRR (eXtended Internal Rate of Return) based calculations, simply pass `useXirrMethod: true` to the respective day count convention constructor (refer to the code documentation for details). 
 
