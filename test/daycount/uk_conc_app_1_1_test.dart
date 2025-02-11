@@ -138,7 +138,7 @@ void main() {
       expect(dcf.toString(), '(1/12) = 0.08333333');
       expect(dcf.toFoldedString(), '(1/12) = 0.08333333');
     });
-    test('31/01/2024 <-- 29/02/2024', () {
+    test('31/01/2024 --> 29/02/2024', () {
       final dcf = dc.computeFactor(
         DateTime.utc(2024, 1, 31),
         DateTime.utc(2024, 2, 29),
@@ -147,7 +147,7 @@ void main() {
       expect(dcf.toString(), '(1/12) = 0.08333333');
       expect(dcf.toFoldedString(), '(1/12) = 0.08333333');
     });
-    test('31/01/2024 <-- 28/02/2025', () {
+    test('31/01/2024 --> 28/02/2025', () {
       final dcf = dc.computeFactor(
         DateTime.utc(2024, 1, 31),
         DateTime.utc(2025, 2, 28),
