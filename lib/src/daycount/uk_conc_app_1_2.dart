@@ -1,7 +1,4 @@
-import 'convention.dart';
-import 'day_count_factor.dart';
-import 'day_count_time_period.dart';
-import 'uk_conc_app_1_1.dart';
+import '../../curo.dart';
 
 /// The UK CONC App 1.2 day count convention is used exclusively within the
 /// United Kingdom (UK) for computing the Annual Percentage Rate of Charge
@@ -61,16 +58,110 @@ class UKConcApp12 extends Convention {
   /// - [d2] The date of the cash flow or ending date.
   @override
   DayCountFactor computeFactor(DateTime d1, DateTime d2) {
+    double factor = 0.0;
+    final operandLog = <String>[];
+    final isSameDated = d2.difference(d1).inDays == 0;
+
     switch (timePeriod) {
-      case DayCountTimePeriod.year:
+      case DayCountTimePeriod.week:
+        final isWholeNumberOfWeeks =
+            isSameDated ? false : actualDays(d1, d2) % 7 == 0;
+        if (isWholeNumberOfWeeks) {
+          final wholePeriods = actualDays(d1, d2) ~/ 7;
+          factor = wholePeriods / timePeriod.periodsInYear;
+          operandLog.add(
+            DayCountFactor.operandsToString(
+              wholePeriods,
+              timePeriod.periodsInYear,
+            ),
+          );
+          return DayCountFactor(factor, operandLog);
+        }
         break;
       case DayCountTimePeriod.month:
+        final isWholeNumberOfMonths = isSameDated
+            ? false
+            : d1.day == d2.day || hasMonthEndDay(d1) && hasMonthEndDay(d2);
+
+        if (isWholeNumberOfMonths) {
+          final wholePeriods = monthsBetweenDates(d1, d2);
+          factor = wholePeriods / timePeriod.periodsInYear;
+          operandLog.add(
+            DayCountFactor.operandsToString(
+              wholePeriods,
+              timePeriod.periodsInYear,
+            ),
+          );
+          return DayCountFactor(factor, operandLog);
+        }
         break;
-      case DayCountTimePeriod.week:
+      case DayCountTimePeriod.year:
+        final isWholeNumberOfYears = isSameDated
+            ? false
+            : (d1.day == d2.day || hasMonthEndDay(d1) && hasMonthEndDay(d2)) &&
+                d1.month == d2.month;
+        if (isWholeNumberOfYears) {
+          final wholePeriods = monthsBetweenDates(d1, d2) ~/ 12;
+          factor = wholePeriods / timePeriod.periodsInYear;
+          operandLog.add(
+            DayCountFactor.operandsToString(
+              wholePeriods,
+              timePeriod.periodsInYear,
+            ),
+          );
+          return DayCountFactor(factor, operandLog);
+        }
         break;
     }
 
-    const factor = 0.0;
-    return const DayCountFactor(factor, []);
+    // For periods not consisting of whole years, months, or weeks, the time is
+    // converted into a fraction of a year based on the number of days in the
+    // year (365 or 366 for leap years).
+    if (d1.year == d2.year) {
+      final numberOfDays = actualDays(d1, d2);
+      print('Same year: days: $numberOfDays');
+      factor = numberOfDays / (isLeapYear(d1.year) ? 366 : 365);
+      operandLog.add(
+        DayCountFactor.operandsToString(
+          numberOfDays,
+          isLeapYear(d1.year) ? 366 : 365,
+        ),
+      );
+    } else {
+      // From d1 to the end of d1.year
+      final endOfYear1 = DateTime(d1.year, 12, 31);
+      final daysFirstYear = actualDays(d1, endOfYear1);
+      print('Year 1: days: $daysFirstYear');
+
+      factor += daysFirstYear / (isLeapYear(d1.year) ? 366 : 365);
+      operandLog.add(
+        DayCountFactor.operandsToString(
+          daysFirstYear,
+          isLeapYear(d1.year) ? 366 : 365,
+        ),
+      );
+
+      // Full years between d1.year and d2.year
+      for (int year = d1.year + 1; year < d2.year; year++) {
+        final daysInYear = isLeapYear(year) ? 366 : 365;
+        factor += 1.0;
+        operandLog.add(
+          DayCountFactor.operandsToString(daysInYear, daysInYear),
+        );
+      }
+
+      // From the start of d2.year to d2
+      final startOfYear2 = DateTime(d2.year, 1, 1);
+      final daysLastYear = actualDays(startOfYear2, d2) + 1;
+      factor += daysLastYear / (isLeapYear(d2.year) ? 366 : 365);
+      operandLog.add(
+        DayCountFactor.operandsToString(
+          daysLastYear,
+          isLeapYear(d2.year) ? 366 : 365,
+        ),
+      );
+    }
+
+    return DayCountFactor(factor, operandLog);
   }
 }
