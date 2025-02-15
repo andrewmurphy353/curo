@@ -1,6 +1,7 @@
 .dart_tool/
 .vscode/
 .packages
+build/
 coverage/
 doc/
 coverage.lcov
