@@ -52,26 +52,13 @@ bool hasLeapYear(int yearFrom, int yearTo) {
   return false;
 }
 
-/// Check if a year is a leap year.
+/// Check if a year is a leap year per the Gregorian calendar.
 ///
-/// [year] to check
-bool isLeapYear(int year) {
-  if (year % 4 == 0) {
-    if (year % 100 != 0) {
-      // leap year - divisible by 4 but not 100
-      return true;
-    } else if (year % 400 == 0) {
-      // leap year - divisible by 4 and 100 and 400
-      return true;
-    } else {
-      // common year - divisible by 4 and 100 but not 400!
-      return false;
-    }
-  } else {
-    // common year
-    return false;
-  }
-}
+/// A year is a leap year if it is divisible by 4 but not by 100, or divisible
+/// by 400.
+///
+bool isLeapYear(int year) =>
+    (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 
 /// Roll a date forward by the period implicit in the provided frequency.
 ///
