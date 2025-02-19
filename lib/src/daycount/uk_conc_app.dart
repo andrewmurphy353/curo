@@ -125,7 +125,6 @@ class UKConcApp extends Convention {
 
     // Non-whole periods: whole units then residual days
     factor = wholePeriods / timePeriod.periodsInYear;
-    print('WP: $wholePeriods, PIY: ${timePeriod.periodsInYear}');
     if (wholePeriods > 0) {
       operandLog.add(DayCountFactor.operandsToString(
           wholePeriods, timePeriod.periodsInYear));
