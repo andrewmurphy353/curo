@@ -80,6 +80,25 @@ class UKConcApp extends Convention {
     return daysInMonth[date.month - 1] == date.day;
   }
 
+  /// Compute the number of months between two dates based on CONC calendar
+  /// month rules.
+  ///
+  int _monthsBetweenDates(DateTime date1, DateTime date2) {
+    if (date1.isAfter(date2)) {
+      final temp = date1;
+      date1 = date2;
+      date2 = temp;
+    }
+    final monthAdj = (date1.day > date2.day &&
+            !(_hasMonthEndDay(date1) && _hasMonthEndDay(date2)))
+        ? -1
+        : 0;
+
+    return (date2.year - date1.year) * 12 +
+        (date2.month - date1.month) +
+        monthAdj;
+  }
+
   @override
   DayCountFactor computeFactor(DateTime d1, DateTime d2) {
     int wholePeriods = 0;
@@ -92,13 +111,12 @@ class UKConcApp extends Convention {
     final isWholeNumberOfMonths = isSameDated
         ? false
         : d1.day == d2.day || (_hasMonthEndDay(d1) && _hasMonthEndDay(d2));
-
     switch (timePeriod) {
       case DayCountTimePeriod.week:
         wholePeriods = actualDays(d1, d2) ~/ 7;
         if (isWholeNumberOfWeeks) {
           if (isSecuredOnLand && isWholeNumberOfMonths && hasSinglePayment) {
-            wholePeriods = monthsBetweenDates(d1, d2);
+            wholePeriods = _monthsBetweenDates(d1, d2);
             factor = wholePeriods / DayCountTimePeriod.month.periodsInYear;
             operandLog.add(DayCountFactor.operandsToString(
                 wholePeriods, DayCountTimePeriod.month.periodsInYear));

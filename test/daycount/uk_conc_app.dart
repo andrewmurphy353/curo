@@ -130,6 +130,13 @@ void main() {
       expect(dcf.factor, 0.08333333333333333);
       expect(dcf.toString(), '(1/12) = 0.08333333');
     });
+    test('31/01/2024 --> 28/02/2024 (edge case, months override, leap year)',
+        () {
+      final dcf = dc.computeFactor(
+          DateTime.utc(2024, 1, 31), DateTime.utc(2024, 2, 28));
+      expect(dcf.factor, 0.08333333333333333);
+      expect(dcf.toString(), '(1/12) = 0.08333333');
+    });
     test('31/01/2024 --> 29/02/2024 (leap year, non-whole)', () {
       final dcf = dc.computeFactor(
           DateTime.utc(2024, 1, 31), DateTime.utc(2024, 2, 29));
