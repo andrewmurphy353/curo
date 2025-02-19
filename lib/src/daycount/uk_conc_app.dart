@@ -111,6 +111,7 @@ class UKConcApp extends Convention {
     final isWholeNumberOfMonths = isSameDated
         ? false
         : d1.day == d2.day || (_hasMonthEndDay(d1) && _hasMonthEndDay(d2));
+
     switch (timePeriod) {
       case DayCountTimePeriod.week:
         wholePeriods = actualDays(d1, d2) ~/ 7;
