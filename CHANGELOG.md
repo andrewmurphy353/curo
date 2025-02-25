@@ -1,3 +1,6 @@
+## 2.3.1
+- **Fix:** Improved the `amortiseInterest` function to better handle interest accrual when additional advances occur in a repayment schedule. Previously, interest accrued between the last payment and an advance wasn't tracked, since advances didn’t account for it. Now, this interest is properly assigned to the first payment that follows the advance.
+
 ## 2.3.0
 - **Feature:**
   - Consolidated the **UK CONC App 1.1** and **UK CONC App 1.2** day count conventions into a unified `UKConcApp` class, preserving the distinct FCA-defined time computation rules for consumer credit agreements secured on land (App 1.1) and not secured on land (App 1.2). Added an `isSecuredOnLand` parameter to toggle between mortgage and non-mortgage logic, maintaining the single payment edge case (CONC App 1.1.10 R (4)) for secured agreements while simplifying maintenance and reducing code duplication.
