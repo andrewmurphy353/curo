@@ -421,7 +421,14 @@ List<CashFlow> amortiseInterest(
       newCashFlows.add(cashFlow.copyWith(interest: interest));
       continue;
     } else {
+      // Advance/s
       newCashFlows.add(cashFlow);
+      // Fix 02/2025: keep track of periodic interest on brought forward balance
+      // when additional advances encountered, and allocate to the first payment
+      // following. Also reduce capital balance by equal amount to avoid double
+      // counting.
+      accruedInterest += periodInterest;
+      capitalBalance -= periodInterest;
     }
     // Cash out flows
     capitalBalance += periodInterest + cashFlow.value;
