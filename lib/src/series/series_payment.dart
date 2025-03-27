@@ -42,23 +42,17 @@ class SeriesPayment extends Series {
   /// interest.
   ///
   SeriesPayment({
-    int numberOf = 1,
-    Frequency frequency = Frequency.monthly,
+    super.numberOf = 1,
+    super.frequency = Frequency.monthly,
     String? label,
-    double? value,
-    DateTime? postDateFrom,
-    Mode mode = Mode.advance,
-    double weighting = 1.0,
+    super.value,
+    super.postDateFrom,
+    super.mode = Mode.advance,
+    super.weighting,
     this.isInterestCapitalised = true,
   }) : super(
-          numberOf: numberOf,
-          frequency: frequency,
           label: label ?? '',
-          value: value,
-          postDateFrom: postDateFrom,
-          valueDateFrom: postDateFrom, // uses same post date
-          mode: mode,
-          weighting: weighting,
+          valueDateFrom: postDateFrom,
         );
 
   SeriesPayment copyWith({

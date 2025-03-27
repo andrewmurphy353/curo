@@ -3,15 +3,13 @@ import 'package:test/test.dart';
 
 class MockCashFlow extends CashFlow {
   MockCashFlow({
-    required DateTime postDate,
+    required super.postDate,
     DateTime? valueDate,
-    double weighting = 1.0,
+    super.weighting = 1.0,
   }) : super(
-          postDate: postDate,
           valueDate: valueDate ?? postDate,
           value: 0.0,
           isKnown: false,
-          weighting: weighting,
           label: '',
         );
 }

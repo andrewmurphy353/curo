@@ -33,20 +33,15 @@ class SeriesCharge extends Series {
   /// [mode] The advance or arrear mode of recurring charges in the series.
   ///
   SeriesCharge({
-    int numberOf = 1,
-    Frequency frequency = Frequency.monthly,
+    super.numberOf = 1,
+    super.frequency = Frequency.monthly,
     String? label,
-    required double value,
-    DateTime? postDateFrom,
-    Mode mode = Mode.advance,
+    required double super.value,
+    super.postDateFrom,
+    super.mode = Mode.advance,
   }) : super(
-          numberOf: numberOf,
-          frequency: frequency,
           label: label ?? '',
-          value: value,
-          postDateFrom: postDateFrom,
-          valueDateFrom: postDateFrom, // uses same post date
-          mode: mode,
+          valueDateFrom: postDateFrom,
         );
 
   SeriesCharge copyWith({

@@ -16,22 +16,16 @@ class CashFlowPayment extends CashFlow {
   final bool isInterestCapitalised;
 
   CashFlowPayment({
-    required DateTime postDate,
-    double value = 0.0,
-    bool isKnown = true,
-    double weighting = 1.0,
-    String label = '',
+    required super.postDate,
+    super.value = 0.0,
+    super.isKnown = true,
+    super.weighting = 1.0,
+    super.label = '',
     this.interest = 0.0,
     this.isInterestCapitalised = true,
-    DayCountFactor? periodFactor,
+    super.periodFactor,
   }) : super(
-          postDate: postDate,
           valueDate: postDate,
-          value: value,
-          isKnown: isKnown,
-          weighting: weighting,
-          label: label,
-          periodFactor: periodFactor,
         );
 
   CashFlowPayment copyWith({

@@ -14,18 +14,15 @@ import 'cash_flow.dart';
 ///
 class CashFlowCharge extends CashFlow {
   CashFlowCharge({
-    required DateTime postDate,
+    required super.postDate,
     required double value,
-    String label = '',
-    DayCountFactor? periodFactor,
+    super.label = '',
+    super.periodFactor,
   }) : super(
-          postDate: postDate,
           valueDate: postDate,
           value: value.abs(),
           isKnown: true,
           weighting: 1.0,
-          label: label,
-          periodFactor: periodFactor,
         );
 
   CashFlowCharge copyWith({

@@ -7,21 +7,15 @@ import 'cash_flow.dart';
 ///
 class CashFlowAdvance extends CashFlow {
   CashFlowAdvance({
-    required DateTime postDate,
+    required super.postDate,
     DateTime? valueDate,
-    double value = 0.0,
-    bool isKnown = true,
-    double weighting = 1.0,
-    String label = '',
-    DayCountFactor? periodFactor,
+    super.value = 0.0,
+    super.isKnown = true,
+    super.weighting = 1.0,
+    super.label = '',
+    super.periodFactor,
   }) : super(
-          postDate: postDate,
           valueDate: valueDate ?? postDate,
-          value: value,
-          isKnown: isKnown,
-          weighting: weighting,
-          label: label,
-          periodFactor: periodFactor,
         );
 
   CashFlowAdvance copyWith({

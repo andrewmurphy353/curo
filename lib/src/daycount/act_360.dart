@@ -31,13 +31,10 @@ class Act360 extends Convention {
   /// of determining time periods between cash flow dates (true). Default
   /// is false.
   const Act360({
-    bool usePostDates = true,
-    bool includeNonFinancingFlows = false,
-    bool useXirrMethod = false,
-  }) : super(
-            usePostDates: usePostDates,
-            includeNonFinancingFlows: includeNonFinancingFlows,
-            useXirrMethod: useXirrMethod);
+    super.usePostDates = true,
+    super.includeNonFinancingFlows = false,
+    super.useXirrMethod = false,
+  });
 
   @override
   DayCountFactor computeFactor(DateTime d1, DateTime d2) {

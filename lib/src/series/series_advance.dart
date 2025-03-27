@@ -44,23 +44,16 @@ class SeriesAdvance extends Series {
   /// to other unknown advance series values.
   ///
   SeriesAdvance({
-    int numberOf = 1,
-    Frequency frequency = Frequency.monthly,
+    super.numberOf = 1,
+    super.frequency = Frequency.monthly,
     String? label,
-    double? value,
-    DateTime? postDateFrom,
-    DateTime? valueDateFrom,
-    Mode mode = Mode.advance,
-    double weighting = 1.0,
+    super.value,
+    super.postDateFrom,
+    super.valueDateFrom,
+    super.mode = Mode.advance,
+    super.weighting,
   }) : super(
-          numberOf: numberOf,
-          frequency: frequency,
           label: label ?? '',
-          value: value,
-          postDateFrom: postDateFrom,
-          valueDateFrom: valueDateFrom,
-          mode: mode,
-          weighting: weighting,
         );
 
   SeriesAdvance copyWith({

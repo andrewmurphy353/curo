@@ -44,13 +44,10 @@ class US30U360 extends Convention {
   /// is false.
   ///
   const US30U360({
-    bool usePostDates = true,
-    bool includeNonFinancingFlows = false,
-    bool useXirrMethod = false,
-  }) : super(
-            usePostDates: usePostDates,
-            includeNonFinancingFlows: includeNonFinancingFlows,
-            useXirrMethod: useXirrMethod);
+    super.usePostDates = true,
+    super.includeNonFinancingFlows = false,
+    super.useXirrMethod = false,
+  });
 
   @override
   DayCountFactor computeFactor(DateTime d1, DateTime d2) {
