@@ -1,6 +1,5 @@
 import 'package:curo/curo.dart';
 import 'package:curo/src/core/solve_cashflow.dart';
-import 'package:curo/src/profile/helper.dart';
 import 'package:test/test.dart';
 
 void main() {

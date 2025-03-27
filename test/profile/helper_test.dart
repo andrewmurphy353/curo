@@ -1,6 +1,4 @@
 import 'package:curo/curo.dart';
-import 'package:curo/src/profile/helper.dart';
-import 'package:curo/src/series/series.dart';
 import 'package:test/test.dart';
 
 class UnsupportedSeries extends Series {
