@@ -19,6 +19,13 @@ export { SeriesAdvance } from './series/series-advance';
 export { SeriesCharge } from './series/series-charge';
 export { SeriesPayment } from './series/series-payment';
 
+export { 
+  RegZCalculator, 
+  FeeInclusionType,
+  RegZLoanParams,
+  RegZResult
+} from './compliance/reg-z-wrapper';
+
 export {
   utcDate,
   actualDays,
