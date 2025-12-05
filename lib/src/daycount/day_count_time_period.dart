@@ -5,11 +5,13 @@
 /// - year
 /// - month
 /// - week
+/// - day
 ///
 enum DayCountTimePeriod {
   year(1),
   month(12),
-  week(52);
+  week(52),
+  day(365);
 
   /// The denominator used in day count fraction calculations.
   final int periodsInYear;

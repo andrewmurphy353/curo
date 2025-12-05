@@ -1,3 +1,7 @@
+## 2.4.0
+- **Feature:** 
+  - Implemented the **US Appendix J** day count convention for computing the Annual Percentage Rate (APR) for closed-end credit transactions, such as mortgages, under the Truth in Lending Act (TILA). Note, this is a breaking change as DayCountFactor.factor renamed to DayCountFactor.principalFactor to support USAppendixJ’s need to keep separate the whole period and fractional period factors. 
+
 ## 2.3.1
 - **Fix:** Improved the `amortiseInterest` function to better handle interest accrual when additional advances occur in a repayment schedule. Previously, interest accrued between the last payment and an advance wasn't tracked, since advances didn’t account for it. Now, this interest is properly assigned to the first payment that follows the advance.
 

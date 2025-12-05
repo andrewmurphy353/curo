@@ -1,3 +1,4 @@
+import '../../curo.dart';
 import '../daycount/convention.dart';
 import '../profile/helper.dart';
 import '../profile/profile.dart';
@@ -136,6 +137,14 @@ class Calculator {
     _profile = _profile!.copyWith(dayCount: dayCount);
     _profile = assignFactors(_profile!);
 
+    // TODO write end-to-end tests
+    switch (dayCount) {
+      case USAppendixJ():
+        // USAppendixJ solves for the unknown using a periodic rate
+        // so convert the provided annual rate
+        interestRate /= dayCount.timePeriod.periodsInYear;
+      default:
+    }
     var value = SolveRoot.solve(
       callback: SolveCashFlow(
         profile: _profile!,
@@ -207,8 +216,16 @@ class Calculator {
         ),
       );
     }
-
-    return interest;
+    
+    // TODO write end-to-end tests
+    switch (dayCount) {
+      case USAppendixJ():
+        // USAppendixJ solves for the periodic rate so convert
+        // back to an annualised rate (decimal)
+        return interest * dayCount.timePeriod.periodsInYear;
+      default:
+        return interest;
+    }
   }
 
   /// Utility method that builds the profile from the cash flow

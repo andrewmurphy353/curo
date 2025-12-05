@@ -2,10 +2,18 @@ import '../utilities/math.dart';
 
 /// The day count factor applied to the associated cash flow.
 class DayCountFactor {
-  final double factor;
+  final double principalFactor;
+  final double? fractionalAdjustment;
   final List<String> operandLog;
 
-  const DayCountFactor(this.factor, this.operandLog);
+  const DayCountFactor(this.principalFactor, this.operandLog,
+      {this.fractionalAdjustment});
+
+  const DayCountFactor.usAppendixJ(
+    this.principalFactor,
+    this.fractionalAdjustment,
+    this.operandLog,
+  );
 
   /// Provides formatted text containing the operands used in deriving the
   /// factor. The operands are transformed into whole years and fractions of
@@ -21,6 +29,9 @@ class DayCountFactor {
   /// [denominator] corresponding to the number of days, weeks or months
   /// in a year
   static String operandsToString(int numerator, int denominator) {
+    if (denominator == 0) {
+      return numerator.toString();
+    }
     final wholeYear = numerator ~/ denominator;
     final remainder = numerator % denominator;
     if (wholeYear == 0 && remainder != 0) {
@@ -42,17 +53,28 @@ class DayCountFactor {
   /// [toFoldedString] method which folds identical equation operands
   /// whilst ensuring the integrity of displayed formulae is maintained.
   ///
-  @override
   String toString() {
     final displayText = StringBuffer();
-    for (int i = 0; i < operandLog.length; i++) {
-      displayText.write(operandLog[i]);
-      if (i + 1 != operandLog.length) {
-        displayText.write(" + ");
+    if (operandLog.isNotEmpty) {
+      for (int i = 0; i < operandLog.length; i++) {
+        displayText.write(operandLog[i]);
+        if (i + 1 != operandLog.length) {
+          displayText.write(" + ");
+        }
       }
+      displayText.write(" = ");
     }
-    displayText.write(" = ");
-    displayText.write(gaussRound(factor, 8).toStringAsFixed(8));
+    if (fractionalAdjustment != null) {
+      //displayText.write("principal: ");// TODO use abbr. p for (UI localisation)
+      displayText.write("p: ");
+    }
+    displayText.write(gaussRound(principalFactor, 8).toStringAsFixed(8));
+    if (fractionalAdjustment != null) {
+      //displayText.write(", fractional: "); // TODO use abbr. f for (UI localisation)
+      displayText.write(", f: ");
+      displayText
+          .write(gaussRound(fractionalAdjustment!, 8).toStringAsFixed(8));
+    }
     return displayText.toString();
   }
 
@@ -70,7 +92,6 @@ class DayCountFactor {
     for (int i = 0; i < operandLog.length; i++) {
       final current = operandLog[i];
       int count = 1;
-
       for (int j = i + 1; j < operandLog.length; j++) {
         if (operandLog[j] == current) {
           count++;
@@ -79,14 +100,21 @@ class DayCountFactor {
           break;
         }
       }
-
       if (operands.isEmpty) {
         operands += count > 1 ? '$count' : current;
       } else {
         operands += count > 1 ? ' + $count' : ' + $current';
       }
     }
-    final factorString = gaussRound(factor, 8).toStringAsFixed(8);
-    return '$operands = $factorString';
+    final principalString = gaussRound(principalFactor, 8).toStringAsFixed(8);
+
+    if (fractionalAdjustment != null) {
+      final fractionalString =
+          gaussRound(fractionalAdjustment!, 8).toStringAsFixed(8);
+      return '$operands = p: $principalString f:$fractionalString';
+    } else {
+      // TODO what about USAppendicJ days/365?? Proof with need to show p: or f:
+      return '$operands = $principalString';
+    }
   }
 }

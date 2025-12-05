@@ -86,7 +86,11 @@ class Schedule {
         continue;
       }
       final lineTotal = gaussRound(
-          cashFlow.value * pow(1 + rateResult, -cashFlow.periodFactor!.factor),
+          cashFlow.value *
+              pow(
+                1 + rateResult,
+                -cashFlow.periodFactor!.principalFactor,
+              ),
           displayPrecision);
       netTotal += lineTotal;
       lineItems.add([

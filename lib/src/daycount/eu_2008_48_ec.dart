@@ -44,7 +44,9 @@ class EU200848EC extends Convention {
   /// directive for further guidance. Default is 'month' if undefined.
   const EU200848EC({
     this.timePeriod = DayCountTimePeriod.month,
-  }) : super(
+  })  : assert(timePeriod != DayCountTimePeriod.day,
+            'Daily time periods are not supported for EU APRC calculations'),
+        super(
             usePostDates: true,
             includeNonFinancingFlows: true,
             useXirrMethod: true);
@@ -78,6 +80,8 @@ class EU200848EC extends Convention {
         case DayCountTimePeriod.month:
           tempDate = rollMonth(startWholePeriod, -1, d2.day);
           break;
+        case DayCountTimePeriod.day:
+          throw StateError('Daily time periods are not supported');
       }
       if (!initialDrawdown.isAfter(tempDate)) {
         startWholePeriod = tempDate;
@@ -115,6 +119,9 @@ class EU200848EC extends Convention {
             }
             break;
           case DayCountTimePeriod.week:
+            break;
+          case DayCountTimePeriod.day:
+            break;
         }
         break;
       }

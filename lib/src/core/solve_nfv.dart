@@ -1,10 +1,6 @@
 import 'dart:math';
 
-import '../daycount/day_count_origin.dart';
-import '../profile/cash_flow_charge.dart';
-import '../profile/cash_flow_payment.dart';
-import '../profile/profile.dart';
-
+import '../../curo.dart';
 import 'solve_callback.dart';
 
 /// Implementation of the function for finding the interest rate where the
@@ -23,7 +19,7 @@ class SolveNfv implements SolveCallback {
   ///
   SolveNfv({
     required this.profile,
-  }); // {
+  });
 
   /// Implementation of the callback function to compute the net future
   /// value of the cash flow series using the given interest rate.
@@ -41,8 +37,28 @@ class SolveNfv implements SolveCallback {
               !profile.dayCount.includeNonFinancingFlows) {
             continue;
           }
-          capitalBalance += cashFlow.value *
-              pow(1 + rateGuess, -cashFlow.periodFactor!.factor);
+
+          if (profile.dayCount is USAppendixJ) {
+            // The USAppendixJ formula is a special case as it adjusts for
+            // irregular payments by accounting for both full unit-periods
+            // and the fractional unit-period within the first period.
+            final fullFactor =
+                pow(1 + rateGuess, cashFlow.periodFactor!.principalFactor)
+                    .toDouble();
+            double fractionalFactor;
+            if (cashFlow.periodFactor!.fractionalAdjustment != null &&
+                cashFlow.periodFactor!.fractionalAdjustment! > 0.0) {
+              fractionalFactor =
+                  1 + (cashFlow.periodFactor!.fractionalAdjustment! * rateGuess);
+            } else {
+              fractionalFactor = 1.0;
+            }
+            capitalBalance += cashFlow.value / (fullFactor * fractionalFactor);
+          } else {
+            // Default handling for all other EAR/APR conventions
+            capitalBalance += cashFlow.value *
+                pow(1 + rateGuess, -cashFlow.periodFactor!.principalFactor);
+          }
         }
         break;
 
@@ -56,7 +72,7 @@ class SolveNfv implements SolveCallback {
           }
 
           periodInterest =
-              capitalBalance * rateGuess * cashFlow.periodFactor!.factor;
+              capitalBalance * rateGuess * cashFlow.periodFactor!.principalFactor;
 
           if (cashFlow is CashFlowPayment) {
             if (cashFlow.isInterestCapitalised) {

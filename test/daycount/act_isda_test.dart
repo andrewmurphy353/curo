@@ -10,7 +10,7 @@ void main() {
         DateTime.utc(2020, 1, 28),
         DateTime.utc(2020, 2, 28),
       );
-      expect(dcf.factor, 0.08469945355191257);
+      expect(dcf.principalFactor, 0.08469945355191257);
       expect(dcf.toString(), '(31/366) = 0.08469945');
       expect(dcf.toFoldedString(), '(31/366) = 0.08469945');
     });
@@ -19,7 +19,7 @@ void main() {
         DateTime.utc(2019, 1, 28),
         DateTime.utc(2019, 2, 28),
       );
-      expect(dcf.factor, 0.08493150684931507);
+      expect(dcf.principalFactor, 0.08493150684931507);
       expect(dcf.toString(), '(31/365) = 0.08493151');
       expect(dcf.toFoldedString(), '(31/365) = 0.08493151');
     });
@@ -28,7 +28,7 @@ void main() {
         DateTime.utc(2017, 12, 31),
         DateTime.utc(2019, 12, 31),
       );
-      expect(dcf.factor, 2.0);
+      expect(dcf.principalFactor, 2.0);
       expect(dcf.toString(), '2 = 2.00000000');
       expect(dcf.toFoldedString(), '2 = 2.00000000');
     });
@@ -37,7 +37,7 @@ void main() {
         DateTime.utc(2018, 12, 31),
         DateTime.utc(2020, 12, 31),
       );
-      expect(dcf.factor, 2.0);
+      expect(dcf.principalFactor, 2.0);
       expect(dcf.toString(), '1 + 1 = 2.00000000');
       expect(dcf.toFoldedString(), '2 = 2.00000000');
     });
@@ -46,7 +46,7 @@ void main() {
         DateTime.utc(2019, 6, 30),
         DateTime.utc(2021, 6, 30),
       );
-      expect(dcf.factor, 2.0);
+      expect(dcf.principalFactor, 2.0);
       expect(dcf.toString(), '(184/365) + 1 + (181/365) = 2.00000000');
       expect(dcf.toFoldedString(), '(184/365) + 1 + (181/365) = 2.00000000');
     });

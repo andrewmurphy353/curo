@@ -12,6 +12,7 @@ export 'src/daycount/eu_30_360.dart';
 export 'src/daycount/uk_conc_app.dart';
 export 'src/daycount/us_30_360.dart';
 export 'src/daycount/us_30u_360.dart';
+export 'src/daycount/us_appendix_j.dart';
 export 'src/profile/cash_flow.dart';
 export 'src/profile/cash_flow_advance.dart';
 export 'src/profile/cash_flow_charge.dart';
