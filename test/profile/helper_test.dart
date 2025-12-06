@@ -162,49 +162,51 @@ void main() {
         expect(profile.cashFlows[0].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[0].valueDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[0].value, -600.0);
-        expect(profile.cashFlows[0].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[0].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[1]: 400.0 advance, factor of 0.0', () {
         expect(profile.cashFlows[1].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[1].valueDate, DateTime.utc(2022, 1, 16));
         expect(profile.cashFlows[1].value, -400.0);
-        expect(profile.cashFlows[1].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[1].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[2] 10.0 charge, factor of 0.0 (excluded)', () {
         expect(profile.cashFlows[2].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[2].valueDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[2].value, 10.0);
-        expect(profile.cashFlows[2].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[2].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[3] 100.0 payment, factor of 0.08333333333333333', () {
         expect(profile.cashFlows[3].postDate, DateTime.utc(2022, 2, 1));
         expect(profile.cashFlows[3].valueDate, DateTime.utc(2022, 2, 1));
         expect(profile.cashFlows[3].value, 100.0);
-        expect(profile.cashFlows[3].periodFactor!.factor, 0.08333333333333333);
+        expect(profile.cashFlows[3].periodFactor!.principalFactor,
+            0.08333333333333333);
       });
       test('- cashFlow[4] 20.0 charge, factor of 0.0 (excluded)', () {
         expect(profile.cashFlows[4].postDate, DateTime.utc(2022, 2, 16));
         expect(profile.cashFlows[4].valueDate, DateTime.utc(2022, 2, 16));
         expect(profile.cashFlows[4].value, 20.0);
-        expect(profile.cashFlows[4].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[4].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[5] 200.0 payment, factor of 0.08333333333333333', () {
         expect(profile.cashFlows[5].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[5].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[5].value, 200.0);
-        expect(profile.cashFlows[5].periodFactor!.factor, 0.08333333333333333);
+        expect(profile.cashFlows[5].periodFactor!.principalFactor,
+            0.08333333333333333);
       });
       test('- cashFlow[6] 300.0 payment, factor of 0.0', () {
         expect(profile.cashFlows[6].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[6].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[6].value, 300.0);
-        expect(profile.cashFlows[6].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[6].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[7] 400.0 payment, factor of 0.0', () {
         expect(profile.cashFlows[7].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[7].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[7].value, 400.0);
-        expect(profile.cashFlows[7].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[7].periodFactor!.principalFactor, 0.0);
       });
     }, skip: false);
     group(
@@ -249,25 +251,26 @@ void main() {
         expect(profile.cashFlows[0].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[0].valueDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[0].value, -600.0);
-        expect(profile.cashFlows[0].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[0].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[1]: -400.0 advance, factor of 0.0', () {
         expect(profile.cashFlows[1].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[1].valueDate, DateTime.utc(2022, 1, 16));
         expect(profile.cashFlows[1].value, -400.0);
-        expect(profile.cashFlows[1].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[1].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[2] 10.0 charge, factor of 0.0 (included)', () {
         expect(profile.cashFlows[2].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[2].valueDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[2].value, 10.0);
-        expect(profile.cashFlows[2].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[2].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[3] 100.0 payment, factor of 0.08333333333333333', () {
         expect(profile.cashFlows[3].postDate, DateTime.utc(2022, 2, 1));
         expect(profile.cashFlows[3].valueDate, DateTime.utc(2022, 2, 1));
         expect(profile.cashFlows[3].value, 100.0);
-        expect(profile.cashFlows[3].periodFactor!.factor, 0.08333333333333333);
+        expect(profile.cashFlows[3].periodFactor!.principalFactor,
+            0.08333333333333333);
       });
       test(
           '- cashFlow[4] 20.0 charge, factor of 0.041666666666666664 '
@@ -275,25 +278,27 @@ void main() {
         expect(profile.cashFlows[4].postDate, DateTime.utc(2022, 2, 16));
         expect(profile.cashFlows[4].valueDate, DateTime.utc(2022, 2, 16));
         expect(profile.cashFlows[4].value, 20.0);
-        expect(profile.cashFlows[4].periodFactor!.factor, 0.041666666666666664);
+        expect(profile.cashFlows[4].periodFactor!.principalFactor,
+            0.041666666666666664);
       });
       test('- cashFlow[5] 200.0 payment, factor of 0.041666666666666664', () {
         expect(profile.cashFlows[5].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[5].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[5].value, 200.0);
-        expect(profile.cashFlows[5].periodFactor!.factor, 0.041666666666666664);
+        expect(profile.cashFlows[5].periodFactor!.principalFactor,
+            0.041666666666666664);
       });
       test('- cashFlow[6] 300.0 payment, factor of 0.0', () {
         expect(profile.cashFlows[6].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[6].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[6].value, 300.0);
-        expect(profile.cashFlows[6].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[6].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[7] 400.0 payment, factor of 0.0', () {
         expect(profile.cashFlows[7].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[7].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[7].value, 400.0);
-        expect(profile.cashFlows[7].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[7].periodFactor!.principalFactor, 0.0);
       });
     });
     group(
@@ -347,19 +352,19 @@ void main() {
         expect(profile.cashFlows[0].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[0].valueDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[0].value, -600.0);
-        expect(profile.cashFlows[0].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[0].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[1]: 400.0 advance, factor of 0.0', () {
         expect(profile.cashFlows[1].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[1].valueDate, DateTime.utc(2022, 1, 16));
         expect(profile.cashFlows[1].value, -400.0);
-        expect(profile.cashFlows[1].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[1].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[2] 10.0 charge, factor of 0.0 (included)', () {
         expect(profile.cashFlows[2].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[2].valueDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[2].value, 10.0);
-        expect(profile.cashFlows[2].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[2].periodFactor!.principalFactor, 0.0);
       });
       test('cashFlow[3] 100.0 payment, factor of 0.08333333333333333', () {
         expect(profile.cashFlows[3].postDate, DateTime.utc(2022, 2, 1));
@@ -367,31 +372,35 @@ void main() {
         expect(profile.cashFlows[3].value, 100.0);
         expect((profile.cashFlows[3] as CashFlowPayment).isInterestCapitalised,
             true);
-        expect(profile.cashFlows[3].periodFactor!.factor, 0.08333333333333333);
+        expect(profile.cashFlows[3].periodFactor!.principalFactor,
+            0.08333333333333333);
       });
       test('cashFlow[4] 20.0 charge, factor of 0.125 (included)', () {
         expect(profile.cashFlows[4].postDate, DateTime.utc(2022, 2, 16));
         expect(profile.cashFlows[4].valueDate, DateTime.utc(2022, 2, 16));
         expect(profile.cashFlows[4].value, 20.0);
-        expect(profile.cashFlows[4].periodFactor!.factor, 0.125);
+        expect(profile.cashFlows[4].periodFactor!.principalFactor, 0.125);
       });
       test('cashFlow[5] 200.0 payment, factor of 0.16666666666666666', () {
         expect(profile.cashFlows[5].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[5].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[5].value, 200.0);
-        expect(profile.cashFlows[5].periodFactor!.factor, 0.16666666666666666);
+        expect(profile.cashFlows[5].periodFactor!.principalFactor,
+            0.16666666666666666);
       });
       test('cashFlow[6] 300.0 payment, factor of 0.16666666666666666', () {
         expect(profile.cashFlows[6].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[6].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[6].value, 300.0);
-        expect(profile.cashFlows[6].periodFactor!.factor, 0.16666666666666666);
+        expect(profile.cashFlows[6].periodFactor!.principalFactor,
+            0.16666666666666666);
       });
       test('cashFlow[7] 400.0 payment, factor of 0.16666666666666666', () {
         expect(profile.cashFlows[7].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[7].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[7].value, 400.0);
-        expect(profile.cashFlows[7].periodFactor!.factor, 0.16666666666666666);
+        expect(profile.cashFlows[7].periodFactor!.principalFactor,
+            0.16666666666666666);
       });
     });
     group(
@@ -436,19 +445,20 @@ void main() {
         expect(profile.cashFlows[0].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[0].valueDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[0].value, -600.0);
-        expect(profile.cashFlows[0].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[0].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[1] 10.0 charge, factor of 0.0 (excluded)', () {
         expect(profile.cashFlows[1].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[1].valueDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[1].value, 10.0);
-        expect(profile.cashFlows[1].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[1].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[2]: 400.0 advance, factor of 0.041666666666666664', () {
         expect(profile.cashFlows[2].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[2].valueDate, DateTime.utc(2022, 1, 16));
         expect(profile.cashFlows[2].value, -400.0);
-        expect(profile.cashFlows[2].periodFactor!.factor, 0.041666666666666664);
+        expect(profile.cashFlows[2].periodFactor!.principalFactor,
+            0.041666666666666664);
       });
       test('- cashFlow[3] 100.0 payment, factor of 0.041666666666666664', () {
         expect(profile.cashFlows[3].postDate, DateTime.utc(2022, 2, 1));
@@ -456,31 +466,33 @@ void main() {
         expect(profile.cashFlows[3].value, 100.0);
         expect((profile.cashFlows[3] as CashFlowPayment).isInterestCapitalised,
             true);
-        expect(profile.cashFlows[3].periodFactor!.factor, 0.041666666666666664);
+        expect(profile.cashFlows[3].periodFactor!.principalFactor,
+            0.041666666666666664);
       });
       test('- cashFlow[4] 20.0 charge, factor of 0.0 (excluded)', () {
         expect(profile.cashFlows[4].postDate, DateTime.utc(2022, 2, 16));
         expect(profile.cashFlows[4].valueDate, DateTime.utc(2022, 2, 16));
         expect(profile.cashFlows[4].value, 20.0);
-        expect(profile.cashFlows[4].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[4].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[5] 200.0 payment, factor of 0.08333333333333333', () {
         expect(profile.cashFlows[5].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[5].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[5].value, 200.0);
-        expect(profile.cashFlows[5].periodFactor!.factor, 0.08333333333333333);
+        expect(profile.cashFlows[5].periodFactor!.principalFactor,
+            0.08333333333333333);
       });
       test('- cashFlow[6] 300.0 payment, factor of 0.0', () {
         expect(profile.cashFlows[6].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[6].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[6].value, 300.0);
-        expect(profile.cashFlows[6].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[6].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[7] 400.0 payment, factor of 0.0', () {
         expect(profile.cashFlows[7].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[7].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[7].value, 400.0);
-        expect(profile.cashFlows[7].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[7].periodFactor!.principalFactor, 0.0);
       });
     });
     group(
@@ -528,25 +540,27 @@ void main() {
         expect(profile.cashFlows[0].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[0].valueDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[0].value, -600.0);
-        expect(profile.cashFlows[0].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[0].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[1] 10.0 charge, factor of 0.0 (included)', () {
         expect(profile.cashFlows[1].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[1].valueDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[1].value, 10.0);
-        expect(profile.cashFlows[1].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[1].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[2]: 400.0 advance, factor of 0.041666666666666664', () {
         expect(profile.cashFlows[2].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[2].valueDate, DateTime.utc(2022, 1, 16));
         expect(profile.cashFlows[2].value, -400.0);
-        expect(profile.cashFlows[2].periodFactor!.factor, 0.041666666666666664);
+        expect(profile.cashFlows[2].periodFactor!.principalFactor,
+            0.041666666666666664);
       });
       test('- cashFlow[3] 100.0 payment, factor of 0.041666666666666664', () {
         expect(profile.cashFlows[3].postDate, DateTime.utc(2022, 2, 1));
         expect(profile.cashFlows[3].valueDate, DateTime.utc(2022, 2, 1));
         expect(profile.cashFlows[3].value, 100.0);
-        expect(profile.cashFlows[3].periodFactor!.factor, 0.041666666666666664);
+        expect(profile.cashFlows[3].periodFactor!.principalFactor,
+            0.041666666666666664);
       });
       test(
           '- cashFlow[4] 20.0 charge, factor of 0.041666666666666664 '
@@ -554,25 +568,27 @@ void main() {
         expect(profile.cashFlows[4].postDate, DateTime.utc(2022, 2, 16));
         expect(profile.cashFlows[4].valueDate, DateTime.utc(2022, 2, 16));
         expect(profile.cashFlows[4].value, 20.0);
-        expect(profile.cashFlows[4].periodFactor!.factor, 0.041666666666666664);
+        expect(profile.cashFlows[4].periodFactor!.principalFactor,
+            0.041666666666666664);
       });
       test('- cashFlow[5] 200.0 payment, factor of 0.041666666666666664', () {
         expect(profile.cashFlows[5].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[5].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[5].value, 200.0);
-        expect(profile.cashFlows[5].periodFactor!.factor, 0.041666666666666664);
+        expect(profile.cashFlows[5].periodFactor!.principalFactor,
+            0.041666666666666664);
       });
       test('- cashFlow[6] 300.0 payment, factor of 0.0', () {
         expect(profile.cashFlows[6].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[6].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[6].value, 300.0);
-        expect(profile.cashFlows[6].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[6].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[7] 400.0 payment, factor of 0.0', () {
         expect(profile.cashFlows[7].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[7].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[7].value, 400.0);
-        expect(profile.cashFlows[7].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[7].periodFactor!.principalFactor, 0.0);
       });
     });
     group(
@@ -622,19 +638,20 @@ void main() {
         expect(profile.cashFlows[0].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[0].valueDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[0].value, -600.0);
-        expect(profile.cashFlows[0].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[0].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[1] 10.0 charge, factor of 0.0 (excluded)', () {
         expect(profile.cashFlows[1].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[1].valueDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[1].value, 10.0);
-        expect(profile.cashFlows[1].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[1].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[2]: 400.0 advance, factor of 0.041666666666666664', () {
         expect(profile.cashFlows[2].postDate, DateTime.utc(2022, 1, 1));
         expect(profile.cashFlows[2].valueDate, DateTime.utc(2022, 1, 16));
         expect(profile.cashFlows[2].value, -400.0);
-        expect(profile.cashFlows[2].periodFactor!.factor, 0.041666666666666664);
+        expect(profile.cashFlows[2].periodFactor!.principalFactor,
+            0.041666666666666664);
       });
       test('- cashFlow[3] 100.0 payment, factor of 0.08333333333333333', () {
         expect(profile.cashFlows[3].postDate, DateTime.utc(2022, 2, 1));
@@ -642,31 +659,35 @@ void main() {
         expect(profile.cashFlows[3].value, 100.0);
         expect((profile.cashFlows[3] as CashFlowPayment).isInterestCapitalised,
             true);
-        expect(profile.cashFlows[3].periodFactor!.factor, 0.08333333333333333);
+        expect(profile.cashFlows[3].periodFactor!.principalFactor,
+            0.08333333333333333);
       });
       test('- cashFlow[4] 20.0 charge, factor of 0.0 (excluded)', () {
         expect(profile.cashFlows[4].postDate, DateTime.utc(2022, 2, 16));
         expect(profile.cashFlows[4].valueDate, DateTime.utc(2022, 2, 16));
         expect(profile.cashFlows[4].value, 20.0);
-        expect(profile.cashFlows[4].periodFactor!.factor, 0.0);
+        expect(profile.cashFlows[4].periodFactor!.principalFactor, 0.0);
       });
       test('- cashFlow[5] 200.0 payment, factor of 0.16666666666666666', () {
         expect(profile.cashFlows[5].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[5].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[5].value, 200.0);
-        expect(profile.cashFlows[5].periodFactor!.factor, 0.16666666666666666);
+        expect(profile.cashFlows[5].periodFactor!.principalFactor,
+            0.16666666666666666);
       });
       test('- cashFlow[6] 300.0 payment, factor of 0.16666666666666666', () {
         expect(profile.cashFlows[6].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[6].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[6].value, 300.0);
-        expect(profile.cashFlows[6].periodFactor!.factor, 0.16666666666666666);
+        expect(profile.cashFlows[6].periodFactor!.principalFactor,
+            0.16666666666666666);
       });
       test('- cashFlow[7] 400.0 payment, factor of 0.16666666666666666', () {
         expect(profile.cashFlows[7].postDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[7].valueDate, DateTime.utc(2022, 3, 1));
         expect(profile.cashFlows[7].value, 400.0);
-        expect(profile.cashFlows[7].periodFactor!.factor, 0.16666666666666666);
+        expect(profile.cashFlows[7].periodFactor!.principalFactor,
+            0.16666666666666666);
       });
     });
   }, skip: false);
@@ -732,13 +753,13 @@ void main() {
       cashFlows = computeFactors(cashFlows, const US30360(), drawDownDate);
 
       // Predates drawdown
-      expect(cashFlows[0].periodFactor!.factor, 0.0);
+      expect(cashFlows[0].periodFactor!.principalFactor, 0.0);
       // Advance is drawn down
-      expect(cashFlows[1].periodFactor!.factor, 0.0);
+      expect(cashFlows[1].periodFactor!.principalFactor, 0.0);
       // Charge is excluded from computation
-      expect(cashFlows[2].periodFactor!.factor, 0.0);
+      expect(cashFlows[2].periodFactor!.principalFactor, 0.0);
       // Payment falls due 30 days (30/360) after drawdown
-      expect(cashFlows[3].periodFactor!.factor, 0.08333333333333333);
+      expect(cashFlows[3].periodFactor!.principalFactor, 0.08333333333333333);
     });
     test('based on neighbour value dates, including charges', () {
       final drawDownDate = DateTime.utc(2022, 1, 15);
@@ -758,13 +779,13 @@ void main() {
       );
 
       // Predates drawdown
-      expect(cashFlows[0].periodFactor!.factor, 0.0);
+      expect(cashFlows[0].periodFactor!.principalFactor, 0.0);
       // Advance is drawn down
-      expect(cashFlows[1].periodFactor!.factor, 0.0);
+      expect(cashFlows[1].periodFactor!.principalFactor, 0.0);
       // Charge falls due 16 days after drawdown (16/360)
-      expect(cashFlows[2].periodFactor!.factor, 0.044444444444444446);
+      expect(cashFlows[2].periodFactor!.principalFactor, 0.044444444444444446);
       // Payment falls due 15 days after charge (15/360)
-      expect(cashFlows[3].periodFactor!.factor, 0.041666666666666664);
+      expect(cashFlows[3].periodFactor!.principalFactor, 0.041666666666666664);
     });
     test('based on drawdown value dates, including charges', () {
       final drawDownDate = DateTime.utc(2022, 1, 15);
@@ -788,13 +809,13 @@ void main() {
       );
 
       // Predates drawdown
-      expect(cashFlows[0].periodFactor!.factor, 0.0);
+      expect(cashFlows[0].periodFactor!.principalFactor, 0.0);
       // Advance is drawn down
-      expect(cashFlows[1].periodFactor!.factor, 0.0);
+      expect(cashFlows[1].periodFactor!.principalFactor, 0.0);
       // Charge falls due 16 days after drawdown (16/360)
-      expect(cashFlows[2].periodFactor!.factor, 0.044444444444444446);
+      expect(cashFlows[2].periodFactor!.principalFactor, 0.044444444444444446);
       // Payment falls due 30 days after drawdown (30/360)
-      expect(cashFlows[3].periodFactor!.factor, 0.083333333333333333);
+      expect(cashFlows[3].periodFactor!.principalFactor, 0.083333333333333333);
     });
   }, skip: false);
   group('updateUnknowns', () {

@@ -44,7 +44,13 @@ class EU200848EC extends Convention {
   /// directive for further guidance. Default is 'month' if undefined.
   const EU200848EC({
     this.timePeriod = DayCountTimePeriod.month,
-  }) : super(
+  })  : assert(
+            timePeriod == DayCountTimePeriod.week ||
+                timePeriod == DayCountTimePeriod.month ||
+                timePeriod == DayCountTimePeriod.year,
+            // ignore: lines_longer_than_80_chars
+            'Only year, month and week time periods are supported for EU APRC calculations'),
+        super(
             usePostDates: true,
             includeNonFinancingFlows: true,
             useXirrMethod: true);
@@ -78,6 +84,11 @@ class EU200848EC extends Convention {
         case DayCountTimePeriod.month:
           tempDate = rollMonth(startWholePeriod, -1, d2.day);
           break;
+        case DayCountTimePeriod.halfYear:
+        case DayCountTimePeriod.quarter:
+        case DayCountTimePeriod.fortnight:
+        case DayCountTimePeriod.day:
+          throw StateError('The selected time period is not supported.');
       }
       if (!initialDrawdown.isAfter(tempDate)) {
         startWholePeriod = tempDate;
@@ -115,6 +126,14 @@ class EU200848EC extends Convention {
             }
             break;
           case DayCountTimePeriod.week:
+            // Based on actual days so not applicable
+            break;
+          case DayCountTimePeriod.halfYear:
+          case DayCountTimePeriod.quarter:
+          case DayCountTimePeriod.fortnight:
+          case DayCountTimePeriod.day:
+            // Not supported
+            break;
         }
         break;
       }

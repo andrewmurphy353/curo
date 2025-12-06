@@ -404,7 +404,7 @@ List<CashFlow> amortiseInterest(
     }
 
     periodInterest = gaussRound(
-        capitalBalance * interestRate * cashFlow.periodFactor!.factor,
+        capitalBalance * interestRate * cashFlow.periodFactor!.principalFactor,
         precision);
 
     if (cashFlow is CashFlowPayment) {

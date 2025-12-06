@@ -14,25 +14,25 @@ void main() {
     test('31/01/2025 --> 28/02/2025 (whole months)', () {
       final dcf = dc.computeFactor(
           DateTime.utc(2025, 1, 31), DateTime.utc(2025, 2, 28));
-      expect(dcf.factor, 0.08333333333333333);
+      expect(dcf.principalFactor, 0.08333333333333333);
       expect(dcf.toString(), '(1/12) = 0.08333333');
     });
     test('12/01/2025 --> 15/02/2025 (non-whole)', () {
       final dcf = dc.computeFactor(
           DateTime.utc(2025, 1, 12), DateTime.utc(2025, 2, 15));
-      expect(dcf.factor, 0.0915525114155251);
+      expect(dcf.principalFactor, 0.0915525114155251);
       expect(dcf.toString(), '(1/12) + (3/365) = 0.09155251');
     });
     test('15/12/2023 --> 29/02/2024 (cross-year, leap)', () {
       final dcf = dc.computeFactor(
           DateTime.utc(2023, 12, 15), DateTime.utc(2024, 2, 29));
-      expect(dcf.factor, 0.20491803278688525);
+      expect(dcf.principalFactor, 0.20491803278688525);
       expect(dcf.toString(), '(2/12) + (14/366) = 0.20491803');
     });
     test('26/02/2025 --> 26/02/2025 (zero days)', () {
       final dcf = dc.computeFactor(
           DateTime.utc(2025, 2, 26), DateTime.utc(2025, 2, 26));
-      expect(dcf.factor, 0.0);
+      expect(dcf.principalFactor, 0.0);
       expect(dcf.toString(), '0 = 0.00000000');
     });
   });
@@ -46,19 +46,19 @@ void main() {
     test('31/01/2025 --> 28/02/2025 (whole weeks)', () {
       final dcf = dc.computeFactor(
           DateTime.utc(2025, 1, 31), DateTime.utc(2025, 2, 28));
-      expect(dcf.factor, 0.07692307692307693);
+      expect(dcf.principalFactor, 0.07692307692307693);
       expect(dcf.toString(), '(4/52) = 0.07692308');
     });
     test('01/01/2023 --> 14/01/2024 (whole weeks, cross-year)', () {
       final dcf =
           dc.computeFactor(DateTime.utc(2023, 1, 1), DateTime.utc(2024, 1, 14));
-      expect(dcf.factor, 1.0384615384615385);
+      expect(dcf.principalFactor, 1.0384615384615385);
       expect(dcf.toString(), '1 + (2/52) = 1.03846154');
     });
     test('12/01/2024 --> 30/01/2024 (non-whole)', () {
       final dcf = dc.computeFactor(
           DateTime.utc(2024, 1, 12), DateTime.utc(2024, 1, 30));
-      expect(dcf.factor, 0.04939050021017234);
+      expect(dcf.principalFactor, 0.04939050021017234);
       expect(dcf.toString(), '(2/52) + (4/366) = 0.04939050');
     });
   });
@@ -72,19 +72,19 @@ void main() {
     test('31/01/2025 --> 28/02/2025 (whole months)', () {
       final dcf = dc.computeFactor(
           DateTime.utc(2025, 1, 31), DateTime.utc(2025, 2, 28));
-      expect(dcf.factor, 0.08333333333333333);
+      expect(dcf.principalFactor, 0.08333333333333333);
       expect(dcf.toString(), '(1/12) = 0.08333333');
     });
     test('31/01/2025 --> 28/02/2029 (multiple years)', () {
       final dcf = dc.computeFactor(
           DateTime.utc(2025, 1, 31), DateTime.utc(2031, 2, 28));
-      expect(dcf.factor, 6.08333333333333333);
+      expect(dcf.principalFactor, 6.08333333333333333);
       expect(dcf.toString(), '6 + (1/12) = 6.08333333');
     });
     test('12/12/2024 --> 15/02/2025 (non-whole)', () {
       final dcf = dc.computeFactor(
           DateTime.utc(2024, 12, 12), DateTime.utc(2025, 2, 15));
-      expect(dcf.factor, 0.17488584474885843);
+      expect(dcf.principalFactor, 0.17488584474885843);
       expect(dcf.toString(), '(2/12) + (3/365) = 0.17488584');
     });
   });
@@ -98,19 +98,19 @@ void main() {
     test('31/01/2025 --> 28/02/2025 (edge case, weeks)', () {
       final dcf = dc.computeFactor(
           DateTime.utc(2025, 1, 31), DateTime.utc(2025, 2, 28));
-      expect(dcf.factor, 0.07692307692307693);
+      expect(dcf.principalFactor, 0.07692307692307693);
       expect(dcf.toString(), '(4/52) = 0.07692308');
     });
     test('31/01/2025 --> 28/02/2031 (long period, weeks)', () {
       final dcf = dc.computeFactor(
           DateTime.utc(2025, 1, 31), DateTime.utc(2031, 2, 28));
-      expect(dcf.factor, 6.096153846153846);
+      expect(dcf.principalFactor, 6.096153846153846);
       expect(dcf.toString(), '6 + (5/52) = 6.09615385');
     });
     test('29/02/2024 --> 07/03/2024 (leap year, week)', () {
       final dcf =
           dc.computeFactor(DateTime.utc(2024, 2, 29), DateTime.utc(2024, 3, 7));
-      expect(dcf.factor, 0.019230769230769232);
+      expect(dcf.principalFactor, 0.019230769230769232);
       expect(dcf.toString(), '(1/52) = 0.01923077');
     });
   });
@@ -127,20 +127,20 @@ void main() {
     test('31/01/2025 --> 28/02/2025 (edge case, months override)', () {
       final dcf = dc.computeFactor(
           DateTime.utc(2025, 1, 31), DateTime.utc(2025, 2, 28));
-      expect(dcf.factor, 0.08333333333333333);
+      expect(dcf.principalFactor, 0.08333333333333333);
       expect(dcf.toString(), '(1/12) = 0.08333333');
     });
     test('31/01/2024 --> 28/02/2024 (edge case, months override, leap year)',
         () {
       final dcf = dc.computeFactor(
           DateTime.utc(2024, 1, 31), DateTime.utc(2024, 2, 28));
-      expect(dcf.factor, 0.08333333333333333);
+      expect(dcf.principalFactor, 0.08333333333333333);
       expect(dcf.toString(), '(1/12) = 0.08333333');
     });
     test('31/01/2024 --> 29/02/2024 (leap year, non-whole)', () {
       final dcf = dc.computeFactor(
           DateTime.utc(2024, 1, 31), DateTime.utc(2024, 2, 29));
-      expect(dcf.factor, 0.0796553173602354);
+      expect(dcf.principalFactor, 0.0796553173602354);
       expect(dcf.toString(), '(4/52) + (1/366) = 0.07965532');
     });
   });

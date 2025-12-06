@@ -50,22 +50,38 @@ class Schedule {
   // schedule is required.
   void _printAprProofSchedule() {
     print('\nAPR / XIRR PROOF SCHEDULE\n');
-    print(tabular(
-      _aprProofLineItems(),
-      align: {
-        'Day Count Factor': Side.end,
-      },
-      rowDividers: [1, profile.cashFlows.length + 1],
-    ));
+    final dcfLabel = (profile.dayCount is USAppendixJ)
+        ? 'Discount Formula Parameters'
+        : 'Day Count Factor';
     print(
-      '\n[1] Amount Discounted = '
-      'Amount * ((1 + ImplicitRateAsDecimal) ^ -Factor)',
+      tabular(
+        _aprProofLineItems(),
+        align: {
+          dcfLabel: Side.end,
+        },
+        rowDividers: [1, profile.cashFlows.length + 1],
+      ),
     );
+    final note1 = StringBuffer();
+    if (profile.dayCount is USAppendixJ) {
+      note1.write('\n[1] Amount / [(1 + i)^t × (1 + f × i)], where:\n');
+      note1
+          .write('\n\t- t is the number of complete unit-periods (e.g., full ');
+      note1.write('months) from the drawdown date\n\t  to the cash flow date,');
+      note1.write('\n\t- f is the fraction of a unit-period representing any ');
+      note1.write('additional days,');
+      note1.write('\n\t- i is the periodic interest rate expressed as a ');
+      note1.write('decimal.');
+      note1.write('\n\n\tThis formula adjusts the cash flow amount based on ');
+      note1.write('the time elapsed,\n\taccounting for both whole periods ');
+      note1.write('and any remaining fractional period.');
+    } else {
+      note1.write('\n[1] Amount * (1 + i)⁻ᶠ, where i is the decimal ');
+      note1.write('interest rate, and f the factor.');
+    }
+    print(note1.toString());
     print(
-      '\n[2] Schedule amounts discounted at the implicit rate of '
-      '${(rateResult * 100).toStringAsFixed(displayPrecision)}% should sum\n'
-      'to zero, proving the correctness of the rate (negligible variances '
-      'may arise\ndue to the rounding precision used)\n\n',
+      '\n[2] Sums to zero, allowing for small variations arising from rounding errors.',
     );
   }
 
@@ -75,19 +91,45 @@ class Schedule {
         profile.dayCount.usePostDates ? 'Post Date' : 'Value Date',
         'Label',
         'Amount',
-        'Day Count Factor',
+        (profile.dayCount is USAppendixJ)
+            ? 'Discount Formula Parameters'
+            : 'Day Count Factor',
         'Amount Discounted [1]',
       ],
     ];
-    var netTotal = 0.0;
+    double netTotal = 0.0;
+    double interestRate;
+    if (profile.dayCount is USAppendixJ) {
+      interestRate = rateResult /
+          (profile.dayCount as USAppendixJ).timePeriod.periodsInYear;
+    } else {
+      interestRate = rateResult;
+    }
     for (var cashFlow in profile.cashFlows) {
       if (cashFlow is CashFlowCharge &&
           !profile.dayCount.includeNonFinancingFlows) {
         continue;
       }
-      final lineTotal = gaussRound(
-          cashFlow.value * pow(1 + rateResult, -cashFlow.periodFactor!.factor),
-          displayPrecision);
+      final double lineTotal;
+      if (profile.dayCount is USAppendixJ) {
+        double denominator = 1 +
+            ((cashFlow.periodFactor!.fractionalAdjustment ?? 1.0) *
+                interestRate);
+        denominator *= pow(
+          1 + interestRate,
+          cashFlow.periodFactor!.principalFactor,
+        );
+        lineTotal = gaussRound(cashFlow.value / denominator, displayPrecision);
+      } else {
+        lineTotal = gaussRound(
+            cashFlow.value *
+                pow(
+                  1 + interestRate,
+                  -cashFlow.periodFactor!.principalFactor,
+                ),
+            displayPrecision);
+      }
+
       netTotal += lineTotal;
       lineItems.add([
         _dateToString(

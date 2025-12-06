@@ -1,3 +1,15 @@
+## 2.4.0
+- **Feature:**
+  - Implemented the **US Appendix J** day count convention for computing the Annual Percentage Rate (APR) for closed-end credit transactions, such as mortgages, under the Truth in Lending Act (TILA). This includes support for monthly, weekly, daily, and fortnightly unit-periods, with accurate handling of odd days using a 30-day month divisor (per Appendix J, Paragraph (b)(3)). Added leap year support (e.g., February 29) and validated results against the FFIEC APR tool.
+  - Extended the `DayCountFactor` class to support two-component time factors (`principalFactor` for whole unit-periods and `fractionalAdjustment` for fractional periods), enhancing compatibility with USAppendixJ while maintaining support for single-factor conventions.
+- **Breaking Change:**
+  - Renamed `DayCountFactor.factor` to `DayCountFactor.principalFactor` to accommodate the new two-component model, breaking the API. Updated `USAppendixJ.computeFactor` to return `principalFactor` (annualised whole periods) and `fractionalAdjustment` (odd days as a fraction of the unit-period), aligning with the discounting formula \( P_x / (1 + e_x i) (1 + i)^{t_x} \).
+- **Enhancement:**
+  - Improved `DayCountFactor.toString()` and `toFoldedString()` methods to to accommodate the new two-component model.
+- **Testing:**
+  - Expanded end-to-end tests to cover all time periods (month, week, day, fortnight) and leap year scenarios (e.g., February 29, 2028), verifying accuracy against FFIEC outputs.
+  - Added unit tests for `USAppendixJ.computeFactor` to validate factor separation and edge cases.
+
 ## 2.3.1
 - **Fix:** Improved the `amortiseInterest` function to better handle interest accrual when additional advances occur in a repayment schedule. Previously, interest accrued between the last payment and an advance wasn't tracked, since advances didn’t account for it. Now, this interest is properly assigned to the first payment that follows the advance.
 
