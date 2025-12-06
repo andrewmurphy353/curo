@@ -42,18 +42,19 @@ class SolveNfv implements SolveCallback {
             // The USAppendixJ formula is a special case as it adjusts for
             // irregular payments by accounting for both full unit-periods
             // and the fractional unit-period within the first period.
-            final fullFactor =
+            final principalFactor =
                 pow(1 + rateGuess, cashFlow.periodFactor!.principalFactor)
                     .toDouble();
-            double fractionalFactor;
+            double fractionalAdjustment;
             if (cashFlow.periodFactor!.fractionalAdjustment != null &&
                 cashFlow.periodFactor!.fractionalAdjustment! > 0.0) {
-              fractionalFactor =
-                  1 + (cashFlow.periodFactor!.fractionalAdjustment! * rateGuess);
+              fractionalAdjustment = 1 +
+                  (cashFlow.periodFactor!.fractionalAdjustment! * rateGuess);
             } else {
-              fractionalFactor = 1.0;
+              fractionalAdjustment = 1.0;
             }
-            capitalBalance += cashFlow.value / (fullFactor * fractionalFactor);
+            capitalBalance +=
+                cashFlow.value / (principalFactor * fractionalAdjustment);
           } else {
             // Default handling for all other EAR/APR conventions
             capitalBalance += cashFlow.value *
@@ -71,8 +72,9 @@ class SolveNfv implements SolveCallback {
             continue;
           }
 
-          periodInterest =
-              capitalBalance * rateGuess * cashFlow.periodFactor!.principalFactor;
+          periodInterest = capitalBalance *
+              rateGuess *
+              cashFlow.periodFactor!.principalFactor;
 
           if (cashFlow is CashFlowPayment) {
             if (cashFlow.isInterestCapitalised) {

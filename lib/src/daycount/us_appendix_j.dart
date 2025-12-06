@@ -32,14 +32,20 @@ class USAppendixJ extends Convention {
     var wholePeriods = 0;
     final initialDrawdown = utcDate(d1);
     var startWholePeriod = utcDate(d2);
-    final operandLog = <String>[];
+    final principalOperandLog = <String>[];
+    final fractionalOperandLog = <String>[];
 
     // Handle daily unit-periods
     if (timePeriod == DayCountTimePeriod.day) {
       final days = actualDays(initialDrawdown, startWholePeriod);
-      final factor = days / 365.0;
-      operandLog.add(DayCountFactor.operandsToString(days, 365));
-      return DayCountFactor(factor, operandLog);
+      final fractionalAdjustment = days / 365.0;
+      fractionalOperandLog.add(DayCountFactor.operandsToString(days, 365));
+      return DayCountFactor.usAppendixJ(
+        0.0, // No whole periods for daily
+        fractionalAdjustment,
+        principalOperandLog,
+        fractionalOperandLog,
+      );
     }
 
     // Compute whole periods
@@ -49,21 +55,30 @@ class USAppendixJ extends Convention {
         case DayCountTimePeriod.year:
           tempDate = rollMonth(startWholePeriod, -12, d2.day);
           break;
-        case DayCountTimePeriod.week:
-          tempDate = rollDay(startWholePeriod, -7);
+        case DayCountTimePeriod.halfYear:
+          tempDate = rollMonth(startWholePeriod, -6, d2.day);
+          break;
+        case DayCountTimePeriod.quarter:
+          tempDate = rollMonth(startWholePeriod, -3, d2.day);
           break;
         case DayCountTimePeriod.month:
           tempDate = rollMonth(startWholePeriod, -1, d2.day);
           break;
+        case DayCountTimePeriod.fortnight:
+          tempDate = rollDay(startWholePeriod, -14);
+          break;
+        case DayCountTimePeriod.week:
+          tempDate = rollDay(startWholePeriod, -7);
+          break;
         case DayCountTimePeriod.day:
-          // Already handled above, should not reach here
+          // Already handled above
           throw StateError('Day time period handled separately');
       }
       if (!initialDrawdown.isAfter(tempDate)) {
         startWholePeriod = tempDate;
         wholePeriods++;
       } else {
-        // Handle month-end cases (e.g., February 28/29 for 30th/31st)
+        // Adjust for month-end cases (e.g., 28th/30th/31st)
         switch (timePeriod) {
           case DayCountTimePeriod.year:
             if (initialDrawdown.month == tempDate.month &&
@@ -73,10 +88,15 @@ class USAppendixJ extends Convention {
             if (d1.month == d2.month &&
                 hasMonthEndDay(d1) &&
                 hasMonthEndDay(d2)) {
-              startWholePeriod = initialDrawdown;
-              wholePeriods++;
+              // Only increment if day aligns or is end-of-month
+              if (initialDrawdown.day <= tempDate.day || hasMonthEndDay(d2)) {
+                startWholePeriod = initialDrawdown;
+                wholePeriods++;
+              }
             }
             break;
+          case DayCountTimePeriod.halfYear:
+          case DayCountTimePeriod.quarter:
           case DayCountTimePeriod.month:
             if (initialDrawdown.day == tempDate.day) {
               break;
@@ -84,12 +104,15 @@ class USAppendixJ extends Convention {
             if (initialDrawdown.day >= tempDate.day &&
                 hasMonthEndDay(d1) &&
                 hasMonthEndDay(d2)) {
-              startWholePeriod = initialDrawdown;
-              wholePeriods++;
+              // Ensure day alignment or end-of-month
+              if (initialDrawdown.day <= tempDate.day || hasMonthEndDay(d2)) {
+                startWholePeriod = initialDrawdown;
+                wholePeriods++;
+              }
             }
             break;
+          case DayCountTimePeriod.fortnight:
           case DayCountTimePeriod.week:
-            break;
           case DayCountTimePeriod.day:
             break;
         }
@@ -97,34 +120,54 @@ class USAppendixJ extends Convention {
       }
     }
 
-    double principalFactor = 0.0;
+    final principalFactor = wholePeriods > 0 ? wholePeriods.toDouble() : 0.0;
     if (wholePeriods > 0) {
-      principalFactor = wholePeriods.toDouble();
-      operandLog.add(wholePeriods.toString());
+      principalOperandLog.add(wholePeriods.toString());
     }
 
-    // Compute odd days
+    // Compute odd days (fractional adjustment)
     double fractionalAdjustment = 0.0;
     if (!initialDrawdown.isAfter(startWholePeriod)) {
       final days = actualDays(initialDrawdown, startWholePeriod);
-      var denominator = timePeriod == DayCountTimePeriod.month
-          ? 30
-          : actualDays(rollMonth(startWholePeriod, -12), startWholePeriod);
-      if (days == 0) {
-        denominator = timePeriod.periodsInYear;
+      final int denominator;
+      // See Appendix J to Part 1026 (a)(b)(5) for denominator values
+      switch (timePeriod) {
+        case DayCountTimePeriod.year:
+          denominator = 365;
+          break;
+        case DayCountTimePeriod.halfYear:
+          denominator = 180;
+          break;
+        case DayCountTimePeriod.quarter:
+          denominator = 90;
+          break;
+        case DayCountTimePeriod.month:
+          denominator = 30;
+          break;
+        case DayCountTimePeriod.fortnight:
+          denominator = 15;
+          break;
+        case DayCountTimePeriod.week:
+          denominator = 7;
+          break;
+        case DayCountTimePeriod.day:
+          // Already handled above
+          throw StateError('Day time period handled separately');
       }
-      fractionalAdjustment += days / denominator;
 
-      if (days > 0 || operandLog.isEmpty) {
-        operandLog.add(
+      if (days > 0) {
+        fractionalAdjustment = days / denominator;
+        fractionalOperandLog.add(
           DayCountFactor.operandsToString(days, denominator),
         );
       }
     }
+
     return DayCountFactor.usAppendixJ(
       principalFactor,
       fractionalAdjustment,
-      operandLog,
+      principalOperandLog,
+      fractionalOperandLog,
     );
   }
 }

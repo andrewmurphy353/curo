@@ -137,7 +137,6 @@ class Calculator {
     _profile = _profile!.copyWith(dayCount: dayCount);
     _profile = assignFactors(_profile!);
 
-    // TODO write end-to-end tests
     switch (dayCount) {
       case USAppendixJ():
         // USAppendixJ solves for the unknown using a periodic rate
@@ -216,8 +215,7 @@ class Calculator {
         ),
       );
     }
-    
-    // TODO write end-to-end tests
+
     switch (dayCount) {
       case USAppendixJ():
         // USAppendixJ solves for the periodic rate so convert
