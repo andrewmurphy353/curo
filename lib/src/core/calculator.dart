@@ -1,13 +1,4 @@
 import '../../curo.dart';
-import '../daycount/convention.dart';
-import '../profile/helper.dart';
-import '../profile/profile.dart';
-import '../series/series.dart';
-import '../series/series_advance.dart';
-import '../series/series_charge.dart';
-import '../series/series_payment.dart';
-import '../utilities/dates.dart';
-import '../utilities/math.dart';
 import 'solve_cashflow.dart';
 import 'solve_nfv.dart';
 import 'solve_root.dart';
