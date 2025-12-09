@@ -51,8 +51,11 @@ class UKConcApp extends Convention {
     this.isSecuredOnLand = false,
     this.hasSinglePayment = false,
     this.timePeriod = DayCountTimePeriod.month,
-  })  : assert(timePeriod != DayCountTimePeriod.year,
-            'The year time period is not valid for interval counting'),
+  })  : assert(
+            timePeriod == DayCountTimePeriod.week ||
+                timePeriod == DayCountTimePeriod.month,
+            'Only month and week time periods are supported '
+            'for UKConcApp calculations'),
         super(
             usePostDates: true,
             includeNonFinancingFlows: true,
