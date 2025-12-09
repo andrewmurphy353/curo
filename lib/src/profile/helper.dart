@@ -79,7 +79,10 @@ List<CashFlow> build({
       postDateDay = postDateToUse.day;
     }
 
-    if (seriesItem.mode == Mode.arrear) {
+    if (seriesItem.postDateFrom == null && seriesItem.mode == Mode.arrear) {
+      // Fix 12/2025: added date check - a user-provided date overrides
+      // the start date of the series defined by a mode, so postDateToUse
+      // should only be rolled when a date is *not* provided.
       postDateToUse =
           rollDate(postDateToUse, seriesItem.frequency, postDateDay);
     }
@@ -95,7 +98,10 @@ List<CashFlow> build({
       } else {
         valueDateToUse = seriesItem.valueDateFrom!;
         valueDateDay = valueDateToUse.day;
-        if (seriesItem.mode == Mode.arrear) {
+        if (seriesItem.postDateFrom == null && seriesItem.mode == Mode.arrear) {
+          // Fix 12/2025: added date check - a user-provided date overrides
+          // the start date of the series defined by a mode, so postDateToUse
+          // should only be rolled when a date is *not* provided.
           valueDateToUse =
               rollDate(valueDateToUse, seriesItem.frequency, valueDateDay);
         }
