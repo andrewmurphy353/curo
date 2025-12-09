@@ -1,13 +1,16 @@
 name: curo
 
-version: 2.4.1
+version: 2.4.2
 
 description: A feature-rich library for performing simple to advanced instalment credit financial calculations.
-  
+
 homepage: https://github.com/andrewmurphy353/curo
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  collection: ^1.19.1
 
 dev_dependencies:
   coverage: ^1.6.3
