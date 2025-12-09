@@ -73,12 +73,12 @@ void main() {
       final calculator = Calculator()
         ..add(SeriesAdvance(
           value: 1000.0,
-          postDateFrom: DateTime.utc(2022),
+          postDateFrom: DateTime.utc(2022, 1, 1),
         ))
         ..add(SeriesPayment(
           numberOf: 3,
-          mode: Mode.arrear,
-          postDateFrom: DateTime.utc(2022),
+          mode: Mode.arrear, //<== Ignored as date provided
+          postDateFrom: DateTime.utc(2022, 2, 1),
         ));
       expect(
         await calculator.solveValue(
@@ -94,12 +94,12 @@ void main() {
       final calculator = Calculator()
         ..add(SeriesAdvance(
           value: 1000.0,
-          postDateFrom: DateTime.utc(2022),
+          postDateFrom: DateTime.utc(2022, 1, 1),
         ))
         ..add(SeriesPayment(
           numberOf: 3,
-          mode: Mode.arrear,
-          postDateFrom: DateTime.utc(2022),
+          mode: Mode.arrear, //<== Ignored as date provided
+          postDateFrom: DateTime.utc(2022, 2, 1),
         ));
       expect(
         await calculator.solveValue(
@@ -115,12 +115,12 @@ void main() {
       final calculator = Calculator()
         ..add(SeriesAdvance(
           value: 10000.0,
-          postDateFrom: DateTime.utc(2022),
+          postDateFrom: DateTime.utc(2022, 1, 1),
         ))
         ..add(SeriesPayment(
           numberOf: 6,
-          mode: Mode.arrear,
-          postDateFrom: DateTime.utc(2022),
+          mode: Mode.arrear, //<== Ignored as date provided
+          postDateFrom: DateTime.utc(2022, 2, 1),
         ));
       expect(
         await calculator.solveValue(
@@ -128,6 +128,73 @@ void main() {
           interestRate: 0.0825,
         ),
         1707.00,
+      );
+    });
+    test(
+        'solve for loan of 300000.0, 5.50% APR, 360 monthly repayments '
+        'in arrears mode with 2000.0 charge using USAppendix J APR', () async {
+      final calculator = Calculator()
+        ..add(SeriesAdvance(
+          value: 300000.0,
+          postDateFrom: DateTime.utc(2025, 12, 8),
+        ))
+        ..add(SeriesPayment(
+          numberOf: 360,
+          mode: Mode.arrear,
+          postDateFrom: DateTime.utc(2026, 1, 15),
+        ))
+        ..add(SeriesCharge(
+          value: 2000.0,
+          postDateFrom: DateTime.utc(2025, 12, 8),
+        ));
+      expect(
+        await calculator.solveValue(
+          dayCount: const USAppendixJ(),
+          interestRate: 0.0555085,
+        ), //0.05550912550091744
+        1703.37,
+      );
+    });
+    test(
+        'solve for loan of 300000.0, 5.00% APR, 300 monthly repayments '
+        'in arrears mode using USAppendix J APR', () async {
+      final calculator = Calculator()
+        ..add(SeriesAdvance(
+          value: 300000.0,
+          postDateFrom: DateTime.utc(2022, 1, 1),
+        ))
+        ..add(SeriesPayment(
+          numberOf: 300,
+          mode: Mode.arrear, //<== Ignored as date provided
+          postDateFrom: DateTime.utc(2022, 2, 1),
+        ));
+      expect(
+        await calculator.solveValue(
+          dayCount: const USAppendixJ(),
+          interestRate: 0.05,
+        ),
+        1753.77,
+      );
+    });
+    test(
+        'solve for loan of 300000.0, 6.00% APR, 180 monthly repayments '
+        'in arrears mode using USAppendix J APR', () async {
+      final calculator = Calculator()
+        ..add(SeriesAdvance(
+          value: 300000.0,
+          postDateFrom: DateTime.utc(2022, 1, 1),
+        ))
+        ..add(SeriesPayment(
+          numberOf: 180,
+          mode: Mode.arrear, //<== Ignored as date provided
+          postDateFrom: DateTime.utc(2022, 2, 1),
+        ));
+      expect(
+        await calculator.solveValue(
+          dayCount: const USAppendixJ(),
+          interestRate: 0.06,
+        ),
+        2531.57,
       );
     });
   });
@@ -138,13 +205,13 @@ void main() {
       final calculator = Calculator()
         ..add(SeriesAdvance(
           value: 1000.0,
-          postDateFrom: DateTime.utc(2022),
+          postDateFrom: DateTime.utc(2022, 1, 1),
         ))
         ..add(SeriesPayment(
           numberOf: 3,
           value: 340.02,
-          mode: Mode.arrear,
-          postDateFrom: DateTime.utc(2022),
+          mode: Mode.arrear, //<== Ignored as date provided
+          postDateFrom: DateTime.utc(2022, 2, 1),
         ));
       expect(
         await calculator.solveRate(dayCount: const US30360()),
@@ -157,13 +224,13 @@ void main() {
       final calculator = Calculator()
         ..add(SeriesAdvance(
           value: 1000.0,
-          postDateFrom: DateTime.utc(2022),
+          postDateFrom: DateTime.utc(2022, 1, 1),
         ))
         ..add(SeriesPayment(
           numberOf: 6,
           value: 172.55,
-          mode: Mode.arrear,
-          postDateFrom: DateTime.utc(2022),
+          mode: Mode.arrear, //<== Ignored as date provided
+          postDateFrom: DateTime.utc(2022, 2, 1),
         ));
       expect(
         await calculator.solveRate(dayCount: const EU200848EC()),
@@ -176,13 +243,13 @@ void main() {
       final calculator = Calculator()
         ..add(SeriesAdvance(
           value: 1000.0,
-          postDateFrom: DateTime.utc(2022),
+          postDateFrom: utcDate(DateTime(2022, 1, 1)),
         ))
         ..add(SeriesPayment(
           numberOf: 6,
           value: 172.55,
-          mode: Mode.arrear,
-          postDateFrom: DateTime.utc(2022),
+          mode: Mode.arrear, //<== Ignored as date provided
+          postDateFrom: utcDate(DateTime(2022, 2, 1)),
         ));
       expect(
         await calculator.solveRate(
@@ -197,13 +264,13 @@ void main() {
       final calculator = Calculator()
         ..add(SeriesAdvance(
           value: 1000.0,
-          postDateFrom: DateTime.utc(2022),
+          postDateFrom: utcDate(DateTime(2022, 1, 1)),
         ))
         ..add(SeriesPayment(
           numberOf: 6,
           value: 172.55,
-          postDateFrom: DateTime.utc(2022),
-          mode: Mode.arrear,
+          postDateFrom: utcDate(DateTime(2022, 2, 1)),
+          mode: Mode.arrear, //<== Ignored as date provided
         ));
       // This result is the same as that generated by Microsoft Excel
       expect(
@@ -219,13 +286,13 @@ void main() {
       final calculator = Calculator()
         ..add(SeriesAdvance(
           value: 10000.0,
-          postDateFrom: DateTime.utc(2022),
+          postDateFrom: utcDate(DateTime(2022, 1, 1)),
         ))
         ..add(SeriesPayment(
           numberOf: 6,
           value: 1707.0,
-          mode: Mode.arrear,
-          postDateFrom: DateTime.utc(2022),
+          mode: Mode.arrear, //<== Ignored as date provided
+          postDateFrom: utcDate(DateTime(2022, 2, 1)),
         ));
       expect(
         await calculator.solveRate(dayCount: const US30360()),
@@ -235,6 +302,53 @@ void main() {
         await calculator.solveRate(dayCount: const EU200848EC()),
         0.08569256859182904,
       );
+    });
+    test(
+        'solve USAppendix J APR for loan of 300000.0, 360 monthly repayments '
+        'of 1703.37 in arrears mode with 2000.0 charge (~5.5% APR)', () async {
+      final calculator = Calculator()
+        ..add(SeriesAdvance(
+          value: 300000.0,
+          postDateFrom: utcDate(DateTime(2025, 12, 8)),
+        ))
+        ..add(SeriesPayment(
+          numberOf: 360,
+          value: 1703.37,
+          postDateFrom: utcDate(DateTime(2026, 1, 15)),
+          mode: Mode.arrear,
+        ))
+        ..add(SeriesCharge(
+          value: 2000.0,
+          postDateFrom: utcDate(DateTime(2025, 12, 8)),
+        ));
+      expect(
+          await calculator.solveRate(
+            dayCount: const USAppendixJ(),
+          ),
+          // Online tool result: 0.055509
+          0.05550912550091744);
+    });
+    test(
+        'solve USAppendix J APR for loan of 300000.0, 480 monthly repayments '
+        'of 689.71 in arrears mode with 2000.0 charge (~0.5% APR)', () async {
+      final calculator = Calculator()
+        ..add(SeriesAdvance(
+          value: 300000.0,
+        ))
+        ..add(SeriesPayment(
+          numberOf: 480,
+          value: 689.71,
+          mode: Mode.arrear,
+        ))
+        ..add(SeriesCharge(
+          value: 2000.0,
+        ));
+      expect(
+          await calculator.solveRate(
+            dayCount: const USAppendixJ(),
+          ),
+          // Online tool result: 0.005346
+          0.005345126369968057);
     });
   });
 }

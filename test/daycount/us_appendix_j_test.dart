@@ -13,11 +13,11 @@ void main() {
       expect(factorFeb15.fractionalAdjustment, closeTo(5.0 / 30.0, 0.0001));
       expect(
         factorFeb15.toString(),
-        contains('[t = 1 = 1] [f = (5/30) = 0.16666667]'),
+        contains('t = 1 = 1 : f = (5/30) = 0.16666667'),
       );
       expect(
         factorFeb15.toFoldedString(),
-        contains('[t = 1] [f = (5/30) = 0.16666667]'),
+        contains('t = 1 : f = (5/30) = 0.16666667'),
       );
     });
     test('Compute Factors for 15 March', () {
@@ -29,11 +29,11 @@ void main() {
       expect(factorMar15.fractionalAdjustment, closeTo(5.0 / 30.0, 0.0001));
       expect(
         factorMar15.toString(),
-        contains('[t = 2 = 2] [f = (5/30) = 0.16666667]'),
+        contains('t = 2 = 2 : f = (5/30) = 0.16666667'),
       );
       expect(
         factorMar15.toFoldedString(),
-        contains('[t = 2] [f = (5/30) = 0.16666667]'),
+        contains('t = 2 : f = (5/30) = 0.16666667'),
       );
     });
     test('Compute Factors for Leap Year (February 29, 2028)', () {
@@ -46,11 +46,11 @@ void main() {
           closeTo(19.0 / 30.0, 0.0001)); // Jan 10 to Feb 29 = 19 days
       expect(
         factorFeb29.toString(),
-        contains('[t = 1 = 1] [f = (19/30) = 0.63333333]'),
+        contains('t = 1 = 1 : f = (19/30) = 0.63333333'),
       );
       expect(
         factorFeb29.toFoldedString(),
-        contains('[t = 1] [f = (19/30) = 0.63333333]'),
+        contains('t = 1 : f = (19/30) = 0.63333333'),
       );
     });
     test('Compute Factors for Multiple Months', () {
@@ -62,11 +62,11 @@ void main() {
       expect(factorApr15.fractionalAdjustment, closeTo(5.0 / 30.0, 0.0001));
       expect(
         factorApr15.toString(),
-        contains('[t = 3 = 3] [f = (5/30) = 0.16666667]'),
+        contains('t = 3 = 3 : f = (5/30) = 0.16666667'),
       );
       expect(
         factorApr15.toFoldedString(),
-        contains('[t = 3] [f = (5/30) = 0.16666667]'),
+        contains('t = 3 : f = (5/30) = 0.16666667'),
       );
     });
   });
@@ -81,11 +81,11 @@ void main() {
       expect(factorJan17.fractionalAdjustment, closeTo(0.0, 0.0001));
       expect(
         factorJan17.toString(),
-        contains('[t = 1 = 1] [f = 0 = 0.00000000]'),
+        contains('t = 1 = 1 : f = 0'),
       );
       expect(
         factorJan17.toFoldedString(),
-        contains('[t = 1] [f = 0 = 0.00000000]'),
+        contains('t = 1 : f = 0'),
       );
     });
     test('Compute Factors for Fortnightly Interval', () {
@@ -98,11 +98,11 @@ void main() {
       expect(factorJan24.fractionalAdjustment, closeTo(0.0, 0.0001));
       expect(
         factorJan24.toString(),
-        contains('[t = 2 = 2] [f = 0 = 0.00000000]'),
+        contains('t = 2 = 2 : f = 0'),
       );
       expect(
         factorJan24.toFoldedString(),
-        contains('[t = 2] [f = 0 = 0.00000000]'),
+        contains('t = 2 : f = 0'),
       );
     });
   });
@@ -118,11 +118,11 @@ void main() {
       expect(factorJan11.fractionalAdjustment, closeTo(1.0 / 365.0, 0.0001));
       expect(
         factorJan11.toString(),
-        contains('[t = 0 = 0] [f = (1/365) = 0.00273973]'),
+        contains('t = 0 : f = (1/365) = 0.00273973'),
       );
       expect(
         factorJan11.toFoldedString(),
-        contains('[t = 0] [f = (1/365) = 0.00273973]'),
+        contains('t = 0 : f = (1/365) = 0.00273973'),
       );
     });
   });

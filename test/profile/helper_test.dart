@@ -45,7 +45,7 @@ void main() {
       final series = <Series>[
         SeriesAdvance(numberOf: 2, postDateFrom: startDate),
         SeriesAdvance(
-          mode: Mode.arrear,
+          mode: Mode.arrear, //<== Ignored as date provided
           postDateFrom: DateTime.utc(2022, 4, 1),
           valueDateFrom: DateTime.utc(2022, 4, 15),
         ),
@@ -54,8 +54,8 @@ void main() {
       expect(cashFlows.length, 3);
       expect(cashFlows[0].postDate, DateTime.utc(2022, 1, 1));
       expect(cashFlows[1].postDate, DateTime.utc(2022, 2, 1));
-      expect(cashFlows[2].postDate, DateTime.utc(2022, 5, 1));
-      expect(cashFlows[2].valueDate, DateTime.utc(2022, 5, 15));
+      expect(cashFlows[2].postDate, DateTime.utc(2022, 4, 1));
+      expect(cashFlows[2].valueDate, DateTime.utc(2022, 4, 15));
     });
     test('payment series undated', () {
       final startDate = DateTime.utc(2022);
@@ -74,13 +74,15 @@ void main() {
       final series = <Series>[
         SeriesPayment(numberOf: 2, postDateFrom: startDate),
         SeriesPayment(
-            mode: Mode.arrear, postDateFrom: DateTime.utc(2022, 4, 1)),
+          mode: Mode.arrear, //<== Ignored as date provided
+          postDateFrom: DateTime.utc(2022, 4, 1),
+        ),
       ];
       final cashFlows = build(series: series, startDate: startDate);
       expect(cashFlows.length, 3);
       expect(cashFlows[0].postDate, DateTime.utc(2022, 1, 1));
       expect(cashFlows[1].postDate, DateTime.utc(2022, 2, 1));
-      expect(cashFlows[2].postDate, DateTime.utc(2022, 5, 1));
+      expect(cashFlows[2].postDate, DateTime.utc(2022, 4, 1));
     });
     test('charge series undated', () {
       final startDate = DateTime.utc(2022);
@@ -100,14 +102,14 @@ void main() {
         SeriesCharge(numberOf: 2, value: 10.0, postDateFrom: startDate),
         SeriesCharge(
             value: 10.0,
-            mode: Mode.arrear,
+            mode: Mode.arrear, //<== Ignored as date provided
             postDateFrom: DateTime.utc(2022, 4, 1)),
       ];
       final cashFlows = build(series: series, startDate: startDate);
       expect(cashFlows.length, 3);
       expect(cashFlows[0].postDate, DateTime.utc(2022, 1, 1));
       expect(cashFlows[1].postDate, DateTime.utc(2022, 2, 1));
-      expect(cashFlows[2].postDate, DateTime.utc(2022, 5, 1));
+      expect(cashFlows[2].postDate, DateTime.utc(2022, 4, 1));
     });
   }, skip: false);
   group('assignFactors', () {
