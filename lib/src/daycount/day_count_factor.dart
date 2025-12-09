@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+
 import '../utilities/math.dart';
 
 /// The day count factor applied to the associated cash flow.
@@ -210,4 +212,38 @@ class DayCountFactor {
     combinedDisplayText.write('f = ${fractionalDisplayText.toString()}');
     return combinedDisplayText.toString();
   }
+
+  DayCountFactor copyWith(
+    double? principalFactor,
+    double? fractionalAdjustment,
+    List<String>? principalOperandLog,
+    List<String>? fractionalOperandLog,
+  ) =>
+      DayCountFactor(
+        principalFactor ?? this.principalFactor,
+        principalOperandLog ?? this.principalOperandLog,
+        fractionalAdjustment: fractionalAdjustment ?? this.fractionalAdjustment,
+        fractionalOperandLog: fractionalOperandLog ?? this.fractionalOperandLog,
+      );
+
+  @override
+  bool operator ==(Object other) =>
+      other is DayCountFactor &&
+      other.runtimeType == runtimeType &&
+      other.fractionalAdjustment == fractionalAdjustment &&
+      const ListEquality()
+          .equals(other.fractionalOperandLog, fractionalOperandLog) &&
+      other.principalFactor == principalFactor &&
+      const ListEquality()
+          .equals(other.principalOperandLog, principalOperandLog);
+
+  @override
+  int get hashCode => Object.hash(
+        fractionalAdjustment,
+        fractionalOperandLog != null
+            ? Object.hashAll(fractionalOperandLog!)
+            : null,
+        principalFactor,
+        Object.hashAll(principalOperandLog),
+      );
 }

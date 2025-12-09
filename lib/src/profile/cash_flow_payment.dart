@@ -50,6 +50,33 @@ class CashFlowPayment extends CashFlow {
         periodFactor: periodFactor ?? this.periodFactor,
       );
 
+  @override
+  bool operator ==(Object other) =>
+      other is CashFlowPayment &&
+      other.runtimeType == runtimeType &&
+      other.postDate == postDate &&
+      other.valueDate == valueDate &&
+      other.value == value &&
+      other.isKnown == isKnown &&
+      other.weighting == weighting &&
+      other.label == label &&
+      other.interest == interest &&
+      other.isInterestCapitalised == isInterestCapitalised &&
+      other.periodFactor == periodFactor;
+
+  @override
+  int get hashCode => Object.hash(
+        postDate,
+        valueDate,
+        value,
+        isKnown,
+        weighting,
+        label,
+        interest,
+        isInterestCapitalised,
+        periodFactor,
+      );
+
   // coverage:ignore-start
   @override
   String toString() {
