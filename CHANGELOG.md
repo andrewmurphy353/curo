@@ -1,3 +1,14 @@
+## 2.4.1 - 2025-12-08
+- **Enhancements:**
+  - Improved Root Solver: Enhanced the `SolveRoot` class to robustly handle both interest rate and cash flow calculations, including edge cases like long-term loans (e.g., 360 months). Added a bisection fallback method to the Newton-Raphson solver, ensuring convergence for complex financial functions when initial guesses fail. This improves reliability for US Appendix J APR calculations and extreme cash flow scenarios without noticeable performance impact.
+- **Testing:**
+  - Expanded Test Suite: Added comprehensive end-to-end tests to stress-test the enhanced root solver. New tests cover extreme loan terms (e.g., 30–40 years), large/small cash flows and near-zero/high interest rates to validate accuracy and stability.
+- **Fixes**
+  - Profile Builder Date Bug: Fixed a long-standing issue in the profile 'build()` helper method where user-provided start dates were ignored in arrears mode. Previously, the series start date incorrectly rolled forward, potentially skewing payment schedules. Now correctly honours user input for consistent date initialization.
+  - UKConcApp Constructor Validation: Updated the `UKConcApp` constructor’s assert statement to restrict `DayCountTimePeriod` options to `week` or `month`, preventing invalid configurations and improving error clarity.
+- **Code:**
+  - Housekeeping: Performed general code cleanup.
+
 ## 2.4.0
 - **Feature:**
   - Implemented the **US Appendix J** day count convention for computing the Annual Percentage Rate (APR) for closed-end credit transactions, such as mortgages, under the Truth in Lending Act (TILA). This includes support for monthly, weekly, daily, and fortnightly unit-periods, with accurate handling of odd days using a 30-day month divisor (per Appendix J, Paragraph (b)(3)). Added leap year support (e.g., February 29) and validated results against the FFIEC APR tool.
