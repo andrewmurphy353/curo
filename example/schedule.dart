@@ -81,8 +81,8 @@ class Schedule {
     }
     print(note1.toString());
     print(
-      // ignore: lines_longer_than_80_chars
-      '\n[2] Sums to zero, allowing for small variations arising from rounding errors.',
+      '\n[2] Sums to zero, allowing for small variations '
+      'arising from rounding errors.',
     );
   }
 

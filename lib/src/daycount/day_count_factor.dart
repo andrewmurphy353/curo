@@ -83,26 +83,29 @@ class DayCountFactor {
     // i.e. USAppendixJ day count convention
     final fractionalDisplayText = StringBuffer();
     if (fractionalAdjustment != null && fractionalOperandLog != null) {
-      if (fractionalOperandLog!.isNotEmpty) {
+      if (fractionalAdjustment == 0.0 || fractionalOperandLog!.isEmpty) {
+        fractionalDisplayText.write("0");
+      } else {
         for (int i = 0; i < fractionalOperandLog!.length; i++) {
           fractionalDisplayText.write(fractionalOperandLog![i]);
           if (i + 1 != fractionalOperandLog!.length) {
             fractionalDisplayText.write(" + ");
           }
         }
-      } else {
-        fractionalDisplayText.write("0");
+        fractionalDisplayText.write(" = ");
+        fractionalDisplayText.write(
+          gaussRound(fractionalAdjustment!, 8).toStringAsFixed(8),
+        );
       }
-      fractionalDisplayText.write(" = ");
-      fractionalDisplayText.write(
-        gaussRound(fractionalAdjustment!, 8).toStringAsFixed(8),
-      );
+    } else {
+      fractionalDisplayText.write("0");
     }
+
     if (principalOperandLog.isEmpty) {
-      // Will be if there are *only* fractional entries.
+      // It will be empty if there are *only* fractional entries
       // Buffer should be empty but clear anyway.
       principalDisplayText.clear();
-      principalDisplayText.write("0 = 0");
+      principalDisplayText.write("0");
     } else {
       // The principal factor will always be a whole period integer
       // value when a fractional factor exists
@@ -112,11 +115,11 @@ class DayCountFactor {
     final combinedDisplayText = StringBuffer();
     // 't', the number of full unit-periods from the beginning of the term
     // of the transaction to the nth cash flow value
-    combinedDisplayText.write('[t = ${principalDisplayText.toString()}]');
-    combinedDisplayText.write(' ');
+    combinedDisplayText.write('t = ${principalDisplayText.toString()}');
+    combinedDisplayText.write(' : ');
     // 'f', the fraction of the unit-period in the time interval from the
     // beginning of the term of the transaction to the nth cash flow value
-    combinedDisplayText.write('[f = ${fractionalDisplayText.toString()}]');
+    combinedDisplayText.write('f = ${fractionalDisplayText.toString()}');
     return combinedDisplayText.toString();
   }
 
@@ -164,25 +167,28 @@ class DayCountFactor {
 
     // Handle standard log entries which contain fractional log entries
     // i.e. USAppendixJ day count convention.
-    // The fractional log is likely only to ever have a single entry, so
+    // The fractional log will likely only ever have a single entry, so
     // folding probably not required - simply append entry/entries for now.
     final fractionalDisplayText = StringBuffer();
     if (fractionalAdjustment != null && fractionalOperandLog != null) {
-      if (fractionalOperandLog!.isNotEmpty) {
+      if (fractionalAdjustment == 0.0 || fractionalOperandLog!.isEmpty) {
+        fractionalDisplayText.write("0");
+      } else {
         for (int i = 0; i < fractionalOperandLog!.length; i++) {
           fractionalDisplayText.write(fractionalOperandLog![i]);
           if (i + 1 != fractionalOperandLog!.length) {
             fractionalDisplayText.write(" + ");
           }
         }
-      } else {
-        fractionalDisplayText.write("0");
+        fractionalDisplayText.write(" = ");
+        fractionalDisplayText.write(
+          gaussRound(fractionalAdjustment!, 8).toStringAsFixed(8),
+        );
       }
-      fractionalDisplayText.write(" = ");
-      fractionalDisplayText.write(
-        gaussRound(fractionalAdjustment!, 8).toStringAsFixed(8),
-      );
+    } else {
+      fractionalDisplayText.write("0");
     }
+
     if (principalOperandLog.isEmpty) {
       // Will be if there are *only* fractional entries.
       // Buffer should be empty but clear anyway.
@@ -197,11 +203,11 @@ class DayCountFactor {
     final combinedDisplayText = StringBuffer();
     // 't', the number of full unit-periods from the beginning of the term
     // of the transaction to the nth cash flow value
-    combinedDisplayText.write('[t = ${principalDisplayText.toString()}]');
-    combinedDisplayText.write(' ');
+    combinedDisplayText.write('t = ${principalDisplayText.toString()}');
+    combinedDisplayText.write(' : ');
     // 'f', the fraction of the unit-period in the time interval from the
     // beginning of the term of the transaction to the nth cash flow value
-    combinedDisplayText.write('[f = ${fractionalDisplayText.toString()}]');
+    combinedDisplayText.write('f = ${fractionalDisplayText.toString()}');
     return combinedDisplayText.toString();
   }
 }

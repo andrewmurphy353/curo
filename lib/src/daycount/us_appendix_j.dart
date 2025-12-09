@@ -17,8 +17,9 @@ class USAppendixJ extends Convention {
   /// calculating the APR for U.S. consumer credit transactions.
   ///
   /// [timePeriod] the interval between dates used in the calculation.
-  /// Options are 'year', 'month', 'week', or 'day'. For mortgages,
-  /// 'month' is standard. Default is 'month' if undefined.
+  /// Options are 'year', 'half-year', 'quarter 'month', 'fortnight',
+  /// 'week', or 'day'. For mortgages, 'month' is standard.
+  /// Default is 'month' if undefined.
   const USAppendixJ({
     this.timePeriod = DayCountTimePeriod.month,
   }) : super(

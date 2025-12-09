@@ -48,8 +48,8 @@ class EU200848EC extends Convention {
             timePeriod == DayCountTimePeriod.week ||
                 timePeriod == DayCountTimePeriod.month ||
                 timePeriod == DayCountTimePeriod.year,
-            // ignore: lines_longer_than_80_chars
-            'Only year, month and week time periods are supported for EU APRC calculations'),
+            'Only year, month and week time periods are '
+            'supported for EU APRC calculations'),
         super(
             usePostDates: true,
             includeNonFinancingFlows: true,
