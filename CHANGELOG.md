@@ -1,3 +1,8 @@
+## 2.4.2 - 2025-12-12
+### Enhancements
+- **Improved CashFlow Sorting**: Updated the `sort()` method in `helper.dart` to handle `CashFlowCharge` objects. Same-dated `CashFlow` objects are now consistently ordered as follows: `CashFlowAdvance` first, `CashFlowPayment` second, and `CashFlowCharge` last.
+- **Enhanced Profile CashFlow Classes**: Added `==` operator overrides, `hashCode` implementations, and a `copyWith` utility method to the `DayCountFactor` class for improved usability and consistency.
+
 ## 2.4.1 - 2025-12-08
 - **Enhancements:**
   - Improved Root Solver: Enhanced the `SolveRoot` class to robustly handle both interest rate and cash flow calculations, including edge cases like long-term loans (e.g., 360 months). Added a bisection fallback method to the Newton-Raphson solver, ensuring convergence for complex financial functions when initial guesses fail. This improves reliability for US Appendix J APR calculations and extreme cash flow scenarios without noticeable performance impact.
