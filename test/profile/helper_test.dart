@@ -746,7 +746,16 @@ void main() {
       final cfc2 =
           CashFlowCharge(postDate: DateTime.utc(2022, 2, 1), value: 0.0);
       // add unsorted
-      var cashFlows = <CashFlow>[cfp2, cfp4, cfp1, cfc2, cfa2, cfa1, cfp3, cfc1];
+      var cashFlows = <CashFlow>[
+        cfp2,
+        cfp4,
+        cfp1,
+        cfc2,
+        cfa2,
+        cfa1,
+        cfp3,
+        cfc1,
+      ];
       cashFlows = sort(cashFlows, const US30360(usePostDates: false));
       expect(cashFlows[0], cfa1);
       expect(cashFlows[1], cfp1);
