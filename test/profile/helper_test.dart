@@ -707,16 +707,28 @@ void main() {
           postDate: DateTime.utc(2022, 3, 1), isInterestCapitalised: false);
       final cfc1 =
           CashFlowCharge(postDate: DateTime.utc(2022, 1, 1), value: 0.0);
+      final cfc2 =
+          CashFlowCharge(postDate: DateTime.utc(2022, 2, 1), value: 0.0);
       // add unsorted
-      var cashFlows = <CashFlow>[cfp2, cfp4, cfp1, cfa2, cfa1, cfp3, cfc1];
+      var cashFlows = <CashFlow>[
+        cfc2,
+        cfp2,
+        cfp4,
+        cfp1,
+        cfa2,
+        cfa1,
+        cfp3,
+        cfc1
+      ];
       cashFlows = sort(cashFlows, const US30360());
       expect(cashFlows[0], cfa1);
       expect(cashFlows[1], cfa2);
-      expect(cashFlows[2], cfc1);
-      expect(cashFlows[3], cfp1);
+      expect(cashFlows[2], cfp1);
+      expect(cashFlows[3], cfc1);
       expect(cashFlows[4], cfp2);
-      expect(cashFlows[5], cfp4);
-      expect(cashFlows[6], cfp3);
+      expect(cashFlows[5], cfc2);
+      expect(cashFlows[6], cfp4);
+      expect(cashFlows[7], cfp3);
     });
     test('unordered cash flows by value dates', () {
       final cfa1 = CashFlowAdvance(postDate: DateTime.utc(2022, 1, 1));
@@ -731,16 +743,19 @@ void main() {
           postDate: DateTime.utc(2022, 3, 1), isInterestCapitalised: false);
       final cfc1 =
           CashFlowCharge(postDate: DateTime.utc(2022, 1, 1), value: 0.0);
+      final cfc2 =
+          CashFlowCharge(postDate: DateTime.utc(2022, 2, 1), value: 0.0);
       // add unsorted
-      var cashFlows = <CashFlow>[cfp2, cfp4, cfp1, cfa2, cfa1, cfp3, cfc1];
+      var cashFlows = <CashFlow>[cfp2, cfp4, cfp1, cfc2, cfa2, cfa1, cfp3, cfc1];
       cashFlows = sort(cashFlows, const US30360(usePostDates: false));
       expect(cashFlows[0], cfa1);
-      expect(cashFlows[1], cfc1);
-      expect(cashFlows[2], cfp1);
+      expect(cashFlows[1], cfp1);
+      expect(cashFlows[2], cfc1);
       expect(cashFlows[3], cfa2);
       expect(cashFlows[4], cfp2);
-      expect(cashFlows[5], cfp4);
-      expect(cashFlows[6], cfp3);
+      expect(cashFlows[5], cfc2);
+      expect(cashFlows[6], cfp4);
+      expect(cashFlows[7], cfp3);
     });
   }, skip: false);
   group('computeFactors', () {

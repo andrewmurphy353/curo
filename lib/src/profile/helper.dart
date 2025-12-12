@@ -255,9 +255,14 @@ List<CashFlow> sort(
               : -1;
     }
 
-    // Sort CashFlowAdvance's to be first amongst samed-dated
-    // payment and charge cash flows
-    return cf1 is CashFlowAdvance ? -1 : 1;
+    // Sort CashFlowAdvance first, CashFlowPayment next, CashFlowCharge last
+    // amongst same-dated cash flows
+    if (cf1 is CashFlowAdvance && cf2 is! CashFlowAdvance) return -1;
+    if (cf1 is! CashFlowAdvance && cf2 is CashFlowAdvance) return 1;
+    if (cf1 is CashFlowCharge && cf2 is! CashFlowCharge) return 1;
+    if (cf1 is! CashFlowCharge && cf2 is CashFlowCharge) return -1;
+    // Same type (both payments or other cases), no further sorting
+    return 0;
   });
   return cashFlows;
 }
