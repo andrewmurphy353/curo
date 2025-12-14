@@ -766,7 +766,54 @@ void main() {
       expect(cashFlows[6], cfp4);
       expect(cashFlows[7], cfp3);
     });
+    test('unordered advances by dates and value descending', () {
+      // valueDate == postDate when undefined
+      final cfa1 = CashFlowAdvance(
+        postDate: DateTime.utc(2022, 1, 1),
+        value: -200.0,
+      );
+      final cfa2 = CashFlowAdvance(
+          postDate: DateTime.utc(2022, 1, 1),
+          valueDate: DateTime.utc(2022, 1, 15),
+          value: -200.0);
+      final cfa3 = CashFlowAdvance(
+        postDate: DateTime.utc(2022, 1, 1),
+        value: -3000.0,
+      );
+      final cfa4 = CashFlowAdvance(
+        postDate: DateTime.utc(2022, 1, 2),
+        value: -50.0,
+      );
+      // add unsorted
+      final cashFlows = <CashFlow>[
+        cfa4,
+        cfa2,
+        cfa1,
+        cfa3,
+      ];
+
+      final sortedByValueDateAndValue = sort(
+        [...cashFlows],
+        const US30360(
+          usePostDates: false,
+        ),
+      );
+      expect(sortedByValueDateAndValue[0], cfa3);
+      expect(sortedByValueDateAndValue[1], cfa1);
+      expect(sortedByValueDateAndValue[2], cfa4);
+      expect(sortedByValueDateAndValue[3], cfa2);
+
+      final sortedByPostDateAndValue = sort(
+        [...cashFlows],
+        const US30360(), //postDates=true [default]
+      );
+      expect(sortedByPostDateAndValue[0], cfa3);
+      expect(sortedByPostDateAndValue[1], cfa1);
+      expect(sortedByPostDateAndValue[2], cfa2);
+      expect(sortedByPostDateAndValue[3], cfa4);
+    });
   }, skip: false);
+
   group('computeFactors', () {
     test('based on neighbour post dates, excluding charges', () {
       final drawDownDate = DateTime.utc(2022, 1, 1);

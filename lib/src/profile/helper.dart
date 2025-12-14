@@ -205,7 +205,12 @@ Profile assignFactors(
 }
 
 /// Sort the cash flow series, first in date ascending order, then
-/// by instance type CashFlowAdvance first.
+/// by instance type CashFlowAdvance first, CashFlowPayment next,
+/// CashFlowCharge last.
+///
+/// For same-dated CashFlowAdvance, sort by valueDate (or postDate)
+/// ascending, then value descending (most negative first, as
+/// values are negative).
 ///
 List<CashFlow> sort(
   List<CashFlow> cashFlows,
@@ -219,13 +224,17 @@ List<CashFlow> sort(
       } else if (cf1.postDate.isAfter(cf2.postDate)) {
         return 1;
       } else {
-        // Secondary-sort same-dated CashFlowAdvance's on value dates
+        // Secondary-sort same-dated CashFlowAdvance's on value dates,
+        // then value descending
         if (cf1 is CashFlowAdvance && cf2 is CashFlowAdvance) {
+          // Compare valueDate first
           if (cf1.valueDate.isBefore(cf2.valueDate)) {
             return -1;
           } else if (cf1.valueDate.isAfter(cf2.valueDate)) {
             return 1;
           }
+          // Same valueDate: sort by value descending (most negative first)
+          return cf1.value.compareTo(cf2.value);
         }
       }
     } else {
@@ -234,18 +243,21 @@ List<CashFlow> sort(
       } else if (cf1.valueDate.isAfter(cf2.valueDate)) {
         return 1;
       } else {
-        // Secondary-sort same-dated CashFlowAdvance's on post dates
+        // Secondary-sort same-dated CashFlowAdvance's on post dates,
+        // then value descending
         if (cf1 is CashFlowAdvance && cf2 is CashFlowAdvance) {
+          // Compare postDate first
           if (cf1.postDate.isBefore(cf2.postDate)) {
             return -1;
           } else if (cf1.postDate.isAfter(cf2.postDate)) {
             return 1;
           }
+          // Same postDate: sort by value descending (most negative first)
+          return cf1.value.compareTo(cf2.value);
         }
       }
     }
-
-    // Sort same dated CashFlowPayment's by isInterestCapitalised,
+    // Sort same-dated CashFlowPayment's by isInterestCapitalised,
     // false values first
     if (cf1 is CashFlowPayment && cf2 is CashFlowPayment) {
       return (cf1.isInterestCapitalised == cf2.isInterestCapitalised)
@@ -254,7 +266,6 @@ List<CashFlow> sort(
               ? 1
               : -1;
     }
-
     // Sort CashFlowAdvance first, CashFlowPayment next, CashFlowCharge last
     // amongst same-dated cash flows
     if (cf1 is CashFlowAdvance && cf2 is! CashFlowAdvance) return -1;

@@ -1,3 +1,10 @@
+## 2.4.3 - 2025-12-14
+### Enhancements
+- **Enhanced CashFlowAdvance Sorting**: Updated the `sort()` method in `helper.dart` to sort same-dated `CashFlowAdvance` objects by `value` in descending order (most negative first, e.g., -3000.0 before -200.0) after sorting by `valueDate` or `postDate`.
+
+### Bug Fixes
+- **Fixed CashFlowAdvance Value Sorting**: Corrected the sorting of same-dated `CashFlowAdvance` objects to ensure the most negative `value` comes first, resolving an issue where smaller absolute values were incorrectly prioritized.
+
 ## 2.4.2 - 2025-12-12
 ### Enhancements
 - **Improved CashFlow Sorting**: Updated the `sort()` method in `helper.dart` to handle `CashFlowCharge` objects. Same-dated `CashFlow` objects are now consistently ordered as follows: `CashFlowAdvance` first, `CashFlowPayment` second, and `CashFlowCharge` last.
