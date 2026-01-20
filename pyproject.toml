@@ -1,0 +1,21 @@
+[project]
+name = "curo"
+version = "3.0.0"
+requires-python = ">=3.11"
+
+dependencies = [
+]
+
+[project.optional-dependencies]
+dev = [
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.7.1",
+    "mkdocstrings>=1.0.0",
+    "pymdown-extensions>=10.20",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+
+[tool.setuptools.packages.find]
+include = []
