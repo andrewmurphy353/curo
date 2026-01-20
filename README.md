@@ -9,7 +9,7 @@
 
 This is a **complete ground-up rewrite** (version 3.0.0+) of the original `curo` package, now aligned with the latest Dart conventions and fully compatible in design and accuracy with its sister project, [`curo-python`](https://github.com/andrewmurphy353/curo_python).
 
-Explore the [documentation](https://pub.dev/documentation/curo/latest/), try it live in the **[Curo Calculator](https://curocalc.app)** app (built with this library), or browse the [examples](https://github.com/andrewmurphy353/curo/examples/overview).
+Explore the [documentation](https://pub.dev/documentation/curo/latest/), try it live in the **[Curo Calculator](https://curocalc.app)** app (built with this library), or browse the [examples](https://andrewmurphy353.github.io/curo/examples/overview).
 
 ## Why Curo?
 
@@ -115,7 +115,7 @@ Most conventions default to period-by-period timing. For XIRR-style calculations
 
 Cash flow diagrams visually represent the timing and direction of financial transactions. For example, a €10,000 loan repaid in 6 monthly instalments would look like this:
 
-![Cash Flow Diagram](https://github.com/andrewmurphy353/curo/blob/main/doc/site/assets/images/example-01.png)
+![Cash Flow Diagram](https://andrewmurphy353.github.io/curo/assets/images/example-01.png)
 
 - **Down arrows**: Money received (e.g., loan advance).
 - **Up arrows**: Money paid (e.g., instalments).
@@ -129,6 +129,6 @@ Released under the [MIT License](LICENSE).
 ## Learn More
 
 - **Examples**: Dive into practical use cases in the documentation [examples](https://andrewmurphy353.github.io/curo/examples/overview/).
-- **Documentation**: Refer to the code [documentation](https://andrewmurphy353.github.io/curo/api/) for detailed class and method descriptions.
+- **Documentation**: Refer to the code [documentation](https://andrewmurphy353.github.io/curo/api) for detailed class and method descriptions.
 - **Issues & Contributions**: Report bugs or contribute on [GitHub](https://github.com/andrewmurphy353/curo/issues).
 

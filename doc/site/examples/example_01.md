@@ -1,6 +1,6 @@
 # Example 1: Determine a payment in an arrears repayment profile
 
-This example illustrates the use of one of two [Modes](https://andrewmurphy353.github.io/curo/api/calculator/Mode.html), a core concept in financial calculations, when solving for unknowns. 
+This example illustrates the use of one of two [Modes](/api/curo/Mode.html), a core concept in financial calculations, when solving for unknowns. 
 
 ## Overview
 
@@ -8,7 +8,7 @@ This example demonstrates how to calculate the value of a payment when it's due 
 
 ## Code
 
-This example solves for an unknown instalment amount for a $10,000 loan over six months, the default [Frequency](https://andrewmurphy353.github.io/curo/api/calculator/Frequency.html) if not defined.
+This example solves for an unknown instalment amount for a $10,000 loan over six months, the default [Frequency](/api/curo/Frequency.html) if not defined.
 
 After the unknown values are solved we confirm the implicit interest rate (IRR) in the resulting profile equals the provided interest rate.
 
