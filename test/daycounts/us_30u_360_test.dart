@@ -136,9 +136,9 @@ void main() {
         DateTime.utc(2024, 12, 29),
         DateTime.utc(2025, 2, 28),
       );
-     expect(factor.primaryPeriodFraction, closeTo(60 / 360, 1e-10));
-     expect(factor.toString(), 'f = 60/360 = 0.16666667');
-     expect(factor.toFoldedString(), 'f = 60/360 = 0.16666667');
+      expect(factor.primaryPeriodFraction, closeTo(60 / 360, 1e-10));
+      expect(factor.toString(), 'f = 60/360 = 0.16666667');
+      expect(factor.toFoldedString(), 'f = 60/360 = 0.16666667');
     });
 
     test('same day returns zero', () {

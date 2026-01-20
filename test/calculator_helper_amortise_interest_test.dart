@@ -142,20 +142,25 @@ void main() {
             isInterestCapitalised: true),
       ];
 
-      final result = amortiseInterest(profiled, US30360(includeNonFinancingFlows: true), 0.06, 2);
-      
+      final result = amortiseInterest(
+          profiled, US30360(includeNonFinancingFlows: true), 0.06, 2);
+
       // First payment before same-dated charge
       expect(result[1].interest.round(), -50.0);
-      expect(result[1].capitalBalance, closeTo(-8350.0, 0.01)); // -10000 -50 + 1700 = ~ -8350
+      expect(result[1].capitalBalance,
+          closeTo(-8350.0, 0.01)); // -10000 -50 + 1700 = ~ -8350
       // Charge
       expect(result[2].interest, 0.0); // Always zero for useXirrMethod = false,
-      expect(result[2].capitalBalance.round(), -8250); // -8350 -0 +100 = ~ -8250
+      expect(
+          result[2].capitalBalance.round(), -8250); // -8350 -0 +100 = ~ -8250
       // Second payment one month later
       expect(result[3].interest.round(), -41.0);
-      expect(result[3].capitalBalance.round(), -6591); // -8250 - 41 + 1700 = ~ -6591
+      expect(result[3].capitalBalance.round(),
+          -6591); // -8250 - 41 + 1700 = ~ -6591
       // Final payment, monthly interest ~32.96, however interest takes account
       // of rounding differences so adjusts to bring balance => zero
-      expect(result.last.interest.round(), 4891); // -6591 +1700 = ~ 4891 (includes ~33 monthly interest)
+      expect(result.last.interest.round(),
+          4891); // -6591 +1700 = ~ 4891 (includes ~33 monthly interest)
       // Ensure balance is exactly zero despite prior rounding
       expect(result.last.capitalBalance, closeTo(0.0, 1e-6));
     });

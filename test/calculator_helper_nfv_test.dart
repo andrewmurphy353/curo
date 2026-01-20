@@ -62,9 +62,9 @@ void main() {
             isInterestCapitalised: null,
             isCharge: true
           ),
-          factor: const DayCountFactor(primaryPeriodFraction: 1/12),
+          factor: const DayCountFactor(primaryPeriodFraction: 1 / 12),
         ),
-        cfwf(1007.92, 1/12),
+        cfwf(1007.92, 1 / 12),
       ];
       final result = nfv(
           profiled: profiled,

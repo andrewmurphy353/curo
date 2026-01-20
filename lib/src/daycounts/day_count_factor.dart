@@ -28,8 +28,8 @@ class DayCountFactor {
     this.partialPeriodFraction,
     List<String>? discountFactorLog,
     List<String>? discountTermsLog,
-  }) : discountFactorLog = discountFactorLog ?? const [],
-       discountTermsLog = discountTermsLog ?? const [];
+  })  : discountFactorLog = discountFactorLog ?? const [],
+        discountTermsLog = discountTermsLog ?? const [];
 
   /// Static helper to format numerator/denominator as whole + fractional periods.
   ///
@@ -72,9 +72,8 @@ class DayCountFactor {
     }
 
     // Extract just the operand part (before any "=")
-    final operands = discountFactorLog
-        .map((e) => e.split(' = ').first.trim())
-        .toList();
+    final operands =
+        discountFactorLog.map((e) => e.split(' = ').first.trim()).toList();
     final operandText = operands.join(' + ');
     final rounded = gaussRound(primaryPeriodFraction, 8).toStringAsFixed(8);
 

@@ -77,9 +77,8 @@ class US30U360 extends Convention {
     final factor = numerator / 360.0;
 
     // Format operand: whole years as integer, otherwise "num/360"
-    final operand = (numerator % 360 == 0)
-        ? '${numerator ~/ 360}'
-        : '$numerator/360';
+    final operand =
+        (numerator % 360 == 0) ? '${numerator ~/ 360}' : '$numerator/360';
 
     return DayCountFactor(
       primaryPeriodFraction: factor,

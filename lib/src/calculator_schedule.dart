@@ -66,21 +66,16 @@ extension SchedulePrettyPrint on List<ScheduleRow> {
           ];
 
     // Calculate total width for separator
-    final totalWidth =
-        columns.map((c) => c.width).reduce((a, b) => a + b) +
+    final totalWidth = columns.map((c) => c.width).reduce((a, b) => a + b) +
         (columns.length - 1); // spaces between columns
 
     // Header
-    final headerLine = columns
-        .asMap()
-        .entries
-        .map((e) {
-          final col = e.value;
-          return col.rightAlign
-              ? col.header.padLeft(col.width)
-              : col.header.padRight(col.width);
-        })
-        .join(' ');
+    final headerLine = columns.asMap().entries.map((e) {
+      final col = e.value;
+      return col.rightAlign
+          ? col.header.padLeft(col.width)
+          : col.header.padRight(col.width);
+    }).join(' ');
     print(headerLine);
 
     // Separator
@@ -117,14 +112,12 @@ extension SchedulePrettyPrint on List<ScheduleRow> {
         parts.add(discBalance.padLeft(columns[5].width));
       } else {
         // Amortisation columns
-        final capital = row.capital != null
-            ? currencyFmt.format(row.capital!)
-            : '';
+        final capital =
+            row.capital != null ? currencyFmt.format(row.capital!) : '';
         parts.add(capital.padLeft(columns[3].width));
 
-        final interest = row.interest != null
-            ? currencyFmt.format(row.interest!)
-            : '';
+        final interest =
+            row.interest != null ? currencyFmt.format(row.interest!) : '';
         parts.add(interest.padLeft(columns[4].width));
 
         final balance = row.capitalBalance != null

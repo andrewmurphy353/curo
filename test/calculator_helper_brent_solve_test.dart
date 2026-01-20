@@ -49,7 +49,7 @@ void main() {
 
     test('throws when solver does not converge within 100 iterations', () {
       expect(
-        () => brentSolve(f: (x) => sin(1/x), a: -1.0, b: 1.0),
+        () => brentSolve(f: (x) => sin(1 / x), a: -1.0, b: 1.0),
         throwsA(isA<UnsolvableException>()),
       );
     });

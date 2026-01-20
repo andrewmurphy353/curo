@@ -85,7 +85,7 @@ class USAppendixJ extends Convention {
         DayCountTimePeriod.quarter => rollMonth(
             startWholePeriod,
             -3,
-            preferredDay, 
+            preferredDay,
           ),
         DayCountTimePeriod.month => rollMonth(
             startWholePeriod,
@@ -94,7 +94,8 @@ class USAppendixJ extends Convention {
           ),
         DayCountTimePeriod.fortnight => rollDay(startWholePeriod, -14),
         DayCountTimePeriod.week => rollDay(startWholePeriod, -7),
-        _ => throw StateError('Unsupported time period'), // coverage:ignore-line
+        _ =>
+          throw StateError('Unsupported time period'), // coverage:ignore-line
       };
 
       if (tempDate.isBefore(initialDrawdown)) {
@@ -123,7 +124,8 @@ class USAppendixJ extends Convention {
           DayCountTimePeriod.month => 30,
           DayCountTimePeriod.fortnight => 15,
           DayCountTimePeriod.week => 7,
-          _ => throw StateError('Unsupported time period'), // coverage:ignore-line
+          _ =>
+            throw StateError('Unsupported time period'), // coverage:ignore-line
         };
 
         f = days / denominator;

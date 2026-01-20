@@ -60,14 +60,14 @@ enum DayCountTimePeriod {
   /// Used as the denominator in periodic rate calculations
   /// (e.g., 12 for monthly, 365 for daily).
   int get periodsInYear => switch (this) {
-    DayCountTimePeriod.day => 365,
-    DayCountTimePeriod.week => 52,
-    DayCountTimePeriod.fortnight => 26,
-    DayCountTimePeriod.month => 12,
-    DayCountTimePeriod.quarter => 4,
-    DayCountTimePeriod.halfYear => 2,
-    DayCountTimePeriod.year => 1,
-  };
+        DayCountTimePeriod.day => 365,
+        DayCountTimePeriod.week => 52,
+        DayCountTimePeriod.fortnight => 26,
+        DayCountTimePeriod.month => 12,
+        DayCountTimePeriod.quarter => 4,
+        DayCountTimePeriod.halfYear => 2,
+        DayCountTimePeriod.year => 1,
+      };
 }
 
 /// Type classification of a cash flow.
@@ -75,10 +75,10 @@ enum CashFlowType { advance, payment, charge }
 
 extension CashFlowTypeOrder on CashFlowType {
   int get idx => switch (this) {
-    CashFlowType.advance => 0,
-    CashFlowType.payment => 1,
-    CashFlowType.charge => 2,
-  };
+        CashFlowType.advance => 0,
+        CashFlowType.payment => 1,
+        CashFlowType.charge => 2,
+      };
 }
 
 /// Origin point for measuring day count factors.
@@ -100,6 +100,7 @@ enum DayCountOrigin {
 enum ValidationMode {
   /// Requires all values to be known
   solveRate,
+
   /// Allows undefined advance OR payment values
   solveValue;
 }

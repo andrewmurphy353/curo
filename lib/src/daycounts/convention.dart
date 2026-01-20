@@ -65,8 +65,7 @@ abstract class Convention {
   DayCountFactor computeFactor(DateTime start, DateTime end);
 
   @override
-  String toString() =>
-      '$runtimeType['
+  String toString() => '$runtimeType['
       'usePostDates: $usePostDates, '
       'includeNonFinancingFlows: $includeNonFinancingFlows, '
       'useXirrMethod: $useXirrMethod'

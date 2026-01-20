@@ -121,39 +121,48 @@ void main() {
     test('2019 is not devisible by 4', () {
       expect(isLeapYear(2019), false);
     });
-    test('2016 is divisible by 4 but not 100 (every fourth year, excluding '
+    test(
+        '2016 is divisible by 4 but not 100 (every fourth year, excluding '
         'century year)', () {
       expect(isLeapYear(2016), true);
     });
-    test('2020 is divisible by 4 but not 100 (every fourth year, excluding '
+    test(
+        '2020 is divisible by 4 but not 100 (every fourth year, excluding '
         'century year)', () {
       expect(isLeapYear(2020), true);
     });
-    test('2024 is divisible by 4 but not 100 (every fourth year, excluding '
+    test(
+        '2024 is divisible by 4 but not 100 (every fourth year, excluding '
         'century year)', () {
       expect(isLeapYear(2024), true);
     });
-    test('1600 is divisible by 4 and 100 and 400 (every fourth century is '
+    test(
+        '1600 is divisible by 4 and 100 and 400 (every fourth century is '
         'a leap year)', () {
       expect(isLeapYear(1600), true);
     });
-    test('2000 is divisible by 4 and 100 and 400 (every fourth century is '
+    test(
+        '2000 is divisible by 4 and 100 and 400 (every fourth century is '
         'a leap year)', () {
       expect(isLeapYear(2000), true);
     });
-    test('2400 is divisible by 4 and 100 and 400 (every fourth century is '
+    test(
+        '2400 is divisible by 4 and 100 and 400 (every fourth century is '
         'a leap year)', () {
       expect(isLeapYear(2400), true);
     });
-    test('1900 is divisible by 4 and 100 but not 400 (all centuries except '
+    test(
+        '1900 is divisible by 4 and 100 but not 400 (all centuries except '
         'the fourth)', () {
       expect(isLeapYear(1900), false);
     });
-    test('2100 is divisible by 4 and 100 but not 400 (all centuries except '
+    test(
+        '2100 is divisible by 4 and 100 but not 400 (all centuries except '
         'the fourth)', () {
       expect(isLeapYear(2100), false);
     });
-    test('2200 is divisible by 4 and 100 but not 400 (all centuries except '
+    test(
+        '2200 is divisible by 4 and 100 but not 400 (all centuries except '
         'the fourth)', () {
       expect(isLeapYear(2200), false);
     });
@@ -232,42 +241,48 @@ void main() {
         DateTime.utc(2020, 2, 29),
       );
     });
-    test('31st January 2019 to last day in February 2019 [non leap-year, '
+    test(
+        '31st January 2019 to last day in February 2019 [non leap-year, '
         'no preferred day of month]', () {
       expect(
         rollMonth(DateTime.utc(2019, 1, 31), 1),
         DateTime.utc(2019, 2, 28),
       );
     });
-    test('28th February 2019 by two months [non-leap-year, '
+    test(
+        '28th February 2019 by two months [non-leap-year, '
         'no preferred day of month]', () {
       expect(
         rollMonth(DateTime.utc(2019, 2, 28), 2),
         DateTime.utc(2019, 4, 28),
       );
     });
-    test('31st December 2018 by two months [non-leap-year, '
+    test(
+        '31st December 2018 by two months [non-leap-year, '
         'no preferred day of month]', () {
       expect(
         rollMonth(DateTime.utc(2018, 12, 31), 2),
         DateTime.utc(2019, 2, 28),
       );
     });
-    test('31st January 2020 by one month [leap-year, '
+    test(
+        '31st January 2020 by one month [leap-year, '
         'no preferred day of month]', () {
       expect(
         rollMonth(DateTime.utc(2020, 1, 31), 1),
         DateTime.utc(2020, 2, 29),
       );
     });
-    test('31st March 2019 by one month [non-leap-year, '
+    test(
+        '31st March 2019 by one month [non-leap-year, '
         'no preferred day of month]', () {
       expect(
         rollMonth(DateTime.utc(2019, 3, 31), -1),
         DateTime.utc(2019, 2, 28),
       );
     });
-    test('31st January 2020 by two months [leap-year, '
+    test(
+        '31st January 2020 by two months [leap-year, '
         'no preferred day of month]', () {
       expect(
         rollMonth(DateTime.utc(2020, 1, 31), -2),

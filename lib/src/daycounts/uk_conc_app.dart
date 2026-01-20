@@ -43,10 +43,10 @@ class UKConcApp extends Convention {
     this.hasSinglePayment = false,
     this.timePeriod = DayCountTimePeriod.month,
   }) : super(
-         usePostDates: true,
-         includeNonFinancingFlows: true,
-         useXirrMethod: true,
-       ) {
+          usePostDates: true,
+          includeNonFinancingFlows: true,
+          useXirrMethod: true,
+        ) {
     if (timePeriod != DayCountTimePeriod.month &&
         timePeriod != DayCountTimePeriod.week) {
       throw ArgumentError(
@@ -76,8 +76,7 @@ class UKConcApp extends Convention {
 
     // Determine preferred period (month takes precedence in secured
     // single-repayment)
-    final useMonths =
-        timePeriod == DayCountTimePeriod.month ||
+    final useMonths = timePeriod == DayCountTimePeriod.month ||
         (isSecuredOnLand && hasSinglePayment);
 
     if (useMonths) {
@@ -87,9 +86,8 @@ class UKConcApp extends Convention {
     }
 
     if (wholePeriods > 0) {
-      final denominator = (useMonths || (isSecuredOnLand && hasSinglePayment))
-          ? 12
-          : 52;
+      final denominator =
+          (useMonths || (isSecuredOnLand && hasSinglePayment)) ? 12 : 52;
       factor = wholePeriods / denominator;
       operandLog.add('$wholePeriods/$denominator');
     }
@@ -97,8 +95,8 @@ class UKConcApp extends Convention {
     // Compute end of whole period
     final wholePeriodEnd =
         useMonths || (isSecuredOnLand && hasSinglePayment && wholePeriods > 0)
-        ? rollMonth(d1, wholePeriods, d1.day)
-        : rollDay(d1, wholePeriods * 7);
+            ? rollMonth(d1, wholePeriods, d1.day)
+            : rollDay(d1, wholePeriods * 7);
 
     // Residual days (may cross year boundary)
     if (wholePeriodEnd.isBefore(d2) || wholePeriodEnd == d2) {

@@ -58,8 +58,8 @@ class EU30360 extends Convention {
     final d1 = dd1 == 31 ? 30 : dd1;
     final d2 = dd2 == 31 ? 30 : dd2;
 
-    final numerator = (360 * (yyyy2 - yyyy1) + 30 * (mm2 - mm1) + (d2 - d1))
-        .abs();
+    final numerator =
+        (360 * (yyyy2 - yyyy1) + 30 * (mm2 - mm1) + (d2 - d1)).abs();
     final factor = numerator / 360.0;
 
     return DayCountFactor(

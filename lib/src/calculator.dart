@@ -258,7 +258,8 @@ class Calculator {
       // Coverage note: UnsolvableException in solveValue is unreachable
       // due to validation ensuring monotonic NFV with root in bracket.
       // Convergence failure impossible within valid precision (0-4).
-      throw UnsolvableException('No amount found that satisfies the given rate'); // coverage:ignore-line
+      throw UnsolvableException(
+          'No amount found that satisfies the given rate'); // coverage:ignore-line
     }
   }
 

@@ -30,20 +30,41 @@ void main() {
   group('sortCashFlows', () {
     test('sorts by date first (postDate when usePostDates=true)', () {
       final cashFlows = [
-        cf(type: CashFlowType.payment, postDate: d2, valueDate: d2, amount: 100.0),
-        cf(type: CashFlowType.advance, postDate: d1, valueDate: d1, amount: -1000.0),
+        cf(
+            type: CashFlowType.payment,
+            postDate: d2,
+            valueDate: d2,
+            amount: 100.0),
+        cf(
+            type: CashFlowType.advance,
+            postDate: d1,
+            valueDate: d1,
+            amount: -1000.0),
       ];
 
-      sortCashFlows(cashFlows: cashFlows, convention: const US30360(usePostDates: true));
+      sortCashFlows(
+          cashFlows: cashFlows, convention: const US30360(usePostDates: true));
       expect(cashFlows[0].postDate, d1);
       expect(cashFlows[1].postDate, d2);
     });
 
     test('within same date: advance > payment > charge', () {
       final cashFlows = [
-        cf(type: CashFlowType.charge, postDate: d1, valueDate: d1, amount: 50.0),
-        cf(type: CashFlowType.payment, postDate: d1, valueDate: d1, amount: 300.0),
-        cf(type: CashFlowType.advance, postDate: d1, valueDate: d1, amount: -1000.0),
+        cf(
+            type: CashFlowType.charge,
+            postDate: d1,
+            valueDate: d1,
+            amount: 50.0),
+        cf(
+            type: CashFlowType.payment,
+            postDate: d1,
+            valueDate: d1,
+            amount: 300.0),
+        cf(
+            type: CashFlowType.advance,
+            postDate: d1,
+            valueDate: d1,
+            amount: -1000.0),
       ];
 
       sortCashFlows(cashFlows: cashFlows, convention: const US30360());
@@ -56,8 +77,16 @@ void main() {
 
     test('within same date and type: largest amount first', () {
       final cashFlows = [
-        cf(type: CashFlowType.advance, postDate: d1, valueDate: d1, amount: -500.0),
-        cf(type: CashFlowType.advance, postDate: d1, valueDate: d1, amount: -1500.0),
+        cf(
+            type: CashFlowType.advance,
+            postDate: d1,
+            valueDate: d1,
+            amount: -500.0),
+        cf(
+            type: CashFlowType.advance,
+            postDate: d1,
+            valueDate: d1,
+            amount: -1500.0),
       ];
       sortCashFlows(cashFlows: cashFlows, convention: const US30360());
       expect(cashFlows.map((cf) => cf.amount), [-1500.0, -500.0]);
