@@ -46,9 +46,8 @@ jobs:
       - name: Prepare GitHub Pages artifacts
         run: |
           mkdir -p _site/api
-          mkdir -p _site/site
           cp -r doc/api/* _site/api/
-          cp -r build/site/* _site/site/
+          cp -r build/site/* _site/
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
