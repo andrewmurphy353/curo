@@ -1,4 +1,4 @@
-name: Dart
+name: Dart CI
 
 on:
   push:
@@ -6,27 +6,51 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        sdk: [stable]
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Install dependencies
-      run: dart pub get
+      - name: Setup Dart SDK
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: ${{ matrix.sdk }}
 
-    - name: Run tests with coverage
-      run: dart test --coverage="coverage"
+      - name: Install dependencies
+        run: dart pub get
 
-    - name: Convert coverage to ICOV
-      run: dart run coverage:format_coverage --lcov --check-ignore --in=coverage --out=coverage.lcov --report-on=lib
-    
-    - name: Upload lcov file to Codecov  
-      uses: codecov/codecov-action@v3
-      with:
-        token: ${{secrets.CODECOV_TOKEN}}
-        files: ./coverage.lcov
-        fail_ci_if_error: true
-        verbose: true
+      - name: Analyze code
+        run: dart analyze --fatal-infos
+
+      - name: Run standard tests with coverage
+        run: dart test --coverage=coverage test/
+
+      - name: Run documentation example tests
+        run: dart test doc/site/test/
+
+      - name: Format coverage (lcov)
+        run: |
+          dart pub global activate coverage
+          dart pub global run coverage:format_coverage \
+            --lcov \
+            --in=coverage \
+            --out=coverage.lcov \
+            --report-on=lib \
+            --check-ignore
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage.lcov
+          fail_ci_if_error: true
+          verbose: true

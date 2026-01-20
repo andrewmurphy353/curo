@@ -1,0 +1,32 @@
+site_name: Curo Documentation
+
+docs_dir: doc/site
+
+theme:
+  name: material
+  highlightjs: true
+  hljs_languages:
+    - dart
+
+nav:
+  - Home: index.md
+  - Examples:
+    - Overview: examples/overview.md
+    - Example 1: examples/example_01.md
+    - Example 2: examples/example_02.md
+    - Example 3: examples/example_03.md
+    - Example 4: examples/example_04.md
+    - Example 5: examples/example_05.md
+    - Example 6: examples/example_06.md
+  - Changelog: changelog.md
+
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.inlinehilite
+  - def_list
+  - attr_list
+  - admonition  # callouts e.g. Important, Note, Warning blocks
+
+repo_url: https://github.com/andrewmurphy353/curo

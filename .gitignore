@@ -1,7 +1,16 @@
+# IDE
 .dart_tool/
 .vscode/
-.packages
+
+# Build artifacts
 build/
-coverage/
-doc/
-coverage.lcov
+doc/api/
+/site/
+.packages
+/coverage/
+
+# Python artifacts (doc generation)
+.venv/
+uv.lock
+**/*.egg-info
+**/__pycache__
