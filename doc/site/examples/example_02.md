@@ -4,13 +4,13 @@ This example illustrates the use of the one of three supported legally defined A
 
 ## Overview
 
-This example demonstrates how to calculate the Annual Percentage Rate (APR) for a consumer loan, in accordance with the [EU 2008/48 APR](/api/curo/EU200848EC-class.html). The same approach works for any supported APR convention (e.g., [US Appendix J APR](/api/curo/USAppendixJ-class.html) or [UK Conc App APR](/api/curo/UKConcApp-class.html)).
+This example demonstrates how to calculate the Annual Percentage Rate (APR) for a consumer loan, in accordance with the [EU 2008/48 APR](https://andrewmurphy353.github.io/curo/api/curo/EU200848EC-class.html). The same approach works for any supported APR convention (e.g., [US Appendix J APR](https://andrewmurphy353.github.io/curo/api/curo/USAppendixJ-class.html) or [UK Conc App APR](https://andrewmurphy353.github.io/curo/api/curo/UKConcApp-class.html)).
 
 ## Code
 
 This example solves for an unknown APR for a €10,000 loan over six months, including a €50 fee due with the first instalment.
 
-First the unknown instalment payment is solved using `US30U360`, a [standard convention](/api/curo/US30U360-class.html), and then we show how to confirm the APR thereafter. If all values are known beforehand, skip the `solveValue` step and go straight to solving the implicit APR.
+First the unknown instalment payment is solved using `US30U360`, a [standard convention](https://andrewmurphy353.github.io/curo/api/curo/US30U360-class.html), and then we show how to confirm the APR thereafter. If all values are known beforehand, skip the `solveValue` step and go straight to solving the implicit APR.
 
 Notes:
 

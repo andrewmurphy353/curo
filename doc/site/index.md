@@ -1,6 +1,6 @@
 # Curo Dart Documentation
 
-**Curo** is a powerful, modern Dart library for performing instalment credit financial calculations — from simple loans to complex leasing and hire-purchase agreements.
+**Curo** is a powerful, modern Dart library for performing instalment credit financial calculations - from simple loans to complex leasing and hire-purchase agreements.
 
 This site provides:
 

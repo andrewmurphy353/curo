@@ -10,7 +10,7 @@ Important: Ensure the payment and interest capitalisation schedules end on the s
 
 ## Code
 
-This example solves for an unknown instalment amount for a $10,000 loan over six months, the default [Frequency](/api/curo/Frequency.html) if not defined, with quarterly compound interest.
+This example solves for an unknown instalment amount for a $10,000 loan over six months, the default [Frequency](https://andrewmurphy353.github.io/curo/api/curo/Frequency.html) if not defined, with quarterly compound interest.
 
 We demonstrate that this type of calculation requires at least two `SeriesPayment` series:
 

@@ -9,7 +9,7 @@
 
 This is a **complete ground-up rewrite** (version 3.0.0+) of the original `curo` package, now aligned with the latest Dart conventions and fully compatible in design and accuracy with its sister project, [`curo-python`](https://github.com/andrewmurphy353/curo_python).
 
-Explore the [documentation](https://pub.dev/documentation/curo/latest/), try it live in the **[Curo Calculator](https://curocalc.app)** app (built with this library), or browse the [examples](https://andrewmurphy353.github.io/curo/examples/overview).
+Explore the [API documentation](https://andrewmurphy353.github.io/curo/api), try it live in the [Curo Calculator](https://curocalc.app) app (built with this library), or browse the [examples](https://andrewmurphy353.github.io/curo/examples/overview).
 
 ## Why Curo?
 
