@@ -318,9 +318,6 @@ List<CashFlowWithFactor> buildOrReuseProfile({
   DateTime? referenceStartDate,
   List<CashFlowWithFactor>? existingProfile,
 }) {
-  // FIXME if an existingprofile excluded charges, they are not available when
-  // using e.g. EU APR straight after say US30360!!!
-
   // Reuse existing profile
   if (existingProfile != null) {
     final hasUnknowns = existingProfile.any((p) => !p.cashFlow.isKnown);
@@ -397,13 +394,6 @@ List<CashFlow> buildProfile({
   final List<CashFlow> cashFlows = [];
 
   for (final series in series) {
-    // FIXME we must add charges if defined in series as they could be needed
-    // for solving using a different convention.includeNonFinancingFlows
-    //if (series is SeriesCharge && !convention.includeNonFinancingFlows) {
-    // No point in processing charges, if defined.
-    //  continue;
-    //}
-
     // Determine the effective reference date for this series if undated
     DateTime effectiveReference = referenceDate;
 

@@ -1,7 +1,5 @@
 import 'package:curo/src/calculator.dart';
 import 'package:curo/src/calculator_helper.dart';
-import 'package:curo/src/daycounts/day_count_factor.dart';
-import 'package:curo/src/enums.dart';
 import 'package:test/test.dart';
 
 void main() {
