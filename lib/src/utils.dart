@@ -1,4 +1,4 @@
-/// Internal utility functions for date manipulation and financial rounding.
+/// Utility functions for date manipulation and financial rounding.
 ///
 /// Consolidates helpers previously in `dates.dart` and `math.dart`, aligning
 /// closely with `curo-python`'s `utils.py` (excluding pandas-specific parts).

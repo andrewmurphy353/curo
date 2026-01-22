@@ -24,7 +24,6 @@ void main() {
         label: '',
         mode: Mode.arrear,
         isInterestCapitalised: null,
-        isCharge: type == CashFlowType.charge,
       );
 
   group('sortCashFlows', () {

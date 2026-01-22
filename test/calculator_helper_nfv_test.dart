@@ -18,7 +18,6 @@ void main() {
           label: '',
           mode: Mode.arrear,
           isInterestCapitalised: true,
-          isCharge: false,
         ),
         factor: DayCountFactor(primaryPeriodFraction: fraction),
       );
@@ -60,7 +59,6 @@ void main() {
             label: '',
             mode: Mode.arrear,
             isInterestCapitalised: null,
-            isCharge: true
           ),
           factor: const DayCountFactor(primaryPeriodFraction: 1 / 12),
         ),

@@ -6,7 +6,7 @@ import 'package:curo/src/utils.dart';
 ///
 /// Uses the formula:
 ///
-/// >  `f = [360 × (Y2 − Y1) + 30 × (M2 − M1) + (D2 − D1)] / 360`
+/// >  `t = [360 × (Y2 − Y1) + 30 × (M2 − M1) + (D2 − D1)] / 360`
 ///
 /// Where:
 /// - D1 is set to 30 if the start day is 31

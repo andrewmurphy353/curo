@@ -12,8 +12,8 @@ void main() {
         DateTime.utc(2020, 2, 28),
       );
       expect(factor.primaryPeriodFraction, closeTo(31 / 365, 1e-10));
-      expect(factor.toString(), 'f = 31/365 = 0.08493151');
-      expect(factor.toFoldedString(), 'f = 31/365 = 0.08493151');
+      expect(factor.toString(), 't = 31/365 = 0.08493151');
+      expect(factor.toFoldedString(), 't = 31/365 = 0.08493151');
     });
 
     test('28/01/2019 to 28/02/2019 (non-leap year)', () {
@@ -22,8 +22,8 @@ void main() {
         DateTime.utc(2019, 2, 28),
       );
       expect(factor.primaryPeriodFraction, closeTo(31 / 365, 1e-10));
-      expect(factor.toString(), 'f = 31/365 = 0.08493151');
-      expect(factor.toFoldedString(), 'f = 31/365 = 0.08493151');
+      expect(factor.toString(), 't = 31/365 = 0.08493151');
+      expect(factor.toFoldedString(), 't = 31/365 = 0.08493151');
     });
 
     test('31/12/2017 to 31/12/2019 (multi-year)', () {
@@ -32,8 +32,8 @@ void main() {
         DateTime.utc(2019, 12, 31),
       );
       expect(factor.primaryPeriodFraction, closeTo(730 / 365, 1e-10));
-      expect(factor.toString(), 'f = 730/365 = 2.00000000');
-      expect(factor.toFoldedString(), 'f = 2 = 2.00000000');
+      expect(factor.toString(), 't = 730/365 = 2.00000000');
+      expect(factor.toFoldedString(), 't = 2 = 2.00000000');
     });
 
     test('30/06/2019 to 30/06/2021 (multi-year with folding)', () {
@@ -42,8 +42,8 @@ void main() {
         DateTime.utc(2021, 6, 30),
       );
       expect(factor.primaryPeriodFraction, closeTo(731 / 365, 1e-10));
-      expect(factor.toString(), 'f = 731/365 = 2.00273973');
-      expect(factor.toFoldedString(), 'f = 2 + 1/365 = 2.00273973');
+      expect(factor.toString(), 't = 731/365 = 2.00273973');
+      expect(factor.toFoldedString(), 't = 2 + 1/365 = 2.00273973');
     });
 
     test('same day returns zero', () {
@@ -52,8 +52,8 @@ void main() {
         DateTime.utc(2020, 1, 1),
       );
       expect(factor.primaryPeriodFraction, 0.0);
-      expect(factor.toString(), 'f = 0/365 = 0.00000000');
-      expect(factor.toFoldedString(), 'f = 0 = 0.00000000');
+      expect(factor.toString(), 't = 0/365 = 0.00000000');
+      expect(factor.toFoldedString(), 't = 0 = 0.00000000');
     });
 
     test('end before start throws ArgumentError', () {

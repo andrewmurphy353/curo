@@ -1,8 +1,10 @@
+export 'calculator_helper.dart' show AmortisedItem, CashFlowWithFactor;
 export 'calculator_schedule.dart';
-export 'daycounts/convention.dart' hide Convention;
+export 'daycounts/convention.dart';
 export 'enums.dart' hide DayCountOrigin, ValidationMode;
 export 'exceptions.dart';
-export 'series.dart' hide Series;
+export 'series.dart';
+export 'utils.dart';
 
 import 'dart:math';
 
@@ -258,8 +260,10 @@ class Calculator {
       // Coverage note: UnsolvableException in solveValue is unreachable
       // due to validation ensuring monotonic NFV with root in bracket.
       // Convergence failure impossible within valid precision (0-4).
+      // coverage:ignore-start
       throw UnsolvableException(
-          'No amount found that satisfies the given rate'); // coverage:ignore-line
+          'No amount found that satisfies the given rate');
+      // coverage:ignore-end
     }
   }
 
@@ -311,9 +315,7 @@ class Calculator {
       for (final item in _profile!) {
         final cf = item.cashFlow;
         final factor = item.factor;
-
-        late double amountDiscounted;
-        late final String discountLog = factor.toFoldedString();
+        double amountDiscounted;
 
         if (convention is USAppendixJ) {
           final f = factor.partialPeriodFraction ?? 0.0;
@@ -336,7 +338,7 @@ class Calculator {
           date: dateKey(cf),
           label: cf.label,
           amount: cf.amount,
-          discountLog: discountLog,
+          discountLog: factor.toFoldedString(),
           amountDiscounted: amountDiscounted,
           discountedBalance: gaussRound(runningDiscounted, 6),
           capital: null,
@@ -365,7 +367,7 @@ class Calculator {
           capital: gaussRound(capital, precision),
           interest: gaussRound(item.interest, precision),
           capitalBalance: gaussRound(item.capitalBalance, precision),
-          discountLog: null,
+          discountLog: item.factor.toFoldedString(),
           amountDiscounted: null,
           discountedBalance: null,
         ));

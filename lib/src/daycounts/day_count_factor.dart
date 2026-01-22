@@ -17,7 +17,7 @@ class DayCountFactor {
   final double primaryPeriodFraction;
   final double? partialPeriodFraction;
 
-  /// Log entries for standard conventions, e.g., \["f = 31/360 = 0.08611111"]
+  /// Log entries for standard conventions, e.g., \["t = 31/360 = 0.08611111"]
   final List<String> discountFactorLog;
 
   /// Log entries for US Appendix J, e.g., \["t = 1", "f = 5/30 = 0.16666667", "p = 12"]
@@ -51,7 +51,7 @@ class DayCountFactor {
   /// Standard string representation, rounded to 8 decimals.
   ///
   /// Examples:
-  /// - Standard: "f = 31/360 = 0.08611111"
+  /// - Standard: "t = 31/360 = 0.08611111"
   /// - US Appendix J: "t = 1 : f = 5/30 = 0.16666667 : p = 12"
   ///
   @override
@@ -77,7 +77,7 @@ class DayCountFactor {
     final operandText = operands.join(' + ');
     final rounded = gaussRound(primaryPeriodFraction, 8).toStringAsFixed(8);
 
-    return 'f = $operandText = $rounded';
+    return 't = $operandText = $rounded';
   }
 
   /// Compressed representation that folds repeated or simplifiable operands.
@@ -128,6 +128,6 @@ class DayCountFactor {
     final operandText = foldedParts.join(' + ');
     final rounded = gaussRound(primaryPeriodFraction, 8).toStringAsFixed(8);
 
-    return 'f = $operandText = $rounded';
+    return 't = $operandText = $rounded';
   }
 }

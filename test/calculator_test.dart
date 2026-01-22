@@ -80,9 +80,11 @@ void main() async {
       ));
     test('including charges : includeNonFinancingFlows: true', () async {
       final convention = US30U360(includeNonFinancingFlows: true);
+      final startDate = DateTime.utc(2026, 1, 20);
       final pmt = await calculator.solveValue(
-          convention: convention, interestRate: 0.1);
-      final irr = await calculator.solveRate(convention: convention);
+          convention: convention, interestRate: 0.1, startDate: startDate);
+      final irr = await calculator.solveRate(
+          convention: convention, startDate: startDate);
       final schedule =
           calculator.buildSchedule(convention: convention, interestRate: irr);
 
@@ -113,9 +115,11 @@ post_date    label                            amount        capital       intere
     });
     test('excluding charges : includeNonFinancingFlows: false', () async {
       final convention = US30U360(includeNonFinancingFlows: false); //default
+      final startDate = DateTime.utc(2026, 1, 20);
       final pmt = await calculator.solveValue(
-          convention: convention, interestRate: 0.1);
-      final irr = await calculator.solveRate(convention: convention);
+          convention: convention, interestRate: 0.1, startDate: startDate);
+      final irr = await calculator.solveRate(
+          convention: convention, startDate: startDate);
       final schedule =
           calculator.buildSchedule(convention: convention, interestRate: irr);
 

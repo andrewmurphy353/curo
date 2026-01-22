@@ -1,8 +1,8 @@
 name: curo
 
-version: 3.0.0
+version: 3.0.1
 
-description: A feature-rich library for performing simple to advanced instalment credit financial calculations.
+description: Powerful, modern Dart library for precise instalment credit calculations - from simple loans to advanced amortisation schedules.
 
 homepage: https://github.com/andrewmurphy353/curo
 
@@ -11,7 +11,7 @@ environment:
 
 dependencies:
   intl: ^0.20.2
-  meta: ^1.18.0
+  meta: ^1.17.0
 
 dev_dependencies:
   coverage: ^1.15.0

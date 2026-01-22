@@ -65,7 +65,7 @@ List<AmortisedItem> amortiseInterest(
     final cf = item.cashFlow;
     final factor = item.factor;
 
-    if (cf.isCharge) {
+    if (item.cashFlow.type == CashFlowType.charge) {
       if (convention.includeNonFinancingFlows) {
         // Include in carrying balance.
         capitalBalance += cf.amount;
@@ -168,11 +168,10 @@ List<CashFlowWithFactor> assignFactors({
 
   final List<CashFlowWithFactor> withFactors = [];
 
-  // Find the earliest advance (negative amount, not charge) date
+  // Find the earliest advance date
   DateTime? drawdownDate;
   for (final cf in profile) {
-    if (!cf.isCharge && cf.amount < 0) {
-      // It's an advance
+    if (cf.type == CashFlowType.advance) {
       final candidate = convention.usePostDates ? cf.postDate : cf.valueDate;
       if (drawdownDate == null || candidate.isBefore(drawdownDate)) {
         drawdownDate = candidate;
@@ -202,7 +201,7 @@ List<CashFlowWithFactor> assignFactors({
 
       // Only advance previousDate if it's a financing flow (not charge)
       // This matches Python: charges don't progress the period
-      if (!cf.isCharge) {
+      if (!(cf.type == CashFlowType.charge)) {
         previousDate = currentDate;
       }
     }
@@ -485,7 +484,10 @@ double nfv({
         final cf = item.cashFlow;
 
         // Skip charges unless included
-        if (cf.isCharge && !convention.includeNonFinancingFlows) continue;
+        if ((cf.type == CashFlowType.charge) &&
+            !convention.includeNonFinancingFlows) {
+          continue;
+        }
 
         double amount = cf.amount;
         if (trialBaseValue != null && !cf.isKnown) {
@@ -515,7 +517,10 @@ double nfv({
         final cf = item.cashFlow;
 
         // Skip charges unless included
-        if (cf.isCharge && !convention.includeNonFinancingFlows) continue;
+        if (cf.type == CashFlowType.charge &&
+            !convention.includeNonFinancingFlows) {
+          continue;
+        }
 
         double amount = cf.amount;
         if (trialBaseValue != null && !cf.isKnown) {
@@ -607,7 +612,6 @@ List<CashFlowWithFactor> updateUnknowns({
         label: item.cashFlow.label,
         mode: item.cashFlow.mode,
         isInterestCapitalised: item.cashFlow.isInterestCapitalised,
-        isCharge: item.cashFlow.isCharge,
       ),
       factor: item.factor,
     );

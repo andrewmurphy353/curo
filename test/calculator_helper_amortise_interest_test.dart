@@ -24,7 +24,6 @@ void main() {
         label: '',
         mode: mode ?? Mode.arrear,
         isInterestCapitalised: isInterestCapitalised,
-        isCharge: isCharge,
       ),
       factor: DayCountFactor(
         primaryPeriodFraction: primaryFraction,

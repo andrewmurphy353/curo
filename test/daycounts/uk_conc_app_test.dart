@@ -15,16 +15,16 @@ void main() {
         DateTime.utc(2025, 2, 28),
       );
       expect(factor.primaryPeriodFraction, closeTo(1 / 12, 1e-10));
-      expect(factor.toString(), 'f = 1/12 = 0.08333333');
-      expect(factor.toFoldedString(), 'f = 1/12 = 0.08333333');
+      expect(factor.toString(), 't = 1/12 = 0.08333333');
+      expect(factor.toFoldedString(), 't = 1/12 = 0.08333333');
     });
 
     test('31/01/2025 -> 28/02/2029 (multiple years)', () {
       final factor = dc.computeFactor(
           DateTime.utc(2025, 1, 31), DateTime.utc(2031, 2, 28));
       expect(factor.primaryPeriodFraction, closeTo(6 + 1 / 12, 1e-10));
-      expect(factor.toString(), 'f = 73/12 = 6.08333333');
-      expect(factor.toFoldedString(), 'f = 6 + 1/12 = 6.08333333');
+      expect(factor.toString(), 't = 73/12 = 6.08333333');
+      expect(factor.toFoldedString(), 't = 6 + 1/12 = 6.08333333');
     });
 
     test('12/01/2025 -> 15/02/2025 (1 whole month + 3 residual days)', () {
@@ -33,8 +33,8 @@ void main() {
         DateTime.utc(2025, 2, 15),
       );
       expect(factor.primaryPeriodFraction, closeTo(1 / 12 + 3 / 365, 1e-10));
-      expect(factor.toString(), 'f = 1/12 + 3/365 = 0.09155251');
-      expect(factor.toFoldedString(), 'f = 1/12 + 3/365 = 0.09155251');
+      expect(factor.toString(), 't = 1/12 + 3/365 = 0.09155251');
+      expect(factor.toFoldedString(), 't = 1/12 + 3/365 = 0.09155251');
     });
 
     test('31/01/2020 -> 29/02/2020 (leap year whole month)', () {
@@ -43,8 +43,8 @@ void main() {
         DateTime.utc(2020, 2, 29),
       );
       expect(factor.primaryPeriodFraction, closeTo(1 / 12, 1e-10));
-      expect(factor.toString(), 'f = 1/12 = 0.08333333');
-      expect(factor.toFoldedString(), 'f = 1/12 = 0.08333333');
+      expect(factor.toString(), 't = 1/12 = 0.08333333');
+      expect(factor.toFoldedString(), 't = 1/12 = 0.08333333');
     });
   });
   group('UKConcApp - secured (App 1.1), weekly', () {
@@ -60,8 +60,8 @@ void main() {
       );
       // 21 days = exactly 3 weeks, no residual
       expect(factor.primaryPeriodFraction, closeTo(3 / 52, 1e-10));
-      expect(factor.toString(), 'f = 3/52 = 0.05769231');
-      expect(factor.toFoldedString(), 'f = 3/52 = 0.05769231');
+      expect(factor.toString(), 't = 3/52 = 0.05769231');
+      expect(factor.toFoldedString(), 't = 3/52 = 0.05769231');
     });
     test('01/01/2020 -> 29/01/2020 (exactly 4 weeks)', () {
       final factor = dc.computeFactor(
@@ -69,8 +69,8 @@ void main() {
         DateTime.utc(2020, 1, 29),
       );
       expect(factor.primaryPeriodFraction, closeTo(4 / 52, 1e-10));
-      expect(factor.toString(), 'f = 4/52 = 0.07692308');
-      expect(factor.toFoldedString(), 'f = 4/52 = 0.07692308');
+      expect(factor.toString(), 't = 4/52 = 0.07692308');
+      expect(factor.toFoldedString(), 't = 4/52 = 0.07692308');
     });
     test('01/01/2020 -> 23/01/2020 (3 weeks + 1 day residual)', () {
       final factor = dc.computeFactor(
@@ -79,8 +79,8 @@ void main() {
       );
       // 22 days = 3 weeks + 1 day
       expect(factor.primaryPeriodFraction, closeTo(3 / 52 + 1 / 366, 1e-10));
-      expect(factor.toString(), 'f = 3/52 + 1/366 = 0.06042455');
-      expect(factor.toFoldedString(), 'f = 3/52 + 1/366 = 0.06042455');
+      expect(factor.toString(), 't = 3/52 + 1/366 = 0.06042455');
+      expect(factor.toFoldedString(), 't = 3/52 + 1/366 = 0.06042455');
     });
   });
   group(
@@ -100,8 +100,8 @@ void main() {
             DateTime.utc(2020, 3, 1),
           );
           expect(factor.primaryPeriodFraction, closeTo(1 / 12, 1e-10));
-          expect(factor.toString(), 'f = 1/12 = 0.08333333');
-          expect(factor.toFoldedString(), 'f = 1/12 = 0.08333333');
+          expect(factor.toString(), 't = 1/12 = 0.08333333');
+          expect(factor.toFoldedString(), 't = 1/12 = 0.08333333');
         },
       );
       test('1/02/2025 --> 01/03/2029 (multiple years)', () {
@@ -110,8 +110,8 @@ void main() {
           DateTime.utc(2031, 3, 1),
         );
         expect(factor.primaryPeriodFraction, 6.08333333333333333);
-        expect(factor.toString(), 'f = 73/12 = 6.08333333');
-        expect(factor.toFoldedString(), 'f = 6 + 1/12 = 6.08333333');
+        expect(factor.toString(), 't = 73/12 = 6.08333333');
+        expect(factor.toFoldedString(), 't = 6 + 1/12 = 6.08333333');
       });
     },
   );
@@ -127,8 +127,8 @@ void main() {
         DateTime.utc(2025, 2, 28),
       );
       expect(factor.primaryPeriodFraction, closeTo(1 / 12, 1e-10));
-      expect(factor.toString(), 'f = 1/12 = 0.08333333');
-      expect(factor.toFoldedString(), 'f = 1/12 = 0.08333333');
+      expect(factor.toString(), 't = 1/12 = 0.08333333');
+      expect(factor.toFoldedString(), 't = 1/12 = 0.08333333');
     });
     test('12/01/2025 -> 15/02/2025 (1 whole month + 3 residual days)', () {
       final factor = dc.computeFactor(
@@ -136,8 +136,8 @@ void main() {
         DateTime.utc(2025, 2, 15),
       );
       expect(factor.primaryPeriodFraction, closeTo(1 / 12 + 3 / 365, 1e-10));
-      expect(factor.toString(), 'f = 1/12 + 3/365 = 0.09155251');
-      expect(factor.toFoldedString(), 'f = 1/12 + 3/365 = 0.09155251');
+      expect(factor.toString(), 't = 1/12 + 3/365 = 0.09155251');
+      expect(factor.toFoldedString(), 't = 1/12 + 3/365 = 0.09155251');
     });
     test('31/01/2020 -> 29/02/2020 (leap year whole month)', () {
       final factor = dc.computeFactor(
@@ -145,8 +145,8 @@ void main() {
         DateTime.utc(2020, 2, 29),
       );
       expect(factor.primaryPeriodFraction, closeTo(1 / 12, 1e-10));
-      expect(factor.toString(), 'f = 1/12 = 0.08333333');
-      expect(factor.toFoldedString(), 'f = 1/12 = 0.08333333');
+      expect(factor.toString(), 't = 1/12 = 0.08333333');
+      expect(factor.toFoldedString(), 't = 1/12 = 0.08333333');
     });
     test('15/12/2023 --> 29/02/2024 (cross-year, leap)', () {
       final factor = dc.computeFactor(
@@ -154,7 +154,7 @@ void main() {
         DateTime.utc(2024, 2, 29),
       );
       expect(factor.primaryPeriodFraction, closeTo(2 / 12 + 14 / 366, 1e-10));
-      expect(factor.toString(), 'f = 2/12 + 14/366 = 0.20491803');
+      expect(factor.toString(), 't = 2/12 + 14/366 = 0.20491803');
     });
     test('20/11/2023 --> 15/01/2024 (remaining days cross-year, leap)', () {
       final factor = dc.computeFactor(
@@ -163,7 +163,7 @@ void main() {
       );
       expect(factor.primaryPeriodFraction,
           closeTo(1 / 12 + 11 / 365 + 14 / 366, 1e-10));
-      expect(factor.toString(), 'f = 1/12 + 11/365 + 14/366 = 0.15172169');
+      expect(factor.toString(), 't = 1/12 + 11/365 + 14/366 = 0.15172169');
     });
   });
 
@@ -180,8 +180,8 @@ void main() {
       );
       // 21 days = exactly 3 weeks, no residual
       expect(factor.primaryPeriodFraction, closeTo(3 / 52, 1e-10));
-      expect(factor.toString(), 'f = 3/52 = 0.05769231');
-      expect(factor.toFoldedString(), 'f = 3/52 = 0.05769231');
+      expect(factor.toString(), 't = 3/52 = 0.05769231');
+      expect(factor.toFoldedString(), 't = 3/52 = 0.05769231');
     });
     test('01/01/2020 -> 29/01/2020 (exactly 4 weeks)', () {
       final factor = dc.computeFactor(
@@ -189,8 +189,8 @@ void main() {
         DateTime.utc(2020, 1, 29),
       );
       expect(factor.primaryPeriodFraction, closeTo(4 / 52, 1e-10));
-      expect(factor.toString(), 'f = 4/52 = 0.07692308');
-      expect(factor.toFoldedString(), 'f = 4/52 = 0.07692308');
+      expect(factor.toString(), 't = 4/52 = 0.07692308');
+      expect(factor.toFoldedString(), 't = 4/52 = 0.07692308');
     });
     test('01/01/2020 -> 23/01/2020 (3 weeks + 1 day residual)', () {
       final factor = dc.computeFactor(
@@ -199,27 +199,27 @@ void main() {
       );
       // 22 days = 3 weeks + 1 day
       expect(factor.primaryPeriodFraction, closeTo(3 / 52 + 1 / 366, 1e-10));
-      expect(factor.toString(), 'f = 3/52 + 1/366 = 0.06042455');
-      expect(factor.toFoldedString(), 'f = 3/52 + 1/366 = 0.06042455');
+      expect(factor.toString(), 't = 3/52 + 1/366 = 0.06042455');
+      expect(factor.toFoldedString(), 't = 3/52 + 1/366 = 0.06042455');
     });
     test('31/01/2025 --> 28/02/2025 (whole weeks)', () {
       final factor = dc.computeFactor(
           DateTime.utc(2025, 1, 31), DateTime.utc(2025, 2, 28));
       expect(factor.primaryPeriodFraction, closeTo(4 / 52, 1e-10));
-      expect(factor.toString(), 'f = 4/52 = 0.07692308');
+      expect(factor.toString(), 't = 4/52 = 0.07692308');
     });
     test('01/01/2023 --> 14/01/2024 (whole weeks, cross-year)', () {
       final factor =
           dc.computeFactor(DateTime.utc(2023, 1, 1), DateTime.utc(2024, 1, 14));
       expect(factor.primaryPeriodFraction, closeTo(1 + 2 / 52, 1e-10));
-      expect(factor.toString(), 'f = 54/52 = 1.03846154');
-      expect(factor.toFoldedString(), 'f = 1 + 2/52 = 1.03846154');
+      expect(factor.toString(), 't = 54/52 = 1.03846154');
+      expect(factor.toFoldedString(), 't = 1 + 2/52 = 1.03846154');
     });
     test('12/01/2024 --> 30/01/2024 (non-whole)', () {
       final factor = dc.computeFactor(
           DateTime.utc(2024, 1, 12), DateTime.utc(2024, 1, 30));
       expect(factor.primaryPeriodFraction, closeTo(2 / 52 + 4 / 366, 1e-10));
-      expect(factor.toString(), 'f = 2/52 + 4/366 = 0.04939050');
+      expect(factor.toString(), 't = 2/52 + 4/366 = 0.04939050');
     });
     test('02/12/2023 --> 05/01/2024 (remaining days cross-year, leap)', () {
       final factor = dc.computeFactor(
@@ -228,7 +228,7 @@ void main() {
       );
       expect(factor.primaryPeriodFraction,
           closeTo(4 / 52 + 1 / 365 + 4 / 366, 1e-10));
-      expect(factor.toString(), 'f = 4/52 + 1/365 + 4/366 = 0.09059176');
+      expect(factor.toString(), 't = 4/52 + 1/365 + 4/366 = 0.09059176');
     });
   });
 
@@ -259,8 +259,8 @@ void main() {
       DateTime.utc(2020, 1, 1),
     );
     expect(factor.primaryPeriodFraction, 0.0);
-    expect(factor.toString(), 'f = 0 = 0.00000000');
-    expect(factor.toFoldedString(), 'f = 0 = 0.00000000');
+    expect(factor.toString(), 't = 0 = 0.00000000');
+    expect(factor.toFoldedString(), 't = 0 = 0.00000000');
   });
 
   test('end before start throws ArgumentError', () {

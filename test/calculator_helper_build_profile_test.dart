@@ -1,7 +1,6 @@
 import 'package:curo/src/calculator.dart';
 import 'package:curo/src/calculator_helper.dart';
 import 'package:curo/src/enums.dart';
-import 'package:curo/src/series.dart';
 import 'package:test/test.dart';
 
 // Tests cover buildOrReuseProfile and buildProfile
@@ -23,7 +22,6 @@ void main() {
           label: '',
           mode: Mode.arrear,
           isInterestCapitalised: true,
-          isCharge: false,
         ),
         factor: const DayCountFactor(primaryPeriodFraction: 0.0),
       );
@@ -127,9 +125,9 @@ void main() {
     expect(profileByPostDate.map((cfwf) => cfwf.cashFlow.valueDate),
         [date3, date2, date3]);
     expect(profileByPostDate.map((cfwf) => cfwf.factor.toString()), [
-      'f = 0/360 = 0.00000000',
-      'f = 30/360 = 0.08333333',
-      'f = 30/360 = 0.08333333',
+      't = 0/360 = 0.00000000',
+      't = 30/360 = 0.08333333',
+      't = 30/360 = 0.08333333',
     ]);
 
     // Now by valueDate
@@ -147,9 +145,9 @@ void main() {
     expect(profileByValueDate.map((cfwf) => cfwf.cashFlow.valueDate),
         [date2, date3, date3]);
     expect(profileByValueDate.map((cfwf) => cfwf.factor.toString()), [
-      'f = 0/360 = 0.00000000', // All cashflow value dates <= date3
-      'f = 0/360 = 0.00000000',
-      'f = 0/360 = 0.00000000',
+      't = 0/360 = 0.00000000', // All cashflow value dates <= date3
+      't = 0/360 = 0.00000000',
+      't = 0/360 = 0.00000000',
     ]);
   });
 
@@ -185,7 +183,7 @@ void main() {
     expect(cf.amount, -1000.0);
     expect(cf.isKnown, true);
     expect(cf.label, 'Loan advance');
-    expect(cf.isCharge, false);
+    expect(cf.type, equals(CashFlowType.advance));
     expect(cf.isInterestCapitalised, null);
   });
 
@@ -210,7 +208,7 @@ void main() {
     expect(cf.postDate, startDate);
     expect(cf.amount, 1050.0);
     expect(cf.isInterestCapitalised, true);
-    expect(cf.isCharge, false);
+    expect(cf.type, equals(CashFlowType.payment));
   });
 
   test('multiple series - advance, payment, charge', () {
@@ -245,7 +243,8 @@ void main() {
       50.0,
       1050.0,
     ]); // sorted by postDate
-    expect(profile.map((cf) => cf.isCharge), [false, true, false]);
+    expect(profile.map((cf) => (cf.type == CashFlowType.charge)),
+        [false, true, false]);
   });
 
   test('undated payment Mode.arrear - first at end of period', () {

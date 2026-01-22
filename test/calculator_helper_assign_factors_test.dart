@@ -1,8 +1,5 @@
 import 'package:curo/src/calculator.dart';
 import 'package:curo/src/calculator_helper.dart';
-import 'package:curo/src/daycounts/convention.dart';
-import 'package:curo/src/series.dart';
-import 'package:curo/src/utils.dart';
 import 'package:test/test.dart';
 
 class MockConvention extends Convention {
@@ -55,7 +52,7 @@ void main() {
       expect(convention.calls[0].$1, startDate);
       expect(convention.calls[0].$2, startDate);
       final expected =
-          'CashFlowWithFactor(cashFlow: (amount: -1000.0, isCharge: false, isInterestCapitalised: null, isKnown: true, label: , mode: Mode.advance, postDate: 2026-01-01 00:00:00.000Z, type: CashFlowType.advance, valueDate: 2026-01-01 00:00:00.000Z, weighting: 1.0), factor: f = 0/365 = 0.00000000)';
+          'CashFlowWithFactor(cashFlow: (amount: -1000.0, isInterestCapitalised: null, isKnown: true, label: , mode: Mode.advance, postDate: 2026-01-01 00:00:00.000Z, type: CashFlowType.advance, valueDate: 2026-01-01 00:00:00.000Z, weighting: 1.0), factor: t = 0/365 = 0.00000000)';
       expect(result[0].toString(), expected);
     });
 

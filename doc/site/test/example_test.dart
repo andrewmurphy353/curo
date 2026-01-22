@@ -121,7 +121,7 @@ void main() {
         expect(advance.date, equals(DateTime.utc(2026, 1, 5)));
         expect(advance.label, equals('Loan'));
         expect(advance.amount, closeTo(-10000.0, 0.01));
-        expect(advance.discountLog, equals('f = 0 = 0.00000000'));
+        expect(advance.discountLog, equals('t = 0 = 0.00000000'));
         expect(advance.amountDiscounted, closeTo(-10000.0, 0.01));
         expect(advance.discountedBalance, closeTo(-10000.0, 0.01));
         expect(advance.type, equals(CashFlowType.advance));
@@ -131,7 +131,7 @@ void main() {
         expect(charge.date, equals(DateTime.utc(2026, 2, 5)));
         expect(charge.label, equals('Fee'));
         expect(charge.amount, closeTo(50.00, 0.01));
-        expect(charge.discountLog, equals('f = 1/12 = 0.08333333'));
+        expect(charge.discountLog, equals('t = 1/12 = 0.08333333'));
         expect(charge.amountDiscounted, closeTo(49.59, 0.01));
         expect(charge.discountedBalance, closeTo(-8257.49, 0.01));
         expect(charge.type, equals(CashFlowType.charge));
@@ -141,7 +141,7 @@ void main() {
         expect(finalPayment.date, equals(DateTime.utc(2026, 7, 5)));
         expect(finalPayment.label, equals('Instalment'));
         expect(finalPayment.amount, closeTo(1707.00, 0.01));
-        expect(finalPayment.discountLog, equals('f = 6/12 = 0.50000000'));
+        expect(finalPayment.discountLog, equals('t = 6/12 = 0.50000000'));
         expect(finalPayment.amountDiscounted, closeTo(1624.26, 0.01));
         expect(finalPayment.discountedBalance, closeTo(0.0, 0.001));
         expect(finalPayment.type, equals(CashFlowType.payment));

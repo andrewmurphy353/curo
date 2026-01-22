@@ -12,8 +12,8 @@ void main() {
         DateTime.utc(2020, 2, 28),
       );
       expect(factor.primaryPeriodFraction, closeTo(31 / 366, 1e-10));
-      expect(factor.toString(), 'f = 31/366 = 0.08469945');
-      expect(factor.toFoldedString(), 'f = 31/366 = 0.08469945');
+      expect(factor.toString(), 't = 31/366 = 0.08469945');
+      expect(factor.toFoldedString(), 't = 31/366 = 0.08469945');
     });
 
     test('28/01/2019 to 28/02/2019 (non-leap year)', () {
@@ -22,8 +22,8 @@ void main() {
         DateTime.utc(2019, 2, 28),
       );
       expect(factor.primaryPeriodFraction, closeTo(31 / 365, 1e-10));
-      expect(factor.toString(), 'f = 31/365 = 0.08493151');
-      expect(factor.toFoldedString(), 'f = 31/365 = 0.08493151');
+      expect(factor.toString(), 't = 31/365 = 0.08493151');
+      expect(factor.toFoldedString(), 't = 31/365 = 0.08493151');
     });
 
     test('31/12/2017 to 31/12/2019 (multi-year non-leap)', () {
@@ -34,8 +34,8 @@ void main() {
       // 1 day (2017) / 365 + 365/365 (2018) + 364/365 (2019) = 2
       // (Last day in 2019 isn't counted)
       expect(factor.primaryPeriodFraction, closeTo(730 / 365, 1e-10));
-      expect(factor.toString(), 'f = 1/365 + 365/365 + 364/365 = 2.00000000');
-      expect(factor.toFoldedString(), 'f = 1/365 + 1 + 364/365 = 2.00000000');
+      expect(factor.toString(), 't = 1/365 + 365/365 + 364/365 = 2.00000000');
+      expect(factor.toFoldedString(), 't = 1/365 + 1 + 364/365 = 2.00000000');
     });
 
     test('30/06/2019 to 30/06/2021 (leap year in middle)', () {
@@ -45,8 +45,8 @@ void main() {
       );
       // 185 days in 2019 / 365 + full 2020 / 366 + 180 days in 2021 / 365
       expect(factor.primaryPeriodFraction, closeTo(2.0, 1e-10));
-      expect(factor.toString(), 'f = 185/365 + 366/366 + 180/365 = 2.00000000');
-      expect(factor.toFoldedString(), 'f = 185/365 + 1 + 180/365 = 2.00000000');
+      expect(factor.toString(), 't = 185/365 + 366/366 + 180/365 = 2.00000000');
+      expect(factor.toFoldedString(), 't = 185/365 + 1 + 180/365 = 2.00000000');
     });
 
     test('2020-02-29 to 2021-02-28 (leap day to non-leap)', () {
@@ -60,8 +60,8 @@ void main() {
         factor.primaryPeriodFraction,
         closeTo(307 / 366 + 58 / 365, 1e-10),
       );
-      expect(factor.toString(), 'f = 307/366 + 58/365 = 0.99770192');
-      expect(factor.toFoldedString(), 'f = 307/366 + 58/365 = 0.99770192');
+      expect(factor.toString(), 't = 307/366 + 58/365 = 0.99770192');
+      expect(factor.toFoldedString(), 't = 307/366 + 58/365 = 0.99770192');
     });
 
     test('2019-12-31 to 2020-01-01 (single day across leap year)', () {
@@ -70,8 +70,8 @@ void main() {
         DateTime.utc(2020, 1, 1),
       );
       expect(factor.primaryPeriodFraction, closeTo(1 / 365, 1e-10));
-      expect(factor.toString(), 'f = 1/365 = 0.00273973');
-      expect(factor.toFoldedString(), 'f = 1/365 = 0.00273973');
+      expect(factor.toString(), 't = 1/365 = 0.00273973');
+      expect(factor.toFoldedString(), 't = 1/365 = 0.00273973');
     });
 
     test('same day returns zero', () {
@@ -80,8 +80,8 @@ void main() {
         DateTime.utc(2020, 1, 1),
       );
       expect(factor.primaryPeriodFraction, 0.0);
-      expect(factor.toString(), 'f = 0/365 = 0.00000000');
-      expect(factor.toFoldedString(), 'f = 0 = 0.00000000');
+      expect(factor.toString(), 't = 0/365 = 0.00000000');
+      expect(factor.toFoldedString(), 't = 0 = 0.00000000');
     });
 
     test('end before start throws ArgumentError', () {

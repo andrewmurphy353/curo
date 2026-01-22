@@ -1,5 +1,4 @@
 import 'package:curo/src/calculator.dart';
-import 'package:curo/src/utils.dart';
 import 'package:test/test.dart';
 
 void main() {

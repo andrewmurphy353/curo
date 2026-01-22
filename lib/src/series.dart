@@ -24,7 +24,6 @@ typedef CashFlow = ({
   String label,
   Mode mode,
   bool? isInterestCapitalised,
-  bool isCharge,
 });
 
 /// Sealed base class for all cash flow series (advances, payments, charges).
@@ -112,7 +111,6 @@ sealed class Series {
     // Determine sign and type flags
     final bool isAdvance = this is SeriesAdvance;
     final bool isPayment = this is SeriesPayment;
-    final bool isChargeType = this is SeriesCharge;
 
     final double baseAmount = amount ?? 0.0;
     final double signedAmount = isAdvance ? -baseAmount : baseAmount;
@@ -135,7 +133,6 @@ sealed class Series {
         mode: mode,
         isInterestCapitalised:
             isPayment ? (this as SeriesPayment).isInterestCapitalised : null,
-        isCharge: isChargeType,
       ));
     }
 

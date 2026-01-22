@@ -16,7 +16,6 @@ void main() {
           label: '',
           mode: Mode.arrear,
           isInterestCapitalised: true,
-          isCharge: false,
         ),
         factor: const DayCountFactor(primaryPeriodFraction: 0.0),
       );

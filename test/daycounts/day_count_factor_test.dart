@@ -1,5 +1,4 @@
 import 'package:curo/src/calculator.dart';
-import 'package:curo/src/utils.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -9,8 +8,8 @@ void main() {
         primaryPeriodFraction: 31 / 360,
         discountFactorLog: ['31/360'],
       );
-      expect(factor.toString(), 'f = 31/360 = 0.08611111');
-      expect(factor.toFoldedString(), 'f = 31/360 = 0.08611111');
+      expect(factor.toString(), 't = 31/360 = 0.08611111');
+      expect(factor.toFoldedString(), 't = 31/360 = 0.08611111');
     });
 
     test('multiple identical operands - folding', () {
@@ -18,8 +17,8 @@ void main() {
         primaryPeriodFraction: 4.0,
         discountFactorLog: ['1', '1', '1', '1'],
       );
-      expect(factor.toString(), 'f = 1 + 1 + 1 + 1 = 4.00000000');
-      expect(factor.toFoldedString(), 'f = 4 = 4.00000000');
+      expect(factor.toString(), 't = 1 + 1 + 1 + 1 = 4.00000000');
+      expect(factor.toFoldedString(), 't = 4 = 4.00000000');
     });
 
     test('mixed fractions and whole periods', () {
@@ -27,8 +26,8 @@ void main() {
         primaryPeriodFraction: 2 + 11 / 360,
         discountFactorLog: ['1', '1', '11/360'],
       );
-      expect(factor.toString(), 'f = 1 + 1 + 11/360 = 2.03055556');
-      expect(factor.toFoldedString(), 'f = 2 + 11/360 = 2.03055556');
+      expect(factor.toString(), 't = 1 + 1 + 11/360 = 2.03055556');
+      expect(factor.toFoldedString(), 't = 2 + 11/360 = 2.03055556');
     });
 
     test('fraction simplification in folding', () {
@@ -36,8 +35,8 @@ void main() {
         primaryPeriodFraction: 2 + 2 / 365 + 31 / 365,
         discountFactorLog: ['2/365', '1', '1', '31/365'],
       );
-      expect(factor.toString(), 'f = 2/365 + 1 + 1 + 31/365 = 2.09041096');
-      expect(factor.toFoldedString(), 'f = 2/365 + 2 + 31/365 = 2.09041096');
+      expect(factor.toString(), 't = 2/365 + 1 + 1 + 31/365 = 2.09041096');
+      expect(factor.toFoldedString(), 't = 2/365 + 2 + 31/365 = 2.09041096');
     });
 
     test('zero period', () {
@@ -45,8 +44,8 @@ void main() {
         primaryPeriodFraction: 0.0,
         discountFactorLog: ['0/360'],
       );
-      expect(factor.toString(), 'f = 0/360 = 0.00000000');
-      expect(factor.toFoldedString(), 'f = 0 = 0.00000000');
+      expect(factor.toString(), 't = 0/360 = 0.00000000');
+      expect(factor.toFoldedString(), 't = 0 = 0.00000000');
     });
 
     test('empty log falls back to 0', () {

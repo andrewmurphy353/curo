@@ -23,8 +23,8 @@ void main() {
         DateTime.utc(2012, 1, 12),
       );
       expect(factor.primaryPeriodFraction, 0.0);
-      expect(factor.toString(), 'f = 0 = 0.00000000');
-      expect(factor.toFoldedString(), 'f = 0 = 0.00000000');
+      expect(factor.toString(), 't = 0 = 0.00000000');
+      expect(factor.toFoldedString(), 't = 0 = 0.00000000');
     });
 
     test('end before start throws ArgumentError', () {
@@ -43,8 +43,8 @@ void main() {
         DateTime.utc(2020, 1, 12),
       );
       expect(factor.primaryPeriodFraction, closeTo(1.0, 1e-10));
-      expect(factor.toString(), 'f = 12/12 = 1.00000000');
-      expect(factor.toFoldedString(), 'f = 1 = 1.00000000');
+      expect(factor.toString(), 't = 12/12 = 1.00000000');
+      expect(factor.toFoldedString(), 't = 1 = 1.00000000');
     });
 
     test('31/01/2019 <-- 28/02/2019 (month-end alignment)', () {
@@ -53,8 +53,8 @@ void main() {
         DateTime.utc(2019, 2, 28),
       );
       expect(factor.primaryPeriodFraction, closeTo(1.0 / 12, 1e-10));
-      expect(factor.toString(), 'f = 1/12 = 0.08333333');
-      expect(factor.toFoldedString(), 'f = 1/12 = 0.08333333');
+      expect(factor.toString(), 't = 1/12 = 0.08333333');
+      expect(factor.toFoldedString(), 't = 1/12 = 0.08333333');
     });
 
     test('31/01/2020 <-- 29/02/2020 (leap year month-end)', () {
@@ -63,8 +63,8 @@ void main() {
         DateTime.utc(2020, 2, 29),
       );
       expect(factor.primaryPeriodFraction, closeTo(1.0 / 12, 1e-10));
-      expect(factor.toString(), 'f = 1/12 = 0.08333333');
-      expect(factor.toFoldedString(), 'f = 1/12 = 0.08333333');
+      expect(factor.toString(), 't = 1/12 = 0.08333333');
+      expect(factor.toFoldedString(), 't = 1/12 = 0.08333333');
     });
 
     test('28/02/2019 <-- 31/03/2019 (non-leap Feb end)', () {
@@ -73,8 +73,8 @@ void main() {
         DateTime.utc(2019, 3, 31),
       );
       expect(factor.primaryPeriodFraction, closeTo(1.0 / 12, 1e-10));
-      expect(factor.toString(), 'f = 1/12 = 0.08333333');
-      expect(factor.toFoldedString(), 'f = 1/12 = 0.08333333');
+      expect(factor.toString(), 't = 1/12 = 0.08333333');
+      expect(factor.toFoldedString(), 't = 1/12 = 0.08333333');
     });
 
     test('15/02/2019 <-- 15/03/2019 (mid-month)', () {
@@ -83,8 +83,8 @@ void main() {
         DateTime.utc(2019, 3, 15),
       );
       expect(factor.primaryPeriodFraction, closeTo(1.0 / 12, 1e-10));
-      expect(factor.toString(), 'f = 1/12 = 0.08333333');
-      expect(factor.toFoldedString(), 'f = 1/12 = 0.08333333');
+      expect(factor.toString(), 't = 1/12 = 0.08333333');
+      expect(factor.toFoldedString(), 't = 1/12 = 0.08333333');
     });
 
     test('31/01/2019 <-- 01/03/2019 (1 month + fractional days)', () {
@@ -94,8 +94,8 @@ void main() {
       );
       // 1 whole month + 1 day -> 1/12 + 1/365
       expect(factor.primaryPeriodFraction, closeTo(1 / 12 + 1 / 365, 1e-10));
-      expect(factor.toString(), 'f = 1/12 + 1/365 = 0.08607306');
-      expect(factor.toFoldedString(), 'f = 1/12 + 1/365 = 0.08607306');
+      expect(factor.toString(), 't = 1/12 + 1/365 = 0.08607306');
+      expect(factor.toFoldedString(), 't = 1/12 + 1/365 = 0.08607306');
     });
 
     test(
@@ -107,8 +107,8 @@ void main() {
         );
         // 2 whole months + 1 day -> 2/12 + 1/366
         expect(factor.primaryPeriodFraction, closeTo(2 / 12 + 1 / 366, 1e-10));
-        expect(factor.toString(), 'f = 2/12 + 1/366 = 0.16939891');
-        expect(factor.toFoldedString(), 'f = 2/12 + 1/366 = 0.16939891');
+        expect(factor.toString(), 't = 2/12 + 1/366 = 0.16939891');
+        expect(factor.toFoldedString(), 't = 2/12 + 1/366 = 0.16939891');
       },
     );
 
@@ -119,8 +119,8 @@ void main() {
       );
       // 17 whole months + (14 days)
       expect(factor.primaryPeriodFraction, closeTo(17 / 12 + 14 / 365, 1e-10));
-      expect(factor.toString(), 'f = 17/12 + 14/365 = 1.45502283');
-      expect(factor.toFoldedString(), 'f = 1 + 5/12 + 14/365 = 1.45502283');
+      expect(factor.toString(), 't = 17/12 + 14/365 = 1.45502283');
+      expect(factor.toFoldedString(), 't = 1 + 5/12 + 14/365 = 1.45502283');
     });
 
     test(
@@ -135,8 +135,8 @@ void main() {
           factor.primaryPeriodFraction,
           closeTo(17 / 12 + 14 / 366, 1e-10),
         );
-        expect(factor.toString(), 'f = 17/12 + 14/366 = 1.45491803');
-        expect(factor.toFoldedString(), 'f = 1 + 5/12 + 14/366 = 1.45491803');
+        expect(factor.toString(), 't = 17/12 + 14/366 = 1.45491803');
+        expect(factor.toFoldedString(), 't = 1 + 5/12 + 14/366 = 1.45491803');
       },
     );
   });
@@ -150,8 +150,8 @@ void main() {
         DateTime.utc(2020, 1, 1),
       );
       expect(factor.primaryPeriodFraction, 1.0);
-      expect(factor.toString(), 'f = 1/1 = 1.00000000');
-      expect(factor.toFoldedString(), 'f = 1 = 1.00000000');
+      expect(factor.toString(), 't = 1/1 = 1.00000000');
+      expect(factor.toFoldedString(), 't = 1 = 1.00000000');
     });
   });
 
@@ -164,8 +164,8 @@ void main() {
         DateTime.utc(2019, 1, 8),
       );
       expect(factor.primaryPeriodFraction, closeTo(1 / 52, 1e-10));
-      expect(factor.toString(), 'f = 1/52 = 0.01923077');
-      expect(factor.toFoldedString(), 'f = 1/52 = 0.01923077');
+      expect(factor.toString(), 't = 1/52 = 0.01923077');
+      expect(factor.toFoldedString(), 't = 1/52 = 0.01923077');
     });
   });
 
