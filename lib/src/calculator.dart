@@ -125,8 +125,11 @@ class Calculator {
   /// (NFV) of zero.
   ///
   /// [convention] The day count convention to use (e.g., [US30360], [USAppendixJ]).
-  /// [guess] Initial guess for the interest rate. Defaults to 0.1 (10%).
+  ///
   /// [upperBound] Upper limit for the search. Defaults to 10.0 (1000%).
+  ///
+  /// [tolerance] Minimum precision required from the returned root.
+  ///
   /// [startDate] Optional start date for undated series. Defaults to today if null.
   ///
   /// Returns the annualized effective interest rate, unrounded.
@@ -143,8 +146,8 @@ class Calculator {
   ///   (periodic rate × [DayCountTimePeriod.periodsInYear]).
   Future<double> solveRate({
     required Convention convention,
-    double guess = 0.1,
     double upperBound = 10.0,
+    double tolerance = 1e-8,
     DateTime? startDate,
   }) async {
     if (_series.isEmpty) {
@@ -167,7 +170,12 @@ class Calculator {
         nfv(profiled: profile, rate: r, convention: convention);
 
     try {
-      double result = brentSolve(f: nfvFunc, a: -0.999, b: upperBound);
+      double result = brentSolve(
+        f: nfvFunc,
+        a: -0.999,
+        b: upperBound,
+        tolerance: tolerance,
+      );
 
       // Convert back to *annual rate*, except for days
       if (convention is USAppendixJ &&
@@ -186,6 +194,8 @@ class Calculator {
   /// [convention] to use in calculation (e.g., [US30360], [USAppendixJ]).
   ///
   /// [interestRate] The known annualized effective interest rate (e.g., 0.12 for 12%).
+  ///
+  /// [tolerance] Minimum precision required from the returned root.
   ///
   /// [startDate] for constructing the cash flow profile for `undated` series.
   /// Defaults to the current system date if `null`.
@@ -208,6 +218,7 @@ class Calculator {
   Future<double> solveValue({
     required Convention convention,
     required double interestRate,
+    double tolerance = 1e-8,
     DateTime? startDate,
   }) async {
     if (_series.isEmpty) {
@@ -244,7 +255,7 @@ class Calculator {
         f: nfvFunc,
         a: -1e10,
         b: 1e10,
-        tolerance: 1e-10,
+        tolerance: tolerance,
       );
 
       // Return the amount for a single unknown with weighting = 1.0
