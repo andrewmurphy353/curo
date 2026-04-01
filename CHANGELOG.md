@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),  
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.3] - 2026-04-01
+
+### Added
+- Brazilian **Custo Efetivo Total (CET)** day count convention (`BrazilCet`) per **Resolução CMN nº 4.881/2020, Art. 4**.
+  This implements the Actual/365 Fixed method required for CET (the Brazilian equivalent of APR) calculations in closed-end consumer credit and financial leasing operations.
+
 ## [3.0.2] - 2026-01-26
 
 ### Fixed

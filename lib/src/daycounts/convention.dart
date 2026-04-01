@@ -1,6 +1,7 @@
 export 'actual_360.dart';
 export 'actual_365.dart';
 export 'actual_isda.dart';
+export 'brazil_cet.dart';
 export 'day_count_factor.dart';
 export 'eu_30_360.dart';
 export 'eu_2008_48_ec.dart';

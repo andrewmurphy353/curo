@@ -102,6 +102,7 @@ Convention|Description
 Actual ISDA | Uses actual days, accounting for leap and non-leap year portions.
 Actual/360 | Counts actual days, assuming a 360-day year.
 Actual/365 | Counts actual days, assuming a 365-day year.
+Brazil CET | Implements *Resolução CMN nº 4.881/2020, Art. 4* for Custo Efetivo Total (CET) — the Brazilian equivalent of APR for closed-end consumer credit and financial leasing.
 EU 30/360 | Assumes 30-day months and a 360-day year, per EU standards.
 EU 2023/2225 | Compliant with EU Directive 2023/2225 for APR calculations in consumer credit.
 UK CONC App | Supports UK APRC calculations for consumer credit, secured or unsecured.
