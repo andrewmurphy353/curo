@@ -177,7 +177,7 @@ sealed class Series {
       final isFeb = normalized.month == DateTime.february;
       final daysInFeb = (isFeb && isLeapYear(normalized.year)) ? 29 : 28;
 
-      // rollMonth will cap to last day of target month, or 
+      // rollMonth will cap to last day of target month, or
       // 28th/29th in the case of Feb start date
       preferredDay = isFeb ? daysInFeb : 31;
     }

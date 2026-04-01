@@ -150,32 +150,32 @@ post_date    label                            amount        capital       intere
   });
 
   group('Calculator ad-hoc calculations', () {
-    test('solve payment using a different interest frequency, leap day start', () async {
+    test('solve payment using a different interest frequency, leap day start',
+        () async {
       // This test is to check correct handling of month rolling
       // where a series starts on the last day of Feb - see series.dart
       // lines 175-183
       final calculator = Calculator()
-      ..add(SeriesAdvance(
-        numberOf: 1,
-        label: 'Loan',
-        amount: 10000,
-        postDateFrom: DateTime.utc(2024, 1, 31),
-      ))
-      ..add(SeriesPayment(
-        numberOf: 36,
-        label: 'Instalment',
-        amount: null,
-        isInterestCapitalised: false,
-        postDateFrom: DateTime.utc(2024, 2, 29)//leap year
-      ))
-      ..add(SeriesPayment(
-        numberOf: 12,
-        label: 'Interest',
-        amount: 0.0,
-        isInterestCapitalised: true,
-        frequency: Frequency.quarterly,
-        postDateFrom: DateTime.utc(2024, 4, 29)
-      ));
+        ..add(SeriesAdvance(
+          numberOf: 1,
+          label: 'Loan',
+          amount: 10000,
+          postDateFrom: DateTime.utc(2024, 1, 31),
+        ))
+        ..add(SeriesPayment(
+            numberOf: 36,
+            label: 'Instalment',
+            amount: null,
+            isInterestCapitalised: false,
+            postDateFrom: DateTime.utc(2024, 2, 29) //leap year
+            ))
+        ..add(SeriesPayment(
+            numberOf: 12,
+            label: 'Interest',
+            amount: 0.0,
+            isInterestCapitalised: true,
+            frequency: Frequency.quarterly,
+            postDateFrom: DateTime.utc(2024, 4, 29)));
       final convention = US30U360();
       final startDate = DateTime.utc(2026, 1, 31);
 
@@ -186,32 +186,32 @@ post_date    label                            amount        capital       intere
       expect(pmt, closeTo(322.27, 0.01));
       expect(irr, closeTo(0.09999676, 1e-8));
     });
-    test('solve payment using a different interest frequency, non-leap day start', () async {
+    test(
+        'solve payment using a different interest frequency, non-leap day start',
+        () async {
       // This test is to check correct handling of month rolling
       // where a series starts on the last day of Feb - see series.dart
       // lines 175-183
       final calculator = Calculator()
-      ..add(SeriesAdvance(
-        numberOf: 1,
-        label: 'Loan',
-        amount: 10000,
-        postDateFrom: DateTime.utc(2026, 1, 31),
-      ))
-      ..add(SeriesPayment(
-        numberOf: 36,
-        label: 'Instalment',
-        amount: null,
-        isInterestCapitalised: false,
-        postDateFrom: DateTime.utc(2026, 2, 28)
-      ))
-      ..add(SeriesPayment(
-        numberOf: 12,
-        label: 'Interest',
-        amount: 0.0,
-        isInterestCapitalised: true,
-        frequency: Frequency.quarterly,
-        postDateFrom: DateTime.utc(2026, 4, 28)
-      ));
+        ..add(SeriesAdvance(
+          numberOf: 1,
+          label: 'Loan',
+          amount: 10000,
+          postDateFrom: DateTime.utc(2026, 1, 31),
+        ))
+        ..add(SeriesPayment(
+            numberOf: 36,
+            label: 'Instalment',
+            amount: null,
+            isInterestCapitalised: false,
+            postDateFrom: DateTime.utc(2026, 2, 28)))
+        ..add(SeriesPayment(
+            numberOf: 12,
+            label: 'Interest',
+            amount: 0.0,
+            isInterestCapitalised: true,
+            frequency: Frequency.quarterly,
+            postDateFrom: DateTime.utc(2026, 4, 28)));
       final convention = US30U360();
       final startDate = DateTime.utc(2026, 1, 31);
 
