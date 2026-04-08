@@ -1,0 +1,852 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../example_03/">
+      
+      
+        <link rel="next" href="../example_05/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Example 4 - Curo Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#example-4-determine-a-supplier-0-finance-scheme-contribution-combined-with-a-deferred-settlement" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Curo Documentation" class="md-header__button md-logo" aria-label="Curo Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Curo Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Example 4
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/andrewmurphy353/curo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Curo Documentation" class="md-nav__button md-logo" aria-label="Curo Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Curo Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/andrewmurphy353/curo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../example_01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../example_02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../example_03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example 4
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cash-flow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cash Flow Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../example_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../example_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cash-flow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cash Flow Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="example-4-determine-a-supplier-0-finance-scheme-contribution-combined-with-a-deferred-settlement">Example 4: Determine a supplier 0% finance scheme contribution, combined with a deferred settlement</h1>
+<p>This example demonstrates how to calculate an equipment supplier's contribution to the borrower's finance costs in 0% finance offers, and incorporates a settlement deferral by the third-party finance company.</p>
+<h2 id="overview">Overview</h2>
+<p>This example illustrates the combination of two financial concepts:</p>
+<ul>
+<li>
+<p><strong>0% finance</strong>: These products can be characterised as containing disclosed and non-disclosed cash flows.</p>
+<ul>
+<li>The disclosed cash flows, which a borrower is aware of, are the full retail cost (advance) of the financed item and the payment cash flows which contain principal only; the sum of payment cash flows equals the item cost (advance), resulting in an effective 0% interest rate for the borrower.</li>
+<li>The non-disclosed cash flows are the direct transactions between supplier and lender, usually a cash discount to offset the financing costs of the lender.</li>
+</ul>
+</li>
+<li>
+<p><strong>Deferred settlements</strong>: This is where an equipment supplier with close ties to a finance company, allow them to defer payment for the equipment purchase to facilitate the pass on of benefits like reduced payments or interest to borrowers.</p>
+</li>
+</ul>
+<h2 id="code">Code</h2>
+<p>This example solves for an unknown supplier contribution to cover the finance cost of a $10,000 car purchase with six monthly capital payments. The calculation is from the lender viewpoint, and includes a one month supplier settlement deferral, so the calculation is performed using <strong>values dates</strong> defined by the each Series <code>valueDateFrom</code> date.</p>
+<p>Notes:</p>
+<ul>
+<li>
+<p><code>SeriesAdvance</code>: The <code>postDateFrom</code> date is the documented date of the contract, and <code>valueDateFrom</code> is the date of supplier settlement (undisclosed to borrower)</p>
+</li>
+<li>
+<p><code>SeriesPayment</code>'s:</p>
+<ul>
+<li>The borrower's documented payments are the deposit of $4000.00 and 6 x $1000.00 monthly payments, the sum equaling the advance amount (hence 0% finance).</li>
+<li>The supplier's undisclosed contribution to cover the finance company's return on capital is the unknown to solve.</li>
+</ul>
+</li>
+</ul>
+<p>Deferred settlements require calculations to be undertaken using <strong>value dates</strong>, so we pass <code>usePostDates: false</code> to the chosen Day Count Conventions, e.g. <code>US30U360(usePostDates: false)</code>. This ensures the calculation is performed from the lender's perspective.</p>
+<p>After determining the supplier contribution we show how to verify the lender's implicit return (IRR), again using <code>usePostDates: false</code>, and display the result schedule from the lender's perspective i.e. in value-date order.</p>
+<p><div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:curo/curo.dart&#39;</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="c1">// Create a calculator instance and define cash flow series</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">calculator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Calculator</span><span class="p">()</span>
+<span class="w">    </span><span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">SeriesAdvance</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">label:</span><span class="w"> </span><span class="s1">&#39;Cost of car&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">amount:</span><span class="w"> </span><span class="m">10000.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">postDateFrom:</span><span class="w"> </span><span class="n">DateTime</span><span class="p">.</span><span class="n">utc</span><span class="p">(</span><span class="m">2026</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">),</span>
+<span class="w">      </span><span class="nl">valueDateFrom:</span><span class="w"> </span><span class="n">DateTime</span><span class="p">.</span><span class="n">utc</span><span class="p">(</span><span class="m">2026</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">),</span>
+<span class="w">    </span><span class="p">))</span>
+<span class="w">    </span><span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">SeriesPayment</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">label:</span><span class="w"> </span><span class="s1">&#39;Deposit&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4000.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">postDateFrom:</span><span class="w"> </span><span class="n">DateTime</span><span class="p">.</span><span class="n">utc</span><span class="p">(</span><span class="m">2026</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">),</span>
+<span class="w">    </span><span class="p">))</span>
+<span class="w">    </span><span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">SeriesPayment</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">label:</span><span class="w"> </span><span class="s1">&#39;Supplier contribution&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">amount:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">postDateFrom:</span><span class="w"> </span><span class="n">DateTime</span><span class="p">.</span><span class="n">utc</span><span class="p">(</span><span class="m">2026</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">),</span>
+<span class="w">    </span><span class="p">))</span>
+<span class="w">    </span><span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">SeriesPayment</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">numberOf:</span><span class="w"> </span><span class="m">6</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">label:</span><span class="w"> </span><span class="s1">&#39;Instalment&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">amount:</span><span class="w"> </span><span class="m">1000.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">postDateFrom:</span><span class="w"> </span><span class="n">DateTime</span><span class="p">.</span><span class="n">utc</span><span class="p">(</span><span class="m">2026</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">),</span>
+<span class="w">    </span><span class="p">));</span>
+
+<span class="w">  </span><span class="c1">// Solve for the unknown and validate rate</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">convention</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">US30U360</span><span class="p">(</span><span class="nl">usePostDates:</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w"> </span><span class="c1">// by value date</span>
+
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">supplierContribution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">calculator</span><span class="p">.</span><span class="n">solveValue</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">convention:</span><span class="w"> </span><span class="n">convention</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">interestRate:</span><span class="w"> </span><span class="m">0.050</span><span class="p">,</span><span class="w"> </span><span class="c1">// lender return on capital</span>
+<span class="w">    </span><span class="nl">startDate:</span><span class="w"> </span><span class="n">DateTime</span><span class="p">.</span><span class="n">utc</span><span class="p">(</span><span class="m">2026</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">),</span>
+<span class="w">  </span><span class="p">);</span>
+
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">lenderIrr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">calculator</span><span class="p">.</span><span class="n">solveRate</span><span class="p">(</span><span class="nl">convention:</span><span class="w"> </span><span class="n">convention</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Optionally create an amortisation schedule and display results</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">schedule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calculator</span><span class="p">.</span><span class="n">buildSchedule</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">convention:</span><span class="w"> </span><span class="n">convention</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">interestRate:</span><span class="w"> </span><span class="n">lenderIrr</span><span class="p">,</span>
+<span class="w">  </span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="s1">&#39;Supplier contribution: </span><span class="se">\$</span><span class="si">${</span><span class="n">supplierContribution</span><span class="p">.</span><span class="n">toStringAsFixed</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">print</span><span class="p">(</span><span class="s1">&#39;Lender</span><span class="se">\&#39;</span><span class="s1">s IRR: </span><span class="si">${</span><span class="p">(</span><span class="n">lenderIrr</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">).</span><span class="n">toStringAsFixed</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="si">}</span><span class="s1">%</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="n">schedule</span><span class="p">.</span><span class="n">prettyPrint</span><span class="p">(</span><span class="nl">convention:</span><span class="w"> </span><span class="n">convention</span><span class="p">);</span>
+</code></pre></div>
+Console output:</p>
+<div class="highlight"><pre><span></span><code>Supplier contribution: $61.90
+Lender&#39;s IRR: 5.00%
+
+value_date   label                          amount        capital       interest  capital_balance
+-------------------------------------------------------------------------------------------------
+2026-01-05   Deposit                      4,000.00       4,000.00           0.00         4,000.00
+2026-02-05   Cost of car                -10,000.00     -10,000.00           0.00        -6,000.00
+2026-02-05   Instalment                   1,000.00       1,000.00           0.00        -5,000.00
+2026-02-05   Supplier contribution           61.90          61.90           0.00        -4,938.10
+2026-03-05   Instalment                   1,000.00         979.42         -20.58        -3,958.68
+2026-04-05   Instalment                   1,000.00         983.50         -16.50        -2,975.18
+2026-05-05   Instalment                   1,000.00         987.60         -12.40        -1,987.58
+2026-06-05   Instalment                   1,000.00         991.72          -8.28          -995.86
+2026-07-05   Instalment                   1,000.00         995.86          -4.14             0.00
+</code></pre></div>
+<h2 id="cash-flow-diagram">Cash Flow Diagram</h2>
+<p>The diagram below visualizes the cash flow dynamics of a borrower's $10,000 interest-free loan with a deposit and six monthly instalments, showing the deferred supplier settlement and contribution to offset finance charges, as implemented in the example code.</p>
+<ul>
+<li>
+<p>Advance: The full retail cost of the financed goods is shown as a blue downward arrow. Note that the blue advance arrow is positioned at the supplier settlement date (end of month 1) rather than the contract start, reflecting the lender's perspective.</p>
+</li>
+<li>
+<p>Payments:</p>
+<ul>
+<li>The known borrower deposit is represented by the longer blue upward arrow at the start of the time-line.</li>
+<li>The known borrower payments are represented by blue upward arrows.</li>
+<li>The supplier discount required to offset the financing costs is shown by a green upward arrow above the borrower’s first payment at the end of month 1.</li>
+</ul>
+</li>
+</ul>
+<p><img alt="Cash flow diagram for a $10,000 interest free loan with 6 instalments" src="../../assets/images/example-04.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
